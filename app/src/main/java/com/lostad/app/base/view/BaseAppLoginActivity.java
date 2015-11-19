@@ -8,7 +8,7 @@ import com.lostad.app.demo.MainActivity;
 import com.lostad.applib.entity.ILoginConfig;
 
 
-public class BaseAppLoginActivity extends BaseAppActivity implements IActivitySupport{
+public class BaseAppLoginActivity extends BaseActivity{
     protected  ILoginConfig mLogin;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -20,9 +20,9 @@ import android.widget.TextView;
 import com.lostad.app.demo.R;
 import com.lostad.app.base.util.LogMe;
 import com.lostad.app.base.util.Validator;
-import com.lostad.app.base.view.BaseAppActivity;
+import com.lostad.app.base.view.BaseActivity;
 
-public class CommonBrowserActivity extends BaseAppActivity {
+public class CommonBrowserActivity extends BaseActivity {
 	private String reportURL;
 	private WebView mWebView;
 

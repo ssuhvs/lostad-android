@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.lostad.app.IConst;
-import com.lostad.app.base.view.BaseAppActivity;
+import com.lostad.applib.view.BaseAppActivity;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

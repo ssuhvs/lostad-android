@@ -146,7 +146,7 @@ public class ListTourFragment extends BaseFragment implements PullToRefreshBase.
 								dismissLoding(null);
 
 							}else{
-								dismissLoding("未查询到任何游学项目！");
+								dismissLoding("未查询到任何数据！");
 							}
 						} else {
 							DialogUtil.showToastCust(ctx, g4j.getMsg());

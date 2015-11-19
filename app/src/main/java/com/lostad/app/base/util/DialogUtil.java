@@ -17,9 +17,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lostad.app.demo.R;
-import com.lostad.app.base.core.MyCallback;
 import com.lostad.app.base.view.widget.CustomProgressDialog;
+import com.lostad.app.demo.R;
+import com.lostad.applib.core.MyCallback;
 
 import java.util.List;
 

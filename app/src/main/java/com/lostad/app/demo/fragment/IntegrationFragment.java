@@ -59,7 +59,7 @@ public class IntegrationFragment extends BaseFragment {
         for(int i=0;i<3;i++){
 			ListTourFragment f = new ListTourFragment();
 			Bundle b = new Bundle();
-			b.putInt("type",i);
+			b.putString("type",i+"");
 			f.setArguments(b);
 
 			fragments.add(f);

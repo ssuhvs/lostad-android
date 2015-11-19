@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lostad.app.base.util.DownloadUtil;
-import com.lostad.app.base.view.BaseAppActivity;
+import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;
 import com.lostad.applib.util.Validator;
@@ -19,12 +19,12 @@ import java.util.List;
 
 public class ListMyTourAdapter extends BaseAdapter {
 
-	private BaseAppActivity mContext;
+	private BaseActivity mContext;
 	List<Tour> mListData = null;
 
 	private LayoutInflater mInflater;
 	private String myId;
-	public ListMyTourAdapter(BaseAppActivity context, List<Tour> list) {
+	public ListMyTourAdapter(BaseActivity context, List<Tour> list) {
 		mContext = context;
 		this.mListData = list;
 

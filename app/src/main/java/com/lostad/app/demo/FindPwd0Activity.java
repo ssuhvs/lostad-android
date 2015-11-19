@@ -16,7 +16,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lostad.app.demo.manager.SysManager;
 import com.lostad.app.base.util.DialogUtil;
 import com.lostad.app.base.util.Validator;
-import com.lostad.app.base.view.BaseAppActivity;
+import com.lostad.app.base.view.BaseActivity;
 import com.lostad.applib.entity.BaseBeanRsult;
 
 /**
@@ -25,7 +25,7 @@ import com.lostad.applib.entity.BaseBeanRsult;
  *
  * */
 
-public class FindPwd0Activity extends BaseAppActivity implements OnClickListener {
+public class FindPwd0Activity extends BaseActivity implements OnClickListener {
 
 	@ViewInject(R.id.et_phone)
 	private EditText et_phone;

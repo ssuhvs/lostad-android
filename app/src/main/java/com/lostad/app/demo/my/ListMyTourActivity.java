@@ -16,7 +16,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lostad.app.base.util.DialogUtil;
-import com.lostad.app.base.view.BaseAppActivity;
+import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;
@@ -33,7 +33,7 @@ import java.util.List;
  * @author sszvip
  * 
  */
-public class ListMyTourActivity extends BaseAppActivity implements ListViewPull.OnRefreshListener2,
+public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnRefreshListener2,
 		ListViewPull.OnLastItemVisibleListener,OnItemClickListener {
 
 	private MyApplication mApp;

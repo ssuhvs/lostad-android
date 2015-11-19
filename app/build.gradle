@@ -21,9 +21,9 @@ android {
     //自定义签名信息
     signingConfigs {
         myConfig {
-            storeFile file("tour.jks")
+            storeFile file("test.jks")
             storePassword "111111"
-            keyAlias "tour"
+            keyAlias "test"
             keyPassword "111111"
         }
     }

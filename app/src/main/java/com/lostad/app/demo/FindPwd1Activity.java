@@ -14,7 +14,7 @@ import com.lostad.app.demo.entity.LoginConfig;
 import com.lostad.app.demo.manager.UserManager;
 import com.lostad.app.demo.task.LoginTask;
 import com.lostad.app.base.util.DialogUtil;
-import com.lostad.app.base.view.BaseAppActivity;
+import com.lostad.app.base.view.BaseActivity;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.entity.BaseBeanRsult;
 
@@ -24,7 +24,7 @@ import com.lostad.applib.entity.BaseBeanRsult;
  *  @Author  sszvip@qq.com
  * */
 
-public class FindPwd1Activity extends BaseAppActivity {
+public class FindPwd1Activity extends BaseActivity {
 	@ViewInject(R.id.et_register_pass)
 	private EditText  et_register_pass;
 

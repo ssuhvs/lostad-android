@@ -20,10 +20,10 @@ import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lostad.app.base.util.LogMe;
-import com.lostad.app.base.view.BaseAppActivity;
 import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.fragment.IntegrationFragment;
 import com.lostad.app.demo.fragment.SettingsFragment;
+import com.lostad.applib.view.BaseAppActivity;
 import com.zxing.view.CaptureActivity;
 
 import java.util.ArrayList;

@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
-    android:background="@color/gray"
+    android:background="@drawable/bg_login"
     android:scrollbars="none">
 
     <LinearLayout
@@ -23,21 +23,16 @@
             android:orientation="vertical" >
 
             <ImageView
-                android:visibility="invisible"
+
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginTop="64dp"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/logo" />
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
 
                 <EditText
                     android:id="@+id/et_phone"
+                    android:layout_marginTop="32dp"
                     android:drawableLeft="@mipmap/login_user"
                     android:drawablePadding="6dp"
                     android:layout_width="fill_parent"
@@ -54,7 +49,6 @@
                 </EditText>
 
 
-            </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
@@ -68,7 +62,7 @@
                 android:drawablePadding="6dp"
                 android:layout_width="fill_parent"
                 android:layout_height="32dip"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/transparent"
                 android:hint="输入密码"
                 android:password="true"

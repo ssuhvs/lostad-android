@@ -22,6 +22,9 @@ public abstract class BaseApplication extends Application {
 	public void addActivity(Activity activity) {
 		activityList.add(activity);
 	}
+	public void popupActivity(Activity activity) {
+		activityList.remove(activity);
+	}
 
 	// 遍历所有Activity并finish
 	public void clearActivity() {
@@ -31,11 +34,6 @@ public abstract class BaseApplication extends Application {
 		activityList.clear();
 	}
 
-	public String getRunningActivityName(){
-		ActivityManager activityManager=(ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-		String runningActivity=activityManager.getRunningTasks(1).get(0).topActivity.getClassName();
-		return runningActivity;
-	}
 
 	public abstract void quit(boolean isClearData);
 	public abstract void startService();

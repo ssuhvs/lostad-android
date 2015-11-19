@@ -12,12 +12,11 @@ import android.widget.TimePicker;
 import android.widget.TimePicker.OnTimeChangedListener;
 
 import com.lostad.app.demo.R;
-import com.lostad.app.base.core.MyCallback;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
+import com.lostad.applib.core.*;
 
 
 /**
@@ -50,7 +49,7 @@ public class DateTimePickDialogUtil implements  OnDateChangedListener,OnTimeChan
 		/**
 		 * 日期时间弹出选择框构造函数
 		 * @param activity：调用的父activity
-		 * @param initDateTime 初始日期时间值，作为弹出窗口的标题和日期时间初始值
+		 *
 		 */
 		public DateTimePickDialogUtil(Activity activity)
 		{
@@ -77,7 +76,7 @@ public class DateTimePickDialogUtil implements  OnDateChangedListener,OnTimeChan
 
 		/**
 		 * 弹出日期时间选择框方法
-		 * @param inputDate:为需要设置的日期时间文本编辑框
+		 * @param initDateTime:为需要设置的日期时间文本编辑框
 		 * @return
 		 */
 		public AlertDialog dateTimePicKDialog(final String initDateTime,final MyCallback callBack)
@@ -113,7 +112,7 @@ public class DateTimePickDialogUtil implements  OnDateChangedListener,OnTimeChan
 		
 		/**
 		 * 弹出日期时间选择框方法
-		 * @param inputDate:为需要设置的日期时间文本编辑框
+		 * @param initDate:为需要设置的日期时间文本编辑框
 		 * @return
 		 */
 		public Dialog datePicKDialogBefore(String initDate,final MyCallback myCallback)
@@ -137,7 +136,7 @@ public class DateTimePickDialogUtil implements  OnDateChangedListener,OnTimeChan
 		}
 		/**
 		 * 弹出日期时间选择框方法
-		 * @param inputDate:为需要设置的日期时间文本编辑框
+		 * @param initDate:为需要设置的日期时间文本编辑框
 		 * @return
 		 */
 		public Dialog datePicKDialogLast(String initDate,final MyCallback myCallback)
@@ -190,7 +189,7 @@ public class DateTimePickDialogUtil implements  OnDateChangedListener,OnTimeChan
 		
 		/**
 		 * 初始化
-		 * @param initDateTime 初始日期时间值 字符串型
+		 * @param currDateTime 初始日期时间值 字符串型
 		 * @return Calendar
 		 */
 		private Calendar getCalendarByInintData(String currDateTime,String fomat) {

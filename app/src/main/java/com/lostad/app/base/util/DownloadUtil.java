@@ -4,7 +4,7 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *    http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
@@ -24,7 +24,7 @@ import android.widget.ImageView;
 
 import com.lidroid.xutils.BitmapUtils;
 import com.lostad.app.demo.R;
-import com.lostad.app.base.core.MyCallback;
+import com.lostad.applib.core.MyCallback;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -88,7 +88,7 @@ public class DownloadUtil {
 	public static void loadImage(ImageView imageView,String url,DisplayImageOptions options){
 		ImageLoader.getInstance().displayImage(url, imageView, options);
 	}
-	
+
 	public static void downFileAsyn(final Activity ctx, final String upgradeUrl,
 			final String savedPath, final MyCallback<Boolean> callback) {
 		final ProgressDialog xh_pDialog = new ProgressDialog(ctx);

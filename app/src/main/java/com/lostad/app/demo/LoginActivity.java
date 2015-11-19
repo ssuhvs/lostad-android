@@ -4,7 +4,6 @@ package com.lostad.app.demo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
-import android.text.Spanned;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,18 +15,18 @@ import com.lostad.app.demo.entity.LoginConfig;
 import com.lostad.app.demo.task.LoginTask;
 import com.lostad.app.base.util.EffectUtil;
 import com.lostad.app.base.util.PrefManager;
-import com.lostad.app.base.view.BaseAppActivity;
+import com.lostad.app.base.view.BaseActivity;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.entity.ILoginConfig;
 import com.lostad.applib.util.Validator;
 
-public class LoginActivity extends BaseAppActivity {
-    @ViewInject( R.id.et_phone)
+public class LoginActivity extends BaseActivity {
+    @ViewInject(R.id.et_phone)
     private TextView et_phone;
-    @ViewInject( R.id.et_password)
+    @ViewInject(R.id.et_password)
     private TextView et_password;
 
-    @ViewInject( R.id.btn_login)
+    @ViewInject(R.id.btn_login)
     private Button btn_login;
 
     @Override
@@ -36,32 +35,25 @@ public class LoginActivity extends BaseAppActivity {
         setContentView(R.layout.activity_login);
         ViewUtils.inject(this);
 
-      //  setSystemBarStyle(R.color.red);
         //社会化分享
-        Spanned h = Html.fromHtml("同意《<u> <font>用户使用协议</span> </u>》");
-       // UmengPlatUtil.getInstance(this);
+        // UmengPlatUtil.getInstance(this);
         ILoginConfig login = getLoginConfig();
-        if(login!=null){
+        if (login != null) {
             et_phone.setText(login.getPhone());
             et_password.setText(login.getPassword());
         }
 
-//        if(AppConfig.isTestMode){
-//            et_phone.setText("15865257901");
-//            et_password.setText("123456");
-//        }
-
-
     }
+
     @OnClick(R.id.tv_reg)
-    public void toReg(View v){
-        Intent i = new Intent(ctx,Register0Activity.class);
+    public void toReg(View v) {
+        Intent i = new Intent(ctx, Register0Activity.class);
         startActivity(i);
     }
 
     @OnClick(R.id.tv_find_pwd)
-    public void toFindPwd(View v){
-        Intent i = new Intent(ctx,FindPwd0Activity.class);
+    public void toFindPwd(View v) {
+        Intent i = new Intent(ctx, FindPwd0Activity.class);
         startActivity(i);
     }
 
@@ -194,29 +186,28 @@ public class LoginActivity extends BaseAppActivity {
 //        LoginTask loginTask = new LoginTask(LoginActivity.this,mLoginConfig);
 //        loginTask.execute();
 //    }
-
     @OnClick(R.id.btn_login)
     public void loginByPhone(View v) {
 
         String username = et_phone.getText().toString();
         String pwd = et_password.getText().toString();
-        if(Validator.isBlank(username)){
+        if (Validator.isBlank(username)) {
             et_phone.requestFocus();
-            et_phone.setError("手机号不能为空");
+            et_phone.setError(Html.fromHtml("<font color=#FFFFFF>手机号不能为空</font>"));
             EffectUtil.showShake(this, et_phone);
             return;
         }
 
-        if(!Validator.isMobile(username)){
-            et_phone.setError("手机号不正确");
+        if (!Validator.isMobile(username)) {
+            et_phone.setError(Html.fromHtml("<font color=#FFFFFF>手机号不正确</font>"));
             et_phone.requestFocus();
             et_phone.setText("");
             return;
         }
         LoginConfig mLoginConfig = new LoginConfig();
         mLoginConfig.setPhone(username);
-        if(Validator.isBlank(pwd)){
-            et_password.setError("请输入验密码");
+        if (Validator.isBlank(pwd)) {
+            et_password.setError(Html.fromHtml("<font color=#FFFFFF>请输入验密码</font>"));
             et_password.requestFocus();
             return;
         }
@@ -227,12 +218,8 @@ public class LoginActivity extends BaseAppActivity {
         LoginTask loginTask = new LoginTask(LoginActivity.this, mLoginConfig, new MyCallback<Boolean>() {
             @Override
             public void onCallback(Boolean success) {
-                if(success){
+                if (success) {
                     finish();
-                }else{
-                    Intent i = new Intent(ctx,LoginActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    ctx.startActivity(i);
                 }
             }
         });

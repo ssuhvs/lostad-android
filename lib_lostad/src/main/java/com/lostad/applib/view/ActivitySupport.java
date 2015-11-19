@@ -61,6 +61,12 @@ public abstract class ActivitySupport extends AppCompatActivity implements IActi
 	}
 
 	@Override
+	protected void onDestroy() {
+		mBaseApplication.popupActivity(this);
+		super.onDestroy();
+	}
+
+	@Override
 	public boolean validateInternet() {
 		ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 		if (manager == null) {

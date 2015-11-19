@@ -6,10 +6,10 @@ import android.text.InputFilter;
 import android.text.InputFilter.LengthFilter;
 import android.widget.EditText;
 
-import com.lostad.app.base.view.BaseAppActivity;
+import com.lostad.app.base.view.BaseActivity;
 
 
-public class BaseFormActivity extends BaseAppActivity {
+public class BaseFormActivity extends BaseActivity {
 	public static final String KEY_VALUE  = "value";
 	public static final String KEY_DESC   = "desc";
 	public static final String KEY_MAX_LEN  = "max_len";
