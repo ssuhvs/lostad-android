@@ -9,7 +9,7 @@ public class NumUtil {
 
 	/**
 	 * 判断是否可以访问网络
-	 * @param context
+	 * @param
 	 * @return
 	 */
 	public static String format(Double x,Integer maximumFractionDigits) {

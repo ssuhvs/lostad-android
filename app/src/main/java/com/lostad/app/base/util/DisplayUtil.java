@@ -41,7 +41,7 @@ public final class DisplayUtil {
      /**
       * 将dip或dp值转换为px值，保证尺寸大小不变
       * @param dipValue
-      * @param scale
+      * @param context
       * @return
       */
     public static int dipToPx(Context context, float dipValue) {
@@ -52,7 +52,7 @@ public final class DisplayUtil {
      /**
       * 将px值转换为sp值，保证文字大小不变
       * @param pxValue
-      * @param fontScale
+      * @param context
       * @return
       */
     public static int pxToSp(Context context, float pxValue) {
@@ -63,7 +63,7 @@ public final class DisplayUtil {
      /**
       * 将px值转换为sp值，保证文字大小不变
       * @param spValue
-      * @param fontScale
+      * @param context
       * @return
       */
     public static int spToPx(Context context, float spValue) {
