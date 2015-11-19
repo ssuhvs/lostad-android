@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:padding="@dimen/paddings"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_margin="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="选择时间"
+        android:textColor="@color/txt_gray"
+        android:textSize="@dimen/sp_content" />
+      
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp" >
+ 
+        <DatePicker
+            android:id="@+id/dpPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="false" />
+
+        <TimePicker
+            android:id="@+id/tpPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    
+   
+
+ 
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/alertdialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_shape_window"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:text="title"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:selectAllOnFocus="true"
+        android:singleLine="true" />
+    <View android:layout_height="0.5dp" android:layout_width="fill_parent" android:background="@color/gray"/>
+    <ListView
+        android:id="@id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+</LinearLayout>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lostad.app.demo">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- 二维码 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:name="com.lostad.app.demo.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:logo="@mipmap/logo"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${CHANNEL_NAME}" />
+        <activity
+            android:name="com.lostad.app.demo.WelActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="com.zxing.view.CaptureActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+        </activity>
+        <activity
+            android:name="com.lostad.app.demo.FindPwd0Activity"
+            android:screenOrientation="portrait"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+        </activity>
+        <activity
+            android:name="com.lostad.app.demo.FindPwd1Activity"
+            android:screenOrientation="portrait"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+        <activity
+            android:name="com.lostad.app.demo.my.FormMyActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+        </activity>
+
+        <activity
+            android:name="com.lostad.app.demo.MainActivity"
+            android:launchMode="singleTask"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity
+            android:name="com.lostad.app.demo.Register1Activity"
+            android:screenOrientation="portrait"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+
+        </activity>
+        <activity
+            android:name="com.lostad.app.demo.Register0Activity"
+            android:screenOrientation="portrait"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+
+        </activity>
+
+
+
+        <activity
+            android:name="com.lostad.app.demo.LoginActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+
+        </activity>
+
+
+
+        <activity
+            android:name="com.lostad.app.demo.tour.OrderConfirmActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.lostad.app.demo.tour.FormWayActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
+        <activity
+            android:name="com.lostad.app.demo.tour.TourDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
+        <activity
+            android:name="com.lostad.app.demo.tour.FormOrderCreateActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
+        <activity
+            android:name="com.lostad.app.demo.tour.FormJoinerActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
+        <activity
+            android:name="com.lostad.app.demo.my.ListUserActivity"
+            android:label="@string/title_activity_list_user"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.lostad.app.demo.my.FormUserActivity"
+            android:label="@string/title_activity_form_user"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+        <activity
+            android:name="com.lostad.app.demo.my.ListMyTourActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+        <activity
+            android:name="com.lostad.app.demo.FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/FullscreenTheme"></activity>
+        <activity
+            android:name="com.lostad.app.demo.my.ListMyOrderActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"></activity>
+
+        <activity
+            android:name="com.lostad.app.demo.my.MyOrderInfoActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"></activity>
+        <activity
+            android:name="com.lostad.app.demo.tour.OrderPayActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"></activity>
+        <activity
+            android:name="com.lostad.app.demo.my.ListGardianActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseAppActivity"></activity>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,47 @@
+<resources>
+    <style name="AppTheme" parent="AppBaseTheme">
+
+    </style>
+
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- toolbar（actionbar）颜色 -->
+        <item name="colorPrimary">@color/red</item>
+        <!-- 窗口的背景颜色 -->
+        <item name="colorPrimaryDark">@color/background_gray</item>
+    </style>
+    
+
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+     <style name="CustomProgressDialog" parent="@style/CustomDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">@style/ButtonBar</item>
+        <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
+    </style>
+
+    <!-- Backward-compatible version of ?android:attr/buttonBarStyle -->
+    <style name="ButtonBar">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:background">@android:drawable/bottom_bar</item>
+    </style>
+
+    <!-- Backward-compatible version of ?android:attr/buttonBarButtonStyle -->
+    <style name="ButtonBarButton" />
+    <!--  -->
+</resources>

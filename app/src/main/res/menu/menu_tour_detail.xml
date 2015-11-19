@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <item android:id="@+id/action_join" android:title="报名"
+        android:orderInCategory="1001" app:showAsAction="always" />
+
+</menu>

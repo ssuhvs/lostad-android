@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal">
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/paddings">
+
+                <TableRow
+                    android:id="@+id/tr_child"
+                    android:gravity="center_vertical">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/height_list_item_mid"
+                        android:editable="false"
+                        android:gravity="center_vertical"
+                        android:minWidth="64dp"
+                        android:text="姓        名"
+                        android:textColor="@color/txt_gray_dark"
+                        android:textSize="@dimen/sp_content2" />
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:minEms="10"
+                        android:textColor="@color/txt_gray_dark"
+                        android:textSize="@dimen/sp_content2" />
+
+                </TableRow>
+
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/et_name_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/height_list_item_mid"
+                        android:gravity="center_vertical"
+                        android:minWidth="64dp"
+                        android:text="证件类型"
+                        android:textColor="@color/txt_gray_dark"
+                        android:textSize="@dimen/sp_content2" />
+
+                    <EditText
+                        android:id="@+id/et_idcard_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="false"
+                        android:ellipsize="end"
+                        android:focusable="false"
+                        android:hint=""
+                        android:minEms="18"
+                        android:textColor="@color/txt_gray_dark"
+                        android:textSize="@dimen/sp_content2" />
+                </TableRow>
+
+                <TableRow android:id="@+id/tr_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/height_list_item_mid"
+                        android:gravity="center_vertical"
+                        android:minWidth="64dp"
+                        android:text="证件号码"
+                        android:textColor="@color/txt_gray_dark"
+                        android:textSize="@dimen/sp_content2" />
+
+                    <EditText
+                        android:id="@+id/et_idcard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="true"
+                        android:ellipsize="end"
+                        android:hint=""
+                        android:minEms="18"
+                        android:textColor="@color/txt_gray_dark"
+                        android:textSize="@dimen/sp_content2" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/height_list_item_mid"
+                        android:gravity="center_vertical"
+                        android:minWidth="64dp"
+                        android:text="身高(cm)"
+                        android:textColor="@color/txt_gray_dark"
+                        android:textSize="@dimen/sp_content2" />
+
+                    <EditText
+                        android:id="@+id/et_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="true"
+                        android:ellipsize="end"
+                        android:hint=""
+                        android:minEms="18"
+                        android:numeric="decimal"
+                        android:textColor="@color/txt_gray_dark"
+                        android:textSize="@dimen/sp_content2" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/height_list_item_mid"
+                        android:gravity="center_vertical"
+                        android:minWidth="64dp"
+                        android:text="体重(kg)"
+                        android:textColor="@color/txt_gray_dark"
+                        android:textSize="@dimen/sp_content2" />
+
+                    <EditText
+                        android:id="@+id/et_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="true"
+                        android:ellipsize="end"
+                        android:hint=""
+                        android:minEms="18"
+                        android:numeric="decimal"
+                        android:textColor="@color/txt_gray_dark"
+                        android:textSize="@dimen/sp_content2" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/height_list_item_mid"
+                        android:gravity="center_vertical"
+                        android:minWidth="64dp"
+                        android:text="性        别"
+                        android:textColor="@color/txt_gray_dark"
+                        android:textSize="@dimen/sp_content2" />
+
+                    <EditText
+                        android:id="@+id/et_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:editable="false"
+                        android:ellipsize="end"
+                        android:focusable="false"
+                        android:hint=""
+                        android:minEms="18"
+                        android:textColor="@color/txt_gray_dark"
+                        android:textSize="@dimen/sp_content2" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

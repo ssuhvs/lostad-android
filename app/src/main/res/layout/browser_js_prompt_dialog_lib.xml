@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView android:id="@+id/prompt_message_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
+
+    <EditText android:id="@+id/prompt_input_field"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:selectAllOnFocus="true"
+            android:scrollHorizontally="true"
+            android:minWidth="250dp" 
+            />
+</LinearLayout>
