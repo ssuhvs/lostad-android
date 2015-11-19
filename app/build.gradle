@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+    useLibrary 'org.apache.http.legacy'
+
+    lintOptions {//关闭警告退出检查
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "com.lostad.app.demo"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        //一是声明 CHANNEL_NAME 是可替换值的PlaceHolder，二是为其设置默认值。
+        manifestPlaceholders = [CHANNEL_NAME:"Unspecified"]
+    }
+    //自定义签名信息
+    signingConfigs {
+        myConfig {
+            storeFile file("tour.jks")
+            storePassword "111111"
+            keyAlias "tour"
+            keyPassword "111111"
+        }
+    }
+    buildTypes {
+        release {
+            //不要忘了要在release的时候加入签名配置信息
+            signingConfig  signingConfigs.myConfig
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //多渠道发布
+    productFlavors {
+        yingyongbao {
+            manifestPlaceholders = [ CHANNEL_NAME:"YINGYONGBAO"]
+        }
+        goapk {
+            manifestPlaceholders = [ CHANNEL_NAME:"goapk" ]
+        }
+        hiapk {
+            manifestPlaceholders = [ CHANNEL_NAME:"hiapk" ]
+        }
+        wandoujia {
+            manifestPlaceholders = [ CHANNEL_NAME:"WANDOUJIA" ]
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile files('libs/universal-image-loader-1.9.2-SNAPSHOT-with-sources.jar')
+    compile files('libs/Android_Location_V1.3.2.jar')
+    compile files('libs/httpcore-4.4.3.jar')
+    compile files('libs/httpcore-ab-4.4.3.jar')
+    compile files('libs/httpcore-nio-4.4.3.jar')
+    compile files('libs/org.apache.http.legacy.jar')
+    compile project(':lib_lostad')
+    compile files('libs/alipaySDK-20151014.jar')
+    compile files('libs/zxing.jar')
+    compile project(':lib_PullToRefresh')
+}

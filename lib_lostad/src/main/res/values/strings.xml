@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">App Lib</string>
+    <string name="title_prompt">友情提示</string>
+    <string name="menu_settings">设置</string>
+    <string name="check_connection">检查网络</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_ok">确定</string>
+    <string name="btn_yes">是</string>
+    <string name="btn_no">否</string>
+</resources>

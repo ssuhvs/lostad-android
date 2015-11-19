@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!-- 圆角 半透明黑色背景 -->   
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">   
+    <item>   
+        <shape>   
+            <solid android:color="#99000000" />   
+            <corners android:radius="8dp"/>
+        </shape>   
+    </item>  
+</layer-list>  

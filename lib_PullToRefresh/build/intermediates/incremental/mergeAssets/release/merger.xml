@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/sszvip/AndroidStudioProjects/lostad_demo_as/lib_PullToRefresh/assets"><file name="ptr_webview2_sample.html" path="/Users/sszvip/AndroidStudioProjects/lostad_demo_as/lib_PullToRefresh/assets/ptr_webview2_sample.html"/></source></dataSet><dataSet config="release"><source path="/Users/sszvip/AndroidStudioProjects/lostad_demo_as/lib_PullToRefresh/build-types/release/assets"/></dataSet></merger>
