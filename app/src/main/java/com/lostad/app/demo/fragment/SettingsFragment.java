@@ -48,6 +48,7 @@ public class SettingsFragment extends BaseFragment {
 		return rootView;
 	}
 
+
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -58,7 +59,7 @@ public class SettingsFragment extends BaseFragment {
 			btn_quit.setText("退出");
 		}else{
 			tv_name.setText("未登陆");
-			tv_phone.setText("");
+			tv_phone.setText("手机号未知");
 			btn_quit.setText("注册/登陆");
 		}
 	}
@@ -154,4 +155,5 @@ public class SettingsFragment extends BaseFragment {
 		Intent i = new Intent(ctx, LoginActivity.class);
 		startActivity(i);
 	}
+
 }

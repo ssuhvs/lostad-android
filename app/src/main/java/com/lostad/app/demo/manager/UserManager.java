@@ -6,8 +6,7 @@ import com.lostad.app.base.util.LogMe;
 import com.lostad.app.base.util.RequestUtil;
 import com.lostad.app.demo.entity.UserInfo4j;
 import com.lostad.applib.entity.BaseBeanRsult;
-import com.tencent.connect.UserInfo;
-
+import com.lostad.app.demo.entity.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,24 +37,28 @@ public class UserManager
 
 
 	public UserInfo4j login(String phone,String password) {
-		UserInfo4j c = null;
+		UserInfo4j c = new UserInfo4j(true,"success");
+        c.data = new UserInfo();
+		c.data.setId("testId");
+		c.data.setNickname("nickname");
+		c.data.setName("TestName");
+		c.data.phone = "15865257900";
 
 		try {
-			Gson g = new Gson();
-
-            Map map = new HashMap();
-			map.put("SJHM",phone);
-			map.put("DLMM",password);
-
-
-			String param = g.toJson(map);
-			LogMe.d("param", param);
-			String j = RequestUtil.postJson( IConst.URL_SERVICE , param);
-			LogMe.d("data", j);
-			c = g.fromJson(j, UserInfo4j.class);
-			if(c==null ){
-				c = new UserInfo4j(false,"服务器返回数据异常");
-			}
+//			Gson g = new Gson();
+//
+//          Map map = new HashMap();
+//			map.put("phone",phone);
+//			map.put("password",password);
+//
+//			String param = g.toJson(map);
+//			LogMe.d("param", param);
+//			String j = RequestUtil.postJson( IConst.URL_SERVICE , param);
+//			LogMe.d("data", j);
+//			c = g.fromJson(j, UserInfo4j.class);
+//			if(c==null ){
+//				c = new UserInfo4j(false,"服务器返回数据异常");
+//			}
 		} catch (Exception e) {
 			c = new UserInfo4j(false,"服务器返回数据异常！"+e.getMessage());
 			e.printStackTrace();

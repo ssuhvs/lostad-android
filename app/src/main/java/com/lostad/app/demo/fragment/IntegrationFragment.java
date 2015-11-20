@@ -46,6 +46,7 @@ public class IntegrationFragment extends BaseFragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+	    super.onCreateView(inflater, container,savedInstanceState);
 		View rootView = inflater.inflate(R.layout.intergration_fragment, container, false);
 		ViewUtils.inject(this,rootView);
 	    DisplayMetrics getDisplayMetrics = getActivity().getApplicationContext().getResources().getDisplayMetrics(); 

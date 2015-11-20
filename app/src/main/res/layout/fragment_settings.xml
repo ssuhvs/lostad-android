@@ -46,7 +46,7 @@
                     android:id="@+id/tv_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="手机号"
+                    android:text="手机号未知"
                     android:textColor="@color/txt_gray"
                     android:textSize="@dimen/sp_content" />
             </LinearLayout>

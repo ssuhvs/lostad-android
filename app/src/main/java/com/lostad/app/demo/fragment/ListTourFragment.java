@@ -71,11 +71,24 @@ public class ListTourFragment extends BaseFragment implements PullToRefreshBase.
 		mListData= new ArrayList<Tour>();
 		mAdapter = new ListTourAdapter(mType,ctx, mListData);
 		actualListView.setAdapter(mAdapter);
-		//主动加载
+
 		lv_data.setRefreshing();
 
 		return rootView;
 	}
+//////////////////////////////////////////////////////////////////
+//  切换fragment界面时需要刷新时，打开这里 。此方法在fragment初始化后才有效
+//	@Override
+//	public void setUserVisibleHint(boolean isVisibleToUser) {
+//		super.setUserVisibleHint(isVisibleToUser);
+//		LogMe.d("fragment", this.getClass().getName() + "===========setUserVisibleHint  isVisibleToUser:" + isVisibleToUser);
+//		if(isVisibleToUser && lv_data!=null) {//可见，且界面已经初始化
+//			lv_data.setRefreshing();
+//		} else {//
+//
+//		}
+//	}
+////////////////////////////////////////////////////////////////////
 
 	@Override
 	public void onLastItemVisible() {
@@ -103,16 +116,7 @@ public class ListTourFragment extends BaseFragment implements PullToRefreshBase.
 		startActivity(i);
 	}
 
-//	 @Override
-//	 public void setUserVisibleHint(boolean isVisibleToUser) {
-//	       super.setUserVisibleHint(isVisibleToUser);
-//	       LogMe.d("rank","----------setUserVisibleHint------isVisibleToUser:"+isVisibleToUser);
-//	       if (isVisibleToUser) {
-//
-//	       } else {
-//	           //相当于Fragment的onPause
-//	       }
-//	   }
+
 	 
     /**
      * 如果是下拉刷新，先不要清空数据，以免闪屏体验不好。
