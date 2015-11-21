@@ -87,16 +87,6 @@ public class DialogUtil {
 		}
 	}
 
-	/**
-	 * 隐藏progress
-	 */
-	public static void dismissProgress(boolean showSuccess) {
-		if(showSuccess){
-			progressDialogMy.showSucessIcon();
-		}
-        dismissProgress();
-
-	}
 
 	public static void showToastOnUIThread(final Activity act,final String msg) {
 		act.runOnUiThread(new Runnable() {

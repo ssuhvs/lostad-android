@@ -2,7 +2,7 @@
 <resources> 
   	<!-- 登录提示 -->
 
-    <string name="app_name">LostAd</string>
+    <string name="app_name">LostAd Demo 高仿游学去吧App</string>
     <string name="message_invalid_username_password">错误的用户名或密码</string>
     <string name="message_server_unavailable">无法连接到服务器</string>
     <string name="message_user_disabled">用户被禁用</string>

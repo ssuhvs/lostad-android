@@ -12,6 +12,10 @@ public class Validator {
 		
 		return is;
 	}
+	public static boolean isEmpty(String str){
+		boolean is = str == null || str.trim().equals("");
+		return is;
+	}
 	public static boolean isNotEmpty(String str){
 		
 		return !isBlank(str);

@@ -25,8 +25,6 @@ import android.widget.ImageView;
 import com.lidroid.xutils.BitmapUtils;
 import com.lostad.app.demo.R;
 import com.lostad.applib.core.MyCallback;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -85,9 +83,22 @@ public class DownloadUtil {
 		}
 	}
 
-	public static void loadImage(ImageView imageView,String url,DisplayImageOptions options){
-		ImageLoader.getInstance().displayImage(url, imageView, options);
+	public static void loadImage(Activity ctx,ImageView iv_pic,int defalutImgId,String url){
+		try{
+			BitmapUtils bitmapUtils = new BitmapUtils(ctx);
+			bitmapUtils.display(iv_pic,url);
+			bitmapUtils.configDefaultLoadingImage(defalutImgId);//默认背景图片
+			bitmapUtils.configDefaultLoadFailedImage(defalutImgId);//加载失败图片
+			bitmapUtils.configDefaultBitmapConfig(Bitmap.Config.RGB_565);//设置图片压缩类型
+			bitmapUtils.configDiskCacheEnabled(true);//缓存
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
+
+//	public static void loadImage(ImageView imageView,String url,DisplayImageOptions options){
+//		ImageLoader.getInstance().displayImage(url, imageView, options);
+//	}
 
 	public static void downFileAsyn(final Activity ctx, final String upgradeUrl,
 			final String savedPath, final MyCallback<Boolean> callback) {

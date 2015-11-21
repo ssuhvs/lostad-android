@@ -22,8 +22,10 @@
     <!-- 二维码 -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -32,12 +34,13 @@
         android:name="com.lostad.app.demo.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
-        android:logo="@mipmap/logo"
         android:label="@string/app_name"
+        android:logo="@mipmap/logo"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${CHANNEL_NAME}" />
+
         <activity
             android:name="com.lostad.app.demo.WelActivity"
             android:screenOrientation="portrait"
@@ -53,118 +56,59 @@
 
         <activity
             android:name="com.zxing.view.CaptureActivity"
-            android:screenOrientation="portrait"
             android:parentActivityName="com.lostad.app.base.view.BaseActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-        </activity>
-        <activity
-            android:name="com.lostad.app.demo.FindPwd0Activity"
             android:screenOrientation="portrait"
-            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-        </activity>
-        <activity
-            android:name="com.lostad.app.demo.FindPwd1Activity"
-            android:screenOrientation="portrait"
-            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
             android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <activity
-            android:name="com.lostad.app.demo.my.FormMyActivity"
-            android:screenOrientation="portrait"
+            android:name="com.lostad.app.demo.FindPwd0Activity"
             android:parentActivityName="com.lostad.app.base.view.BaseActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-        </activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+        <activity
+            android:name="com.lostad.app.demo.FindPwd1Activity"
+            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+        <activity
+            android:name="com.lostad.app.demo.my.FormMyInfoActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
 
         <activity
             android:name="com.lostad.app.demo.MainActivity"
-            android:launchMode="singleTask"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait">
 
         </activity>
 
         <activity
             android:name="com.lostad.app.demo.Register1Activity"
-            android:screenOrientation="portrait"
             android:parentActivityName="com.lostad.app.base.view.BaseActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden">
 
         </activity>
         <activity
             android:name="com.lostad.app.demo.Register0Activity"
-            android:screenOrientation="portrait"
             android:parentActivityName="com.lostad.app.base.view.BaseActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden">
 
         </activity>
-
-
 
         <activity
             android:name="com.lostad.app.demo.LoginActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-
-        </activity>
-
-
-
-        <activity
-            android:name="com.lostad.app.demo.tour.OrderConfirmActivity"
-            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.lostad.app.demo.tour.FormWayActivity"
-            android:configChanges="orientation|keyboardHidden"
             android:parentActivityName="com.lostad.app.base.view.BaseActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
-        <activity
-            android:name="com.lostad.app.demo.tour.TourDetailActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
-        <activity
-            android:name="com.lostad.app.demo.tour.FormOrderCreateActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
-        <activity
-            android:name="com.lostad.app.demo.tour.FormJoinerActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"></activity>
-        <activity
-            android:name="com.lostad.app.demo.my.ListUserActivity"
-            android:label="@string/title_activity_list_user"
-            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name="com.lostad.app.demo.my.FormUserActivity"
-            android:label="@string/title_activity_form_user"
-            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
             android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
         <activity
             android:name="com.lostad.app.demo.my.ListMyTourActivity"
             android:parentActivityName="com.lostad.app.base.view.BaseActivity"
             android:windowSoftInputMode="adjustResize|stateHidden"></activity>
-        <activity
-            android:name="com.lostad.app.demo.my.ListMyOrderActivity"
-            android:parentActivityName="com.lostad.app.base.view.BaseActivity"></activity>
 
-        <activity
-            android:name="com.lostad.app.demo.my.MyOrderInfoActivity"
-            android:parentActivityName="com.lostad.app.base.view.BaseActivity"></activity>
-        <activity
-            android:name="com.lostad.app.demo.tour.OrderPayActivity"
-            android:parentActivityName="com.lostad.app.base.view.BaseActivity"></activity>
-        <activity
-            android:name="com.lostad.app.demo.my.ListGardianActivity"
-            android:parentActivityName="com.lostad.app.base.view.BaseActivity"></activity>
 
     </application>
 

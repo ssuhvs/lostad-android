@@ -15,6 +15,7 @@ import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.LoginActivity;
 import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.R;
+import com.lostad.app.demo.my.FormMyInfoActivity;
 import com.lostad.app.demo.my.ListMyTourActivity;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.entity.ILoginConfig;
@@ -70,10 +71,8 @@ public class SettingsFragment extends BaseFragment {
              toLoginActivity();
 		}else{
 			try {
-//				UserInfo u = getApp().getDb().findById(UserInfo.class,mLogin.getUserId());
-//				Intent i =  new Intent(ctx, FormMyActivity.class);
-//				i.putExtra("bean",u);
-//				startActivityForResult(i,0);
+				Intent i =  new Intent(ctx, FormMyInfoActivity.class);
+				startActivity(i);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

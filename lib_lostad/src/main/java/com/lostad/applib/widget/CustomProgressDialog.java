@@ -3,64 +3,70 @@ package com.lostad.applib.widget;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lostad.applib.R;
-import com.lostad.applib.util.EffectUtil;
 
 
-/******************************************************************** 
- * [Summary] 
- *       TODO 请在此处简要描述此类所实现的功能。因为这项注释主要是为了在IDE环境中生成tip帮助，务必简明扼要 
- * [Remarks] 
- *       TODO 请在此处详细描述类的功能、调用方法、注意事项、以及与其它类的关系. 
- *******************************************************************/  
-  
-public class CustomProgressDialog extends Dialog {  
+/********************************************************************
+ * [Summary]
+ *       TODO 请在此处简要描述此类所实现的功能。因为这项注释主要是为了在IDE环境中生成tip帮助，务必简明扼要
+ * [Remarks]
+ *       TODO 请在此处详细描述类的功能、调用方法、注意事项、以及与其它类的关系.
+ *******************************************************************/
+
+public class CustomProgressDialog extends Dialog {
+    private Context context = null;
     private static CustomProgressDialog customProgressDialog = null;
-      
-    public CustomProgressDialog(Context context){  
-        super(context);  
-    }
-      
-    public CustomProgressDialog(Context context, int theme) {  
-        super(context, theme);  
-    }  
-      @Override
-    protected void onCreate(Bundle savedInstanceState) {
-    	setCanceledOnTouchOutside(false);
-    	super.onCreate(savedInstanceState);
+
+    public CustomProgressDialog(Context context){
+        super(context);
+        this.context = context;
     }
 
-    public static CustomProgressDialog createDialog(Context context){  
+    public CustomProgressDialog(Context context, int theme) {
+        super(context, theme);
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        setCanceledOnTouchOutside(false);
+        super.onCreate(savedInstanceState);
+    }
+
+    public static CustomProgressDialog createDialog(Context context){
         customProgressDialog = new CustomProgressDialog(context, R.style.CustomProgressDialog);
         customProgressDialog.setContentView(R.layout.dlg_loading);
         customProgressDialog.getWindow().getAttributes().gravity = Gravity.CENTER;
 
-        return customProgressDialog;  
-    }  
-   @Override
-    public void onWindowFocusChanged(boolean hasFocus){  
+        return customProgressDialog;
+    }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus){
 
-       if (customProgressDialog == null){
+        if (customProgressDialog == null){
             return;
-       }
-
-       ImageView imageView = (ImageView) customProgressDialog.findViewById(R.id.iv_loading);
-       imageView.setImageResource(R.mipmap.loading1);
-       EffectUtil.startAnimation( getContext(), imageView);
+        }
+//        int imgId = ResUtil.getId(context, "id", "loadingImageView");
+//        ImageView imageView = (ImageView) customProgressDialog.findViewById(imgId);
+        ImageView imageView = (ImageView) customProgressDialog.findViewById(R.id.iv_loading);
+        AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getBackground();
+        animationDrawable.start();
     }
 
-    public void showSucessIcon() {
-
-        ImageView imageView = (ImageView) customProgressDialog.findViewById(R.id.iv_loading);
-        imageView.clearAnimation();
-        imageView.setImageResource(R.drawable.icon_success);
-
+    /**
+     *
+     * [Summary]
+     *       setTitile 标题
+     * @param strTitle
+     * @return
+     *
+     */
+    public CustomProgressDialog setTitile(String strTitle){
+        return customProgressDialog;
     }
 
     /**
@@ -72,15 +78,13 @@ public class CustomProgressDialog extends Dialog {
      *
      */
     public CustomProgressDialog setMessage(String strMessage){
-    	TextView tvMsg = (TextView)customProgressDialog.findViewById(R.id.tv_msg);
+        // int id = ResUtil.getId(context, "id", "id_tv_loadingmsg");
+        //TextView tvMsg = (TextView)customProgressDialog.findViewById(id);
+        TextView tvMsg = (TextView)customProgressDialog.findViewById(R.id.tv_msg);
         if (tvMsg != null){
             tvMsg.setText(strMessage);
-            tvMsg.setVisibility(View.VISIBLE);
         }
 
         return customProgressDialog;
     }
-
-
 }
-
