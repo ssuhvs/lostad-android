@@ -1,4 +1,4 @@
-package com.lostad.app.demo;
+package com.lostad.app.demo.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,10 +20,12 @@ import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lostad.app.base.util.LogMe;
+import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.base.view.fragment.BaseFragment;
-import com.lostad.app.demo.fragment.IntegrationFragment;
-import com.lostad.app.demo.fragment.SettingsFragment;
-import com.lostad.applib.view.BaseAppActivity;
+import com.lostad.app.demo.MyApplication;
+import com.lostad.app.demo.R;
+import com.lostad.app.demo.view.fragment.IntegrationFragment;
+import com.lostad.app.demo.view.fragment.SettingsFragment;
 import com.zxing.view.CaptureActivity;
 
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ import java.util.List;
 /**
  * @author sszvip@qq.com
  */
-public class MainActivity extends BaseAppActivity {
+public class MainActivity extends BaseActivity {
 
     private static MainActivity ctx;
 
@@ -107,10 +109,13 @@ public class MainActivity extends BaseAppActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if(item.getItemId()==R.id.action_settings){
+        if(id==R.id.action_settings){
             Intent i = new Intent(this, CaptureActivity.class);
             startActivityForResult(i,0);
             return true;
+        }else if(id==R.id.action_more){
+            Intent i = new Intent(this, MainActivity2.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

@@ -1,8 +1,10 @@
-package com.lostad.app.demo;
+package com.lostad.app.demo.view;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.lostad.app.demo.R;
 
 /**
  *

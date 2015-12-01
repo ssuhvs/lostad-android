@@ -1,10 +1,12 @@
-package com.lostad.app.demo.my;
+package com.lostad.app.demo.view.fragment;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
@@ -14,15 +16,13 @@ import android.widget.TextView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lostad.app.base.util.DialogUtil;
-import com.lostad.app.base.view.BaseActivity;
-import com.lostad.app.demo.MyApplication;
+import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;
 import com.lostad.app.demo.entity.TourList4j;
 import com.lostad.app.demo.manager.TourManager;
-import com.lostad.app.demo.tour.OrderPayActivity;
+import com.lostad.app.demo.view.tour.OrderPayActivity;
 import com.lostad.applib.util.Validator;
 import com.lostad.applib.view.listview.ListViewPull;
 
@@ -33,10 +33,8 @@ import java.util.List;
  * @author sszvip
  * 
  */
-public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnRefreshListener2,
-		ListViewPull.OnLastItemVisibleListener,OnItemClickListener {
-
-	private MyApplication mApp;
+public class ListTourFragment extends BaseFragment implements PullToRefreshBase.OnRefreshListener2,
+		PullToRefreshBase.OnLastItemVisibleListener,OnItemClickListener {
 
 	@ViewInject(R.id.lv_data)
 	private ListViewPull lv_data;
@@ -51,19 +49,18 @@ public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnR
 	@ViewInject(R.id.iv_loading)
 	private ImageView iv_loading;
 
-	private ListMyTourAdapter mAdapter;
+	private ListTourAdapter mAdapter;
 	private List<Tour> mListData;
-
+    private String mType = null;
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_list_tour);
-		ViewUtils.inject(this);
-		setTitle("我的项目");
-		mApp = (MyApplication)ctx.getApplication();
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+		super.onCreateView(inflater,container,savedInstanceState);
+		mType = getArguments().getString("type");
+
+		View rootView = inflater.inflate(R.layout.fragment_list_rank, container, false);
+		ViewUtils.inject(this, rootView);//注入
 
 		lv_data.setMode(ListViewPull.Mode.BOTH);
-
 		lv_data.setOnRefreshListener(this);
 		lv_data.setOnLastItemVisibleListener(this);
 		lv_data.setOnItemClickListener(this);
@@ -72,11 +69,26 @@ public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnR
 		ListView actualListView = lv_data.getRefreshableView();
 		registerForContextMenu(actualListView);
 		mListData= new ArrayList<Tour>();
-		mAdapter = new ListMyTourAdapter(ctx, mListData);
+		mAdapter = new ListTourAdapter(mType,ctx, mListData);
 		actualListView.setAdapter(mAdapter);
-		//主动加载
+
 		lv_data.setRefreshing();
+
+		return rootView;
 	}
+//////////////////////////////////////////////////////////////////
+//  切换fragment界面时需要刷新时，打开这里 。此方法在fragment初始化后才有效
+//	@Override
+//	public void setUserVisibleHint(boolean isVisibleToUser) {
+//		super.setUserVisibleHint(isVisibleToUser);
+//		LogMe.d("fragment", this.getClass().getName() + "===========setUserVisibleHint  isVisibleToUser:" + isVisibleToUser);
+//		if(isVisibleToUser && lv_data!=null) {//可见，且界面已经初始化
+//			lv_data.setRefreshing();
+//		} else {//
+//
+//		}
+//	}
+////////////////////////////////////////////////////////////////////
 
 	@Override
 	public void onLastItemVisible() {
@@ -85,7 +97,7 @@ public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnR
 	@Override
 	public void onPullDownToRefresh(PullToRefreshBase refreshView) {
 		//获取格式化的时间
-		String label = DateUtils.formatDateTime(getApplicationContext(), System.currentTimeMillis(),DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+		String label = DateUtils.formatDateTime(ctx, System.currentTimeMillis(),DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
 		//	更新LastUpdatedLabel
 		refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
 		loadData(false);//自动加载更多
@@ -96,49 +108,35 @@ public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnR
 		loadData(true);//自动加载更多
 	}
 
-
-
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Tour t = mListData.get(position-1);
 		Intent i = new Intent(ctx,OrderPayActivity.class);
-		i.putExtra("isMy",true);
 		i.putExtra("bean",t);
 		startActivity(i);
 	}
 
 
-//	 @Override 
-//	 public void setUserVisibleHint(boolean isVisibleToUser) { 
-//	       super.setUserVisibleHint(isVisibleToUser); 
-//	       LogMe.d("rank","----------setUserVisibleHint------isVisibleToUser:"+isVisibleToUser);
-//	       if (isVisibleToUser) { 
-//	    	 
-//	       } else { 
-//	           //相当于Fragment的onPause 
-//	       } 
-//	   }
 	 
     /**
      * 如果是下拉刷新，先不要清空数据，以免闪屏体验不好。
      * 上拉加载数据时，不清空数据
-     * 功能描述:       isRefresh 是否为下拉刷新操作 
-     * @param:         
-     * @return:        
+     * 功能描述:       isRefresh 是否为下拉刷新操作
+     * @param:
+     * @return:
      * @Author:      sszvip@qq.com
      * @Create Date: 2015-9-18下午5:10:16
      */
 	private void loadData(final boolean isLoadMore) {
-
+		showLoading();
 		new Thread() {
 			TourList4j g4j;
 			public void run() {
-                String userId = getLoginConfig().getUserId();
-				int start = 0 ;
+                int start = 0;
 				if(isLoadMore){//加载更多
 					start = mListData.size();
 				}
-				g4j = TourManager.getInstance().listTourMy(userId,start);
+				g4j = TourManager.getInstance().listTourAll(mType, start);
 				ctx.runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
@@ -150,8 +148,9 @@ public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnR
 								mListData.addAll(g4j.list);
 								mAdapter.notifyDataSetChanged();
 								dismissLoding(null);
+
 							}else{
-								dismissLoding("您尚未参与任何游学项目！");
+								dismissLoding("未查询到任何数据！");
 							}
 						} else {
 							DialogUtil.showToastCust(ctx, g4j.getMsg());
@@ -178,9 +177,6 @@ public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnR
 		}
 	}
 
-	
-	
-	
 	private void dismissLoding(String msg) {
        try{
 		   ((AnimationDrawable) iv_loading.getDrawable()).stop();
@@ -201,13 +197,4 @@ public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnR
 
 	}
 
-	@OnClick(R.id.ll_loading)
-	public void onClick(View arg0) {
-		loadData(true);
-	}
-
-
-
-
-	// //////////////////////////////////////////////////////////////////////////////
 }

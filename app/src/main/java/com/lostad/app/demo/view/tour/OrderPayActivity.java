@@ -1,4 +1,4 @@
-package com.lostad.app.demo.tour;
+package com.lostad.app.demo.view.tour;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lostad.app.base.util.DialogUtil;
 import com.lostad.app.base.util.LogMe;
 import com.lostad.app.base.util.Validator;
-import com.lostad.app.demo.MainActivity;
+import com.lostad.app.demo.view.MainActivity;
 import com.lostad.app.demo.R;
 import com.lostad.applib.core.MyCallback;
 import com.zxing.view.CaptureActivity;

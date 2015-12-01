@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.1"
     useLibrary 'org.apache.http.legacy'
 
     lintOptions {//关闭警告退出检查
@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
         //一是声明 CHANNEL_NAME 是可替换值的PlaceHolder，二是为其设置默认值。
-        manifestPlaceholders = [CHANNEL_NAME:"Unspecified"]
+        manifestPlaceholders = [CHANNEL_NAME: "Unspecified"]
     }
     //自定义签名信息
     signingConfigs {
@@ -30,7 +30,7 @@ android {
     buildTypes {
         release {
             //不要忘了要在release的时候加入签名配置信息
-            signingConfig  signingConfigs.myConfig
+            signingConfig signingConfigs.myConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -38,16 +38,16 @@ android {
     //多渠道发布
     productFlavors {
         yingyongbao {
-            manifestPlaceholders = [ CHANNEL_NAME:"YINGYONGBAO"]
+            manifestPlaceholders = [CHANNEL_NAME: "YINGYONGBAO"]
         }
         goapk {
-            manifestPlaceholders = [ CHANNEL_NAME:"goapk" ]
+            manifestPlaceholders = [CHANNEL_NAME: "goapk"]
         }
         hiapk {
-            manifestPlaceholders = [ CHANNEL_NAME:"hiapk" ]
+            manifestPlaceholders = [CHANNEL_NAME: "hiapk"]
         }
         wandoujia {
-            manifestPlaceholders = [ CHANNEL_NAME:"WANDOUJIA" ]
+            manifestPlaceholders = [CHANNEL_NAME: "WANDOUJIA"]
         }
     }
 }
@@ -64,4 +64,5 @@ dependencies {
     compile files('libs/alipaySDK-20151014.jar')
     compile files('libs/zxing.jar')
     compile project(':lib_PullToRefresh')
+    compile 'com.android.support:design:23.0.1'
 }

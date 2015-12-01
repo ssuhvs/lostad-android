@@ -1,4 +1,4 @@
-package com.lostad.app;
+package com.lostad.app.demo;
 
 import android.os.Environment;
 
@@ -18,8 +18,8 @@ public class IConst {
    public final static String KEY_GIS_LONGTITUDE               = "longitude";
    public final static int    VALUE_ROWS                       = 15;//分页，一次加载15条
    
-//   public static final String  ALIYUN_OSS_AK1            = "HcrkuR8l48VVr6rc";
-//   public static final String  ALIYUN_OSS_SK             = "sgAVZunqujEJ9v6WsatxCdlskAZ0Uu";
+//   public static final String  ALIYUN_OSS_AK1            = "";
+//   public static final String  ALIYUN_OSS_SK             = "";
 //   public static final String  GlobalDefaultHostId       = "oss-cn-qingdao.aliyuncs.com";
 //   public static final String  ALIYUN_OSS_URL_ENDPOINT   = "http://"+GlobalDefaultHostId+"/";
    public static final String  ALIYUN_OSS_BUCKET_NAME          = "runners";

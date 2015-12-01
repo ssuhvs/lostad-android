@@ -13,7 +13,6 @@ import com.amap.api.location.LocationProviderProxy;
 import com.igexin.sdk.PushManager;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.exception.DbException;
-import com.lostad.app.IConst;
 import com.lostad.app.demo.entity.LoginConfig;
 import com.lostad.app.base.util.PrefManager;
 import com.lostad.applib.BaseApplication;

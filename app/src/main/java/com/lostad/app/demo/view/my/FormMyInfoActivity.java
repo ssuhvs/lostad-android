@@ -1,4 +1,4 @@
-package com.lostad.app.demo.my;
+package com.lostad.app.demo.view.my;
 
 import android.content.Intent;
 import android.os.Bundle;

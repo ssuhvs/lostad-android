@@ -1,4 +1,4 @@
-package com.lostad.app.demo;
+package com.lostad.app.demo.view;
 
 
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.LoginConfig;
 import com.lostad.app.demo.task.LoginTask;
 import com.lostad.app.base.util.EffectUtil;

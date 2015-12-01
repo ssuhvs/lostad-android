@@ -1,20 +1,22 @@
-package com.lostad.app.demo;
+package com.lostad.app.demo.view;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.lostad.app.IConst;
+import com.lostad.app.demo.IConst;
+import com.lostad.app.base.util.DialogUtil;
+import com.lostad.app.base.view.BaseActivity;
+import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.LoginConfig;
 import com.lostad.app.demo.manager.UserManager;
 import com.lostad.app.demo.task.LoginTask;
-import com.lostad.app.base.util.DialogUtil;
-import com.lostad.app.base.view.BaseActivity;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.entity.BaseBeanRsult;
 
@@ -24,21 +26,25 @@ import com.lostad.applib.entity.BaseBeanRsult;
  *  @Author  sszvip@qq.com
  * */
 
-public class FindPwd1Activity extends BaseActivity {
+public class Register1Activity extends BaseActivity {
 	@ViewInject(R.id.et_register_pass)
 	private EditText  et_register_pass;
 
 	@ViewInject(R.id.et_register_repass)
 	private EditText  et_register_repass;
 
+	@ViewInject(R.id.cb_tyxy)
+	private CheckBox cb_tyxy;
+
 	public String mPhone;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_update_pwd1);
-		setTitle("修改密码");
+		setContentView(R.layout.activity_register1);
+		setTitle("用户注册");
 		com.lidroid.xutils.ViewUtils.inject(this);
 
 		mPhone = getIntent().getStringExtra("phone");
+
 	}
 
 
@@ -51,12 +57,12 @@ public class FindPwd1Activity extends BaseActivity {
 
 	@OnClick(R.id.btn_register)
 	public void onClickReg(View arg0) {
-		updatePwd();
+		register();
 	}
 	/**
 	 * 
 	 */
-	private void updatePwd() {
+	private void register() {
 
 		final String psw = et_register_pass.getText().toString();
 		String pew_next = et_register_repass.getText().toString();
@@ -79,12 +85,18 @@ public class FindPwd1Activity extends BaseActivity {
 			return;
 		}
 
+		if (!cb_tyxy.isChecked()) {
+			Toast.makeText(this, "请仔细阅读用户协议，并确认!", Toast.LENGTH_LONG).show();
+			return;
+		}
+
 		final LoginConfig lc = new LoginConfig();
+
 		DialogUtil.showProgress(this);
 		new Thread() {
 			BaseBeanRsult b;
 			public void run() {
-				b = UserManager.getInstance().updatePwd(mPhone,psw);
+				b = UserManager.getInstance().register(mPhone,psw);
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
@@ -92,7 +104,7 @@ public class FindPwd1Activity extends BaseActivity {
 						if (b.isSuccess()) { //注册成功后直接登陆
 							lc.pwd = psw;
 							lc.phone = mPhone;
-							LoginTask lt = new LoginTask(FindPwd1Activity.this, lc, new MyCallback<Boolean>() {
+							LoginTask lt = new LoginTask(Register1Activity.this, lc, new MyCallback<Boolean>() {
 								@Override
 								public void onCallback(Boolean success) {
                                     if(success){
@@ -102,7 +114,7 @@ public class FindPwd1Activity extends BaseActivity {
 							});
 							lt.execute();
 						}
-						Toast.makeText(FindPwd1Activity.this,b.getMsg(),Toast.LENGTH_LONG).show();
+						Toast.makeText(Register1Activity.this,b.getMsg(),Toast.LENGTH_LONG).show();
 					}
 				});
 

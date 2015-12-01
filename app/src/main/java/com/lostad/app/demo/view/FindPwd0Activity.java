@@ -1,4 +1,4 @@
-package com.lostad.app.demo;
+package com.lostad.app.demo.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,12 @@ import android.widget.Toast;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.lostad.app.demo.R;
+import com.lostad.app.demo.manager.SysManager;
 import com.lostad.app.base.util.DialogUtil;
 import com.lostad.app.base.util.Validator;
-import com.lostad.app.demo.manager.SysManager;
+import com.lostad.app.base.view.BaseActivity;
 import com.lostad.applib.entity.BaseBeanRsult;
-import com.lostad.applib.view.BaseAppActivity;
 
 /**
  * 用户注册
@@ -25,7 +26,7 @@ import com.lostad.applib.view.BaseAppActivity;
  *
  * */
 
-public class Register0Activity extends BaseAppActivity implements OnClickListener {
+public class FindPwd0Activity extends BaseActivity implements OnClickListener {
 
 	@ViewInject(R.id.et_phone)
 	private EditText et_phone;
@@ -40,7 +41,7 @@ public class Register0Activity extends BaseAppActivity implements OnClickListene
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register0);
-		setTitle("用户注册");
+		setTitle("找回密码");
 		ViewUtils.inject(this);
 	}
 
@@ -78,7 +79,7 @@ public class Register0Activity extends BaseAppActivity implements OnClickListene
 	}
 
 	private void toNextActivity(String phone) {
-		Intent i = new Intent(ctx,Register1Activity.class);
+		Intent i = new Intent(ctx,FindPwd1Activity.class);
 		i.putExtra("phone",phone);
 		startActivity(i);
 	}
@@ -86,18 +87,18 @@ public class Register0Activity extends BaseAppActivity implements OnClickListene
 	private void checkVerCode(final String phone,final String vercode) {
 		DialogUtil.showProgress(this);
 		new Thread() {
-			BaseBeanRsult bb = null;
+            BaseBeanRsult bb = null;
 			public void run() {
-				bb = SysManager.getInstance().validateCode(phone, vercode);
+				bb = SysManager.getInstance().validateCodeForUpdatePwd(phone, vercode);
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
 						DialogUtil.dismissProgress();
 						if (bb.isSuccess()) {
-							Toast.makeText(Register0Activity.this, "验证通过!", Toast.LENGTH_LONG).show();
+							Toast.makeText(FindPwd0Activity.this, "验证通过!", Toast.LENGTH_LONG).show();
 						    toNextActivity(phone);
 						} else {
-							Toast.makeText(Register0Activity.this,bb.getMsg(), Toast.LENGTH_LONG)
+							Toast.makeText(FindPwd0Activity.this,bb.getMsg(), Toast.LENGTH_LONG)
 									.show();
 
 						}
@@ -125,14 +126,16 @@ public class Register0Activity extends BaseAppActivity implements OnClickListene
 		new Thread() {
 			BaseBeanRsult sbean;
 			public void run() {
-				sbean = SysManager.getInstance().getVerifyCode(mPhone);
+				sbean = SysManager.getInstance().getVerifyCodeForUpdatePwd(mPhone);
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
 						DialogUtil.dismissProgress();
-						Toast.makeText(Register0Activity.this,sbean.getMsg(), Toast.LENGTH_LONG).show();
-					    if (sbean.isSuccess()) {
+					if (sbean.isSuccess()) {
+							Toast.makeText(FindPwd0Activity.this,"验证码已通过短信形式，发送到您的手机号",Toast.LENGTH_LONG).show();
 							startToRecordTime();
+						} else {
+							Toast.makeText(FindPwd0Activity.this,sbean.getMsg(), Toast.LENGTH_LONG).show();
 						}
 					}
 				});

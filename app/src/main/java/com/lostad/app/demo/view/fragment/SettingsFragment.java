@@ -1,4 +1,4 @@
-package com.lostad.app.demo.fragment;
+package com.lostad.app.demo.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +12,11 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lostad.app.base.util.DialogUtil;
 import com.lostad.app.base.view.fragment.BaseFragment;
-import com.lostad.app.demo.LoginActivity;
+import com.lostad.app.demo.view.LoginActivity;
 import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.R;
-import com.lostad.app.demo.my.FormMyInfoActivity;
-import com.lostad.app.demo.my.ListMyTourActivity;
+import com.lostad.app.demo.view.my.FormMyInfoActivity;
+import com.lostad.app.demo.view.my.ListMyTourActivity;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.entity.ILoginConfig;
 

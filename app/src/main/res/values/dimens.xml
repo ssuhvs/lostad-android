@@ -15,5 +15,6 @@
     <dimen name="sp_header">18sp</dimen>
     <dimen name="sp_header2_or_button">20sp</dimen>
     <dimen name="sp_bigest">22sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
     
 </resources>

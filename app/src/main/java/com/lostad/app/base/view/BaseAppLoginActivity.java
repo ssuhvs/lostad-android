@@ -3,8 +3,8 @@ package com.lostad.app.base.view;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.lostad.app.demo.LoginActivity;
-import com.lostad.app.demo.MainActivity;
+import com.lostad.app.demo.view.LoginActivity;
+import com.lostad.app.demo.view.MainActivity;
 import com.lostad.applib.entity.ILoginConfig;
 
 
