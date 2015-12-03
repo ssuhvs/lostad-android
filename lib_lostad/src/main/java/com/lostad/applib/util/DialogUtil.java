@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * 窗口工具类,提供可重用的窗口
  * @author     sszvip@qq.com
- * @copyright  lostad.com
+ * @copyright  weibo.com/lostbottle
  */
 public class DialogUtil {
 
@@ -34,10 +34,29 @@ public class DialogUtil {
     private static ProgressDialog progDialog;
 	private static Toast mToast;//为了实现疯狂模式下toast延时消失的问题
 	private static Toast mToastCust ;
-    private static Context mContext;
+//    public static void showDateTimeDlg(Context ctx,final TextView target){
+//    	DateTimeSelectorDialogBuilder dialogBuilder = DateTimeSelectorDialogBuilder.getInstance(ctx);
+//		dialogBuilder.setOnSaveListener(new OnSaveListener() {
+//			@Override
+//			public void onSaveSelectedDate(String selectedDate) {
+//				target.setText(selectedDate);
+//			}
+//		});
+//		dialogBuilder.show();
+//    }
+//    public static void showAddrDlg(Context ctx,final TextView target){
+//    	LocationSelectorDialogBuilder dialogBuilder = LocationSelectorDialogBuilder.getInstance(ctx);
+//		dialogBuilder.setOnSaveLocationLister(new OnSaveLocationLister() {
+//			@Override
+//			public void onSaveLocation(String location, String provinceId, String cityId) {
+//			    target.setText(location);
+//			}
+//		});
+//		dialogBuilder.show();
+//    }
+    
 	public static void showProgress(Activity ctx,String msg) {
 		if (progDialog == null){
-			mContext = ctx;
 			progDialog = new ProgressDialog(ctx);
 		}else{
 			if(progDialog.isShowing()){
@@ -46,7 +65,7 @@ public class DialogUtil {
 		}
 		progDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		progDialog.setIndeterminate(false);
-		progDialog.setCancelable(true);//按返回取消
+		//progDialog.setCancelable(false);//按返回取消
 		progDialog.setCanceledOnTouchOutside(false);//点区域外不取消quxiao
 		if(!Validator.isBlank(msg)){
 			progDialog.setMessage(msg);
@@ -87,7 +106,6 @@ public class DialogUtil {
 		}
 	}
 
-
 	public static void showToastOnUIThread(final Activity act,final String msg) {
 		act.runOnUiThread(new Runnable() {
 			@Override
@@ -97,36 +115,43 @@ public class DialogUtil {
 		});
 		
 	}
-	
-	public static void showToasMsg(final Context ctx,final int id) {
-		if(mToast==null){
-			mToast = Toast.makeText(ctx, id, Toast.LENGTH_LONG);
-			mToast.show();
-		}else{
-			mToast.setText(id);
-			mToast.setDuration(Toast.LENGTH_LONG);
-			mToast.show();
-		}
-	}
-	
-	
+
+	/**
+	 * 此方法可以避免疯狂模式下点击按钮造成的长时间显示toast的问题
+	 * @param ctx
+	 * @param msg
+	 */
 	public static void showToastCust(Context ctx, String msg) {
-		View toastRoot = ((Activity) ctx).getLayoutInflater().inflate(R.layout.toast_my, null);
-		TextView message = (TextView) toastRoot.findViewById(R.id.tv_toast);
-		message.setText(msg);
         if(mToast==null){
         	mToast = new Toast(ctx);
         	mToast.setGravity(Gravity.CENTER, 0, 0);
-        	mToast.setDuration(Toast.LENGTH_SHORT);
+        	mToast.setDuration(Toast.LENGTH_LONG);
+			View toastRoot = ((Activity) ctx).getLayoutInflater().inflate(R.layout.toast_my, null);
         	mToast.setView(toastRoot);
         }
+		TextView message = (TextView) mToast.getView().findViewById(R.id.tv_toast);
+		message.setText(msg);
         mToast.show();
 	}
 	public static void showNoNet(Context ctx) {
 		showToastCust(ctx, "网络不可用，请检查网络！");
 	}
 
+	
+	
+	public static void showToastNoNet(Context ctx) {
+		View toastRoot = ((Activity) ctx).getLayoutInflater().inflate(
+				R.layout.toast_my, null);
+		TextView message = (TextView) toastRoot.findViewById(R.id.tv_toast);
+		message.setText("网络不可用！");
 
+		Toast toastStart = new Toast(ctx);
+		toastStart.setGravity(Gravity.CENTER, 0, 0);
+		toastStart.setDuration(Toast.LENGTH_SHORT);
+		toastStart.setView(toastRoot);
+		toastStart.show();
+	}
+	
 	public static void showAlertOnUIThread(final Activity ctx,final String msg,final MyCallback callback) {
 		ctx.runOnUiThread(new Runnable() {
 			@Override

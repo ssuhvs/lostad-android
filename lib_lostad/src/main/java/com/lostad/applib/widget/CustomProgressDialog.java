@@ -31,10 +31,10 @@ public class CustomProgressDialog extends Dialog {
     public CustomProgressDialog(Context context, int theme) {
         super(context, theme);
     }
-    @Override
+      @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setCanceledOnTouchOutside(false);
-        super.onCreate(savedInstanceState);
+    	setCanceledOnTouchOutside(false);
+    	super.onCreate(savedInstanceState);
     }
 
     public static CustomProgressDialog createDialog(Context context){
@@ -44,30 +44,18 @@ public class CustomProgressDialog extends Dialog {
 
         return customProgressDialog;
     }
-    @Override
+   @Override
     public void onWindowFocusChanged(boolean hasFocus){
 
         if (customProgressDialog == null){
             return;
         }
-//        int imgId = ResUtil.getId(context, "id", "loadingImageView");
-//        ImageView imageView = (ImageView) customProgressDialog.findViewById(imgId);
+
         ImageView imageView = (ImageView) customProgressDialog.findViewById(R.id.iv_loading);
         AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getBackground();
         animationDrawable.start();
     }
 
-    /**
-     *
-     * [Summary]
-     *       setTitile 标题
-     * @param strTitle
-     * @return
-     *
-     */
-    public CustomProgressDialog setTitile(String strTitle){
-        return customProgressDialog;
-    }
 
     /**
      *
@@ -78,9 +66,9 @@ public class CustomProgressDialog extends Dialog {
      *
      */
     public CustomProgressDialog setMessage(String strMessage){
-        // int id = ResUtil.getId(context, "id", "id_tv_loadingmsg");
+    	// int id = ResUtil.getId(context, "id", "id_tv_loadingmsg");
         //TextView tvMsg = (TextView)customProgressDialog.findViewById(id);
-        TextView tvMsg = (TextView)customProgressDialog.findViewById(R.id.tv_msg);
+    	TextView tvMsg = (TextView)customProgressDialog.findViewById(R.id.tv_msg);
         if (tvMsg != null){
             tvMsg.setText(strMessage);
         }
