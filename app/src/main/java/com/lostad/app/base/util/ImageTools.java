@@ -318,14 +318,15 @@ public final class ImageTools {
 	 * @param photoName
 	 * @param path
 	 */
-	public static void savePhotoToSDCard(Bitmap photoBitmap,String path,String photoName){
+	public static File savePhotoToSDCard(Bitmap photoBitmap,String path,String photoName){
+		File photoFile = null;
 		if (checkSDCardAvailable()) {
 			File dir = new File(path);
 			if (!dir.exists()){
 				dir.mkdirs();
 			}
 			
-			File photoFile = new File(path , photoName);
+			photoFile = new File(path , photoName);
 			FileOutputStream fileOutputStream = null;
 			try {
 				fileOutputStream = new FileOutputStream(photoFile);
@@ -348,7 +349,8 @@ public final class ImageTools {
 					e.printStackTrace();
 				}
 			}
-		} 
+		}
+		return photoFile;
 	}
 	
 	/**

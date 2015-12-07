@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lostad.app.base.util.DownloadUtil;
 import com.lostad.app.base.util.ImageChooserUtil;
 import com.lostad.app.base.util.ImageTools;
@@ -47,7 +48,7 @@ public class FormMyInfoActivity extends BaseActivity {
 	private TextView tv_addr;
 
 	private UserInfo mSysConfig;
-	private String mFileHead;
+	private File mFileHead;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +59,13 @@ public class FormMyInfoActivity extends BaseActivity {
 		initUI(mSysConfig);
 	}
 
+	@OnClick(R.id.iv_head)
 	public void onClickHead(View v) {
-	  ImageChooserUtil.showPicturePicker(this,true);
+	  ImageChooserUtil.showPicturePicker(this, true);
 //      Intent i = new Intent(this,HeadGridActivity.class);
 //      startActivityForResult(i, 100);
 	}
-	
+
 //	public void onClickNext(View v) {
 //		next();
 //	}
@@ -212,13 +214,13 @@ public class FormMyInfoActivity extends BaseActivity {
 				public void onPicSelected(Bitmap bitmap) {
 					//System.out.println(bitmap);
 					iv_head.setImageBitmap(bitmap);
-					mFileHead = FileDataUtil.createJpgFileName(getLoginConfig().getUserId() + "");
-					ImageTools.savePhotoToSDCard(bitmap, IConst.PATH_ROOT, mFileHead);
-					File f = new File(IConst.PATH_ROOT, mFileHead);
-					if (f.exists()) {
-						uploadHead(f);
+					String fileName = FileDataUtil.createJpgFileName(getLoginConfig().getUserId() + "");
+					mFileHead = ImageTools.savePhotoToSDCard(bitmap, IConst.PATH_ROOT, fileName);
+
+					if (mFileHead!=null && mFileHead.exists()) {
+						uploadHead(mFileHead);
 					} else {
-						DialogUtil.showAlert(ctx,"文件不存在！！！",null);
+						DialogUtil.showAlert(ctx, "文件不存在！！！", null);
 					}
 				}
 			});
