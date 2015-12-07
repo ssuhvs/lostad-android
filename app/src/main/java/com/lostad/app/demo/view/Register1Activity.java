@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lostad.app.demo.IConst;
-import com.lostad.app.base.util.DialogUtil;
+import com.lostad.applib.util.DialogUtil;
 import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.LoginConfig;

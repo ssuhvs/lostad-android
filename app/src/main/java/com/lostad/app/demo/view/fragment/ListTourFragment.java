@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lostad.app.base.util.DialogUtil;
+import com.lostad.applib.util.DialogUtil;
 import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;

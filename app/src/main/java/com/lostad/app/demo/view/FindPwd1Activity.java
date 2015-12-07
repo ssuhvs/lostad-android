@@ -14,7 +14,7 @@ import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.LoginConfig;
 import com.lostad.app.demo.manager.UserManager;
 import com.lostad.app.demo.task.LoginTask;
-import com.lostad.app.base.util.DialogUtil;
+import com.lostad.applib.util.DialogUtil;
 import com.lostad.app.base.view.BaseActivity;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.entity.BaseBeanRsult;

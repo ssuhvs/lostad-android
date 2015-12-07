@@ -15,7 +15,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.manager.SysManager;
-import com.lostad.app.base.util.DialogUtil;
+import com.lostad.applib.util.DialogUtil;
 import com.lostad.app.base.util.Validator;
 import com.lostad.app.base.view.BaseActivity;
 import com.lostad.applib.entity.BaseBeanRsult;

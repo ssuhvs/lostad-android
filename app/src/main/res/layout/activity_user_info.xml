@@ -9,27 +9,35 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="60dp"
         android:layout_marginBottom="12dp"
         android:gravity="center|top"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
-
-            android:layout_weight="1"
+            android:layout_height="fill_parent"
             android:background="@color/white"
             android:gravity="center|top"
             android:orientation="vertical"
             android:padding="12dp"
             android:scrollbars="none" >
 
+
+
+        <LinearLayout
+            android:layout_marginTop="80dp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:gravity="center|top"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:scrollbars="none" >
             <LinearLayout
                 android:id="@+id/ll_nickname"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/height_list_item"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="12dp"
                 android:background="@xml/bg_white_gray"
                 android:clickable="true"
                 android:gravity="left|center"
@@ -280,22 +288,22 @@
                     android:src="@mipmap/arrow_right"
                     />
             </LinearLayout>
+</LinearLayout>
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/bg_line_gray" />
-        </LinearLayout>
+
+            <com.meg7.widget.CircleImageView
+                android:id="@+id/iv_head"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/head_default" />
+
+        </RelativeLayout>
     </ScrollView>
 
-    <com.meg7.widget.CircleImageView
-        android:id="@+id/iv_head"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/head_default" />
+
 
 </RelativeLayout>

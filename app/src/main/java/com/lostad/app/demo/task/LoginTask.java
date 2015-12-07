@@ -6,7 +6,7 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.lostad.app.base.util.DialogUtil;
+import com.lostad.applib.util.DialogUtil;
 import com.lostad.app.base.util.LogMe;
 import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.entity.LoginConfig;
