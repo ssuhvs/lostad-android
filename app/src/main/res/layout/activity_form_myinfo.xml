@@ -1,294 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginBottom="12dp"
         android:gravity="center|top"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@color/white"
-            android:gravity="center|top"
             android:orientation="vertical"
-            android:padding="12dp"
-            android:scrollbars="none" >
 
+            android:scrollbars="none">
 
-
-        <LinearLayout
-            android:layout_marginTop="80dp"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="@color/white"
-            android:gravity="center|top"
-            android:orientation="vertical"
-            android:padding="12dp"
-            android:scrollbars="none" >
-            <LinearLayout
-                android:id="@+id/ll_nickname"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/height_list_item"
-                android:layout_marginTop="12dp"
-                android:background="@xml/bg_white_gray"
-                android:clickable="true"
-                android:gravity="left|center"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:focusable="false"
-                    android:gravity="center_vertical"
-                    android:text="名称"
-                    android:textColor="@color/txt_gray"
-                    android:textSize="@dimen/sp_content" />
-
-                <TextView
-                    android:id="@+id/tv_nickname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:focusable="false"
-                    android:gravity="right|center"
-                    android:hint="未设置"
-                    android:paddingRight="12dp"
-                    android:textColor="@color/txt_blue_deep"
-                    android:textSize="@dimen/sp_content" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:src="@mipmap/arrow_right"
-                    />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/bg_line_gray" />
 
             <LinearLayout
-                android:id="@+id/ll_sex"
                 android:layout_width="fill_parent"
-                android:layout_height="@dimen/height_list_item"
-                android:background="@xml/bg_white_gray"
-                android:clickable="true"
-                android:gravity="left|center"
-                android:orientation="horizontal" >
+                android:layout_height="fill_parent"
+                android:layout_marginTop="80dp"
+                android:background="@color/white"
+                android:gravity="center|top"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:scrollbars="none">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:focusable="false"
+                <LinearLayout
+                    android:id="@+id/ll_nickname"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/height_list_item"
+                    android:layout_marginTop="12dp"
+                    android:background="@xml/bg_white_gray"
+                    android:clickable="true"
+                    android:gravity="left|center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:focusable="false"
+                        android:gravity="center_vertical"
+                        android:text="名称"
+                        android:textColor="@color/txt_gray"
+                        android:textSize="@dimen/sp_content" />
+
+                    <TextView
+                        android:id="@+id/tv_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:gravity="right|center"
+                        android:hint="未设置？"
+                        android:paddingRight="12dp"
+                        android:textColor="@color/txt_blue_deep"
+                        android:textSize="@dimen/sp_content" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:src="@mipmap/arrow_right" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/bg_line_gray" />
+
+                <LinearLayout
+                    android:id="@+id/ll_sex"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/height_list_item"
+                    android:background="@xml/bg_white_gray"
+                    android:clickable="true"
+                    android:gravity="left|center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:focusable="false"
+                        android:gravity="center_vertical"
+                        android:text="性别"
+                        android:textColor="@color/txt_gray"
+                        android:textSize="@dimen/sp_content" />
+
+                    <TextView
+                        android:id="@+id/tv_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:gravity="right|center"
+                        android:hint="未设置"
+                        android:paddingRight="12dp"
+                        android:textColor="@color/txt_blue_deep"
+                        android:textSize="@dimen/sp_content" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:src="@mipmap/arrow_right" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/bg_line_gray" />
+
+                <LinearLayout
+                    android:id="@+id/ll_age"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/height_list_item"
+                    android:background="@xml/bg_white_gray"
+                    android:clickable="true"
+                    android:gravity="left|center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:text="年龄"
+                        android:textColor="@color/txt_gray"
+                        android:textSize="@dimen/sp_content" />
+
+                    <TextView
+                        android:id="@+id/tv_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:gravity="right|center"
+                        android:hint="未设置"
+                        android:paddingRight="12dp"
+                        android:textColor="@color/txt_blue_deep"
+                        android:textSize="@dimen/sp_content" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:src="@mipmap/arrow_right" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/bg_line_gray" />
+
+                <LinearLayout
+                    android:id="@+id/ll_height"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/height_list_item"
+                    android:background="@xml/bg_white_gray"
+                    android:clickable="true"
                     android:gravity="center_vertical"
-                    android:text="性别"
-                    android:textColor="@color/txt_gray"
-                    android:textSize="@dimen/sp_content" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_sex"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="10dp"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:text="身高(cm)"
+                        android:textColor="@color/txt_gray"
+                        android:textSize="@dimen/sp_content" />
+
+                    <TextView
+                        android:id="@+id/tv_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right|center"
+                        android:hint="未设置"
+                        android:paddingRight="12dp"
+                        android:textColor="@color/txt_blue_deep"
+                        android:textSize="@dimen/sp_content" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:src="@mipmap/arrow_right" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/bg_line_gray" />
+
+                <LinearLayout
+                    android:id="@+id/ll_weight"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/height_list_item"
                     android:layout_weight="1"
-                    android:focusable="false"
-                    android:gravity="right|center"
-                    android:hint="未设置"
-                    android:paddingRight="12dp"
-                    android:textColor="@color/txt_blue_deep"
-                    android:textSize="@dimen/sp_content" />
+                    android:background="@xml/bg_white_gray"
+                    android:clickable="true"
+                    android:gravity="left|center"
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:src="@mipmap/arrow_right"
-                    />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:text="体重(kg)"
+                        android:textColor="@color/txt_gray"
+                        android:textSize="@dimen/sp_content" />
+
+                    <TextView
+                        android:id="@+id/tv_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:gravity="right|center"
+                        android:hint="未设置"
+                        android:paddingRight="12dp"
+                        android:textColor="@color/txt_blue_deep"
+                        android:textSize="@dimen/sp_content" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:src="@mipmap/arrow_right" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/bg_line_gray" />
+
+                <LinearLayout
+                    android:id="@+id/ll_address"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/height_list_item"
+                    android:background="@xml/bg_white_gray"
+                    android:clickable="true"
+                    android:gravity="left|center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:text="地址"
+                        android:textColor="@color/txt_gray"
+                        android:textSize="@dimen/sp_content" />
+
+                    <TextView
+                        android:id="@+id/tv_addr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:focusable="false"
+                        android:gravity="right|center"
+                        android:hint="未设置"
+                        android:paddingRight="12dp"
+                        android:textColor="@color/txt_blue_deep"
+                        android:textSize="@dimen/sp_content" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:src="@mipmap/arrow_right" />
+                </LinearLayout>
             </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/bg_line_gray" />
-
-            <LinearLayout
-                android:id="@+id/ll_age"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/height_list_item"
-                android:background="@xml/bg_white_gray"
-                android:clickable="true"
-                android:gravity="left|center"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center_vertical"
-                    android:text="年龄"
-                    android:textColor="@color/txt_gray"
-                    android:textSize="@dimen/sp_content" />
-
-                <TextView
-                    android:id="@+id/tv_age"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:focusable="false"
-                    android:gravity="right|center"
-                    android:hint="未设置"
-                    android:paddingRight="12dp"
-                    android:textColor="@color/txt_blue_deep"
-                    android:textSize="@dimen/sp_content" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:src="@mipmap/arrow_right"
-                    />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/bg_line_gray" />
-
-            <LinearLayout
-                android:id="@+id/ll_height"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/height_list_item"
-                android:background="@xml/bg_white_gray"
-                android:clickable="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center_vertical"
-                    android:text="身高(cm)"
-                    android:textColor="@color/txt_gray"
-                    android:textSize="@dimen/sp_content" />
-
-                <TextView
-                    android:id="@+id/tv_height"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right|center"
-                    android:hint="未设置"
-                    android:paddingRight="12dp"
-                    android:textColor="@color/txt_blue_deep"
-                    android:textSize="@dimen/sp_content" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:src="@mipmap/arrow_right"
-                    />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/bg_line_gray" />
-
-            <LinearLayout
-                android:id="@+id/ll_weight"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/height_list_item"
-                android:layout_weight="1"
-                android:background="@xml/bg_white_gray"
-                android:clickable="true"
-                android:gravity="left|center"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center_vertical"
-                    android:text="体重(kg)"
-                    android:textColor="@color/txt_gray"
-                    android:textSize="@dimen/sp_content" />
-
-                <TextView
-                    android:id="@+id/tv_weight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:focusable="false"
-                    android:gravity="right|center"
-                    android:hint="未设置"
-                    android:paddingRight="12dp"
-                    android:textColor="@color/txt_blue_deep"
-                    android:textSize="@dimen/sp_content" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:src="@mipmap/arrow_right"
-                    />
-            </LinearLayout>
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/bg_line_gray" />
-
-            <LinearLayout
-                android:id="@+id/ll_address"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/height_list_item"
-                android:background="@xml/bg_white_gray"
-                android:clickable="true"
-                android:gravity="left|center"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center_vertical"
-                    android:text="地址"
-                    android:textColor="@color/txt_gray"
-                    android:textSize="@dimen/sp_content" />
-
-                <TextView
-                    android:id="@+id/tv_addr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:focusable="false"
-                    android:gravity="right|center"
-                    android:hint="未设置"
-                    android:paddingRight="12dp"
-                    android:textColor="@color/txt_blue_deep"
-                    android:textSize="@dimen/sp_content" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:src="@mipmap/arrow_right"
-                    />
-            </LinearLayout>
-</LinearLayout>
 
 
             <com.meg7.widget.CircleImageView
@@ -297,13 +292,12 @@
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="32dp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/head_default" />
 
         </RelativeLayout>
     </ScrollView>
-
 
 
 </RelativeLayout>

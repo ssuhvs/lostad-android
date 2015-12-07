@@ -85,7 +85,7 @@ public class MainActivity extends BaseActivity {
         //切换tab
         viewPager.setCurrentItem(currentIndex);
 
-        setSystemBarStyle(R.color.red);
+
         //setSystemBarStyle(R.color.red);
         //注册广播接收器
 //			IntentFilter filterLogout = new IntentFilter();

@@ -19,6 +19,7 @@
      <color name="txt_black">#1b1921</color> 
     <color name="txt_blue_deep">#1b1921</color>
     <color name="txt_green">#3cf088</color>
+    <color name="bg_title">#FF6158</color>
     <!-- 边线 -->
     <color name="border">#e1e5e7</color>
     <!-- tab底栏、边线、边框 -->

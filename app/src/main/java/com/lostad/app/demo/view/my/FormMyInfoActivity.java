@@ -1,6 +1,7 @@
 package com.lostad.app.demo.view.my;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,13 +9,18 @@ import android.widget.TextView;
 
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lostad.app.base.util.DownloadUtil;
+import com.lostad.app.base.util.ImageChooserUtil;
+import com.lostad.app.base.util.ImageTools;
 import com.lostad.app.base.util.Validator;
 import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.base.view.component.FormNumActivity;
 import com.lostad.app.base.view.component.FormTextActivity;
 import com.lostad.app.base.view.component.FormTextChinaeseActivity;
+import com.lostad.app.demo.IConst;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.UserInfo;
+import com.lostad.applib.util.DialogUtil;
+import com.lostad.applib.util.FileDataUtil;
 
 import java.io.File;
 
@@ -50,19 +56,18 @@ public class FormMyInfoActivity extends BaseActivity {
 
 		setTitle("个人资料");
 		initUI(mSysConfig);
-
 	}
 
 	public void onClickHead(View v) {
-		//ImageChooserUtil.showPicturePicker(this,true);
-//		Intent i = new Intent(this,HeadGridActivity.class);
-//		startActivityForResult(i, 100);
+	  ImageChooserUtil.showPicturePicker(this,true);
+//      Intent i = new Intent(this,HeadGridActivity.class);
+//      startActivityForResult(i, 100);
 	}
 	
 //	public void onClickNext(View v) {
 //		next();
 //	}
-//	
+
 	public void onClickName(View v) {
 		try{
 			Intent i = new Intent(FormMyInfoActivity.this, FormTextChinaeseActivity.class);
@@ -202,57 +207,25 @@ public class FormMyInfoActivity extends BaseActivity {
 			break;
 			
 		default://图片相关的
-//			ImageChooserUtil.onActivityResult(ctx, requestCode, resultCode, data, new PicCallback() {
-//				@Override
-//				public void onPicSelected(Bitmap bitmap) {
-//					//System.out.println(bitmap);
-//					iv_head.setImageBitmap(bitmap);
-//					mFileHead = FileDataUtil.createJpgFileName(getLoginConfig().getId() + "");
-//					ImageTools.savePhotoToSDCard(bitmap, IConst.PATH_ROOT, mFileHead);
-//					File f = new File(IConst.PATH_ROOT, mFileHead);
-//					if (f.exists()) {
-//						uploadHead(f);
-//					} else {
-//						LogMe.d("文件不存在！！！");
-//					}
-//				}
-//			});
+			ImageChooserUtil.onActivityResult(ctx, requestCode, resultCode, data, new ImageChooserUtil.PicCallback() {
+				@Override
+				public void onPicSelected(Bitmap bitmap) {
+					//System.out.println(bitmap);
+					iv_head.setImageBitmap(bitmap);
+					mFileHead = FileDataUtil.createJpgFileName(getLoginConfig().getUserId() + "");
+					ImageTools.savePhotoToSDCard(bitmap, IConst.PATH_ROOT, mFileHead);
+					File f = new File(IConst.PATH_ROOT, mFileHead);
+					if (f.exists()) {
+						uploadHead(f);
+					} else {
+						DialogUtil.showAlert(ctx,"文件不存在！！！",null);
+					}
+				}
+			});
 			break;
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}
-
-	private void update(final UserInfo mSysConfig) {
-//		final Member m = new Member();
-//		BeanUtil.copyProperties(m, mSysConfig, false);
-//		new Thread() {
-//			BaseBeanRunners bb = null ;
-//			public void run() {
-//				String url = IConst.URL + IConst.CMD_UPDATE_USAER;
-//				try {
-//					String j = RequestUtil.postJson(url, m);
-//					Gson g = new Gson();
-//					bb = g.fromJson(j, BaseBeanRunners.class);
-//					if(bb==null){
-//						bb = new BaseBeanRunners(1,"数据解析出错！");
-//					}
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//					bb = new BaseBeanRunners(1,"数据解析异常！"+e.getMessage());
-//				}
-//
-//				if(0!=bb.errorCode){
-//					DialogUtil.showToastOnUIThread(FormUserInfoActivity.this,"更新修改失败" );
-//				}else{
-//					LoginConfig lc = getMyApplication().getLoginConfig();
-//					lc.setName(m.getName());
-//					getMyApplication().saveLoginConfig(lc);
-//					getMyApplication().saveSysConfig(mSysConfig);
-//				}
-//			};
-//		}.start();
-	}
-
 
 	private void initUI(final UserInfo config) {
 
@@ -302,31 +275,6 @@ public class FormMyInfoActivity extends BaseActivity {
 //		return super.onOptionsItemSelected(item);
 //	}
 
-//	private void next() {
-//		
-//		//是否设置了跑步机
-//		if(Validator.isBlank(PrefRun.getBarcode(ctx))){
-//			Intent i = new Intent(FormUserInfoActivity.this, CaptureActivity.class);
-//			i.putExtra("isReg", true);
-//			i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//			startActivity(i);
-//		}else{//已经设置barcod
-//			if(!mSysConfig.isWifiSetted()){
-//				Intent i = new Intent(FormUserInfoActivity.this, ConnectWifiActivity.class);
-//				i.putExtra("isReg", true);
-//				i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//				startActivity(i);
-//			}else{//已经设置了跑步机，再判断二维码
-//				Intent i = new Intent(FormUserInfoActivity.this, MainActivity.class);
-//				i.putExtra("isReg", true);
-//				i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-//				startActivity(i);
-//				finish();
-//			}
-//		}
-//		
-//		
-//	}
 
 	private void uploadHead(final File mFileSelected) {
 		if(mFileSelected==null){

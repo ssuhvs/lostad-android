@@ -19,6 +19,7 @@ public class BaseActivity extends BaseAppActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ctx = this;
+		setSystemBarStyle(com.lostad.applib.R.color.bg_title);
 	}
 
 //	public void showHomeButton(){
