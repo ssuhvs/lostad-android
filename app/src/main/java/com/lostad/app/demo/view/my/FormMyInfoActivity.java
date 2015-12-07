@@ -46,7 +46,7 @@ public class FormMyInfoActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_user_info);
+		setContentView(R.layout.activity_form_myinfo);
 
 		setTitle("个人资料");
 		initUI(mSysConfig);
