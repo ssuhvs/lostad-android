@@ -25,4 +25,10 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <!--  -->
+    <style name="AnimationFade">
+        <!-- PopupWindow左右弹出的效果 -->
+        <item name="android:windowEnterAnimation">@anim/menu_in_down</item>
+        <item name="android:windowExitAnimation">@anim/menu_out_up</item>
+    </style>
 </resources>

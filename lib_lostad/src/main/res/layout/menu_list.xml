@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    
+     <!-- 标题 -->
+  
+    <ListView
+        android:id="@+id/lv_data"
+        android:background="@color/bg_gray_light"
+        android:divider="@color/black"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
