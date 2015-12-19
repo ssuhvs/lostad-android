@@ -1,1 +1,1 @@
-include ':app',':lib_PullToRefresh', ':lib_lostad'
+include ':app', ':lib_lostad', ':lib_PullToRefresh'
