@@ -48,6 +48,8 @@ public abstract class ActivitySupport extends AppCompatActivity implements IActi
 		}
 	}
 
+
+
 	@Override
 	public boolean hasInternetConnected() {
 		ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);

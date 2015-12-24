@@ -1,4 +1,4 @@
-package com.lostad.applib.widget;
+package com.lostad.applib.view.widget;
 
 import android.content.Context;
 import android.content.res.Resources;

@@ -7,4 +7,7 @@
     <string name="btn_ok">确定</string>
     <string name="btn_yes">是</string>
     <string name="btn_no">否</string>
+
+    <string name="listfooterview_normal">查看更多</string>
+    <string name="listfooterview_ready">松开载入更多</string>
 </resources>

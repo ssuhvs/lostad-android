@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.lostad.applib.R;
 import com.lostad.applib.core.MyCallback;
-import com.lostad.applib.widget.CustomProgressDialog;
+import com.lostad.applib.view.widget.CustomProgressDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
