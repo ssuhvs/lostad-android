@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.R;
@@ -21,7 +20,6 @@ import com.lostad.app.demo.entity.Tour;
 import com.lostad.app.demo.entity.TourList4j;
 import com.lostad.app.demo.manager.TourManager;
 import com.lostad.app.demo.view.tour.OrderPayActivity;
-import com.lostad.applib.util.DialogUtil;
 import com.lostad.applib.util.Validator;
 import com.lostad.applib.view.listview.ListViewPull;
 
@@ -39,10 +37,6 @@ public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnR
 
 	@ViewInject(R.id.lv_data)
 	private ListViewPull lv_data;
-
-    //正在加载
-	@ViewInject(R.id.ll_loading)
-	private View ll_loading;
 
 	@ViewInject( R.id.tv_loading)
 	private TextView tv_loading;
@@ -153,8 +147,7 @@ public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnR
 								dismissLoding("您尚未参与任何游学项目！");
 							}
 						} else {
-							DialogUtil.showToastCust(ctx, g4j.getMsg());
-							dismissLoding(null);
+							dismissLoding(g4j.getMsg());
 						}
 						lv_data.onRefreshComplete();
 
@@ -169,34 +162,27 @@ public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnR
 	//////////////////加载效果////////////////////////////////////////////////////////////////////////////////
 	private void showLoading() {
 		if (mListData == null || mListData.size() == 0) {
-			ll_loading.setVisibility(View.VISIBLE);
+			iv_loading.setVisibility(View.GONE);
+
+			tv_loading.setVisibility(View.VISIBLE);
 			tv_loading.setText("正在加载...");
-//////////////需要动画请打开这里/////////////////////////////////////////////////
-//			int res = R.drawable.frame;
-//			iv_loading.setImageResource(res);
-//			((AnimationDrawable) iv_loading.getDrawable()).start();
-//////////////////////////////////////////////////////////////////////////////
 		}
 	}
 
-	
 	private void dismissLoding(String msg) {
        try{
 		  /// ((AnimationDrawable) iv_loading.getDrawable()).stop();
 		   if (mListData == null || mListData.size() == 0) {
-			   ll_loading.setVisibility(View.VISIBLE);
 			   iv_loading.setVisibility(View.VISIBLE);
 			   tv_loading.setVisibility(View.VISIBLE);
 
 			   iv_loading.setImageResource(R.mipmap.img_no_data);
-
 			   if(Validator.isBlank(msg)){
 				   tv_loading.setText("加载数据失败！");
 			   }else{
 				   tv_loading.setText(msg);
 			   }
 		   } else {
-			   ll_loading.setVisibility(View.GONE);
 			   iv_loading.setVisibility(View.GONE);
 			   tv_loading.setVisibility(View.GONE);
 		   }
@@ -206,12 +192,6 @@ public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnR
 		   e.printStackTrace();
 	   }
 	}
-
-	@OnClick(R.id.ll_loading)
-	public void onClick(View arg0) {
-		loadData(true);
-	}
-
 
 	////////////////////////////////////////////////////////////////////////////////
 }

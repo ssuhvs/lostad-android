@@ -1,18 +1,15 @@
 package com.lostad.app.demo.view.fragment;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lostad.app.base.view.fragment.BaseFragment;
@@ -23,7 +20,7 @@ import com.lostad.app.demo.manager.TourManager;
 import com.lostad.app.demo.view.tour.OrderPayActivity;
 import com.lostad.applib.util.DialogUtil;
 import com.lostad.applib.util.Validator;
-import com.lostad.applib.view.listview.ListViewPull;
+import com.lostad.applib.view.widget.WaterDropListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +29,10 @@ import java.util.List;
  * @author sszvip
  * 
  */
-public class ListTourFragment extends BaseFragment implements PullToRefreshBase.OnRefreshListener2,
-		PullToRefreshBase.OnLastItemVisibleListener,OnItemClickListener {
+public class ListWaterFragment extends BaseFragment implements WaterDropListView.IWaterDropListViewListener,AdapterView.OnItemClickListener {
 
 	@ViewInject(R.id.lv_data)
-	private ListViewPull lv_data;
+	private WaterDropListView lv_data;
 
     //正在加载
 
@@ -52,25 +48,15 @@ public class ListTourFragment extends BaseFragment implements PullToRefreshBase.
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		super.onCreateView(inflater,container,savedInstanceState);
-		mType = getArguments().getString("type");
-
-		View rootView = inflater.inflate(R.layout.fragment_list_rank, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_list_water, container, false);
 		ViewUtils.inject(this, rootView);//注入
-
-		lv_data.setMode(ListViewPull.Mode.BOTH);
-		lv_data.setOnRefreshListener(this);
-		lv_data.setOnLastItemVisibleListener(this);
-		lv_data.setOnItemClickListener(this);
-		//lv_data.getRefreshableView().setDivider(null);
-
-		ListView actualListView = lv_data.getRefreshableView();
-		registerForContextMenu(actualListView);
 		mListData= new ArrayList<Tour>();
 		mAdapter = new ListTourAdapter(mType,ctx, mListData);
-		actualListView.setAdapter(mAdapter);
+		lv_data.setAdapter(mAdapter);
+		lv_data.setWaterDropListViewListener(this);
+		lv_data.setPullLoadEnable(true);
 
-		lv_data.setRefreshing();
-
+		loadData(false);
 		return rootView;
 	}
 //////////////////////////////////////////////////////////////////
@@ -88,22 +74,29 @@ public class ListTourFragment extends BaseFragment implements PullToRefreshBase.
 ////////////////////////////////////////////////////////////////////
 
 	@Override
-	public void onLastItemVisible() {
-		lv_data.setLoadingMore();
-	}
-	@Override
-	public void onPullDownToRefresh(PullToRefreshBase refreshView) {
-		//获取格式化的时间
-		String label = DateUtils.formatDateTime(ctx, System.currentTimeMillis(),DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
-		//	更新LastUpdatedLabel
-		refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-		loadData(false);//自动加载更多
+	public void onRefresh() {
+//		ExecutorService executorService = Executors.newSingleThreadExecutor();
+//		executorService.execute(new Runnable() {
+//			@Override
+//			public void run() {
+//				try {
+//					Thread.sleep(2000);
+//					handler.sendEmptyMessage(1);
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+
+		loadData(false);
+
 	}
 
 	@Override
-	public void onPullUpToRefresh(PullToRefreshBase refreshView) {
-		loadData(true);//自动加载更多
+	public void onLoadMore() {
+        loadData(true);
 	}
+
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -118,7 +111,7 @@ public class ListTourFragment extends BaseFragment implements PullToRefreshBase.
     /**
      * 如果是下拉刷新，先不要清空数据，以免闪屏体验不好。
      * 上拉加载数据时，不清空数据
-     * 功能描述:       isRefresh 是否为下拉刷新操作
+     * 功能描述:       isLoadMore 是否加载更多操作
      * @param:
      * @return:
      * @Author:      sszvip@qq.com
@@ -126,41 +119,44 @@ public class ListTourFragment extends BaseFragment implements PullToRefreshBase.
      */
 	private void loadData(final boolean isLoadMore) {
 		showLoading();
-		new Thread() {
-			TourList4j g4j;
-			public void run() {
-                int start = 0;
+
+		new AsyncTask<Integer,Integer,TourList4j>(){
+			@Override
+			protected TourList4j doInBackground(Integer... integers) {
+				int start = 0;
 				if(isLoadMore){//加载更多
 					start = mListData.size();
 				}
-				g4j = TourManager.getInstance().listTourAll(mType, start);
-				ctx.runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						if (g4j.isSuccess()) {
-							if(g4j.list!=null && g4j.list.size()>0){
-								if(isLoadMore==false){//如果是刷新数据
-									mListData.clear();//清空以前的
-								}
-								mListData.addAll(g4j.list);
-								mAdapter.notifyDataSetChanged();
-								dismissLoding(null);
+				TourList4j g4j = TourManager.getInstance().listTourAll(mType, start);
 
-							}else{
-								dismissLoding("未查询到任何数据！");
-							}
-						} else {
-							DialogUtil.showToastCust(ctx, g4j.getMsg());
-							dismissLoding(null);
-						}
-						lv_data.onRefreshComplete();
-
-					}
-
-
-				});
+				return g4j;
 			}
-		}.start();
+
+			@Override
+			protected void onPostExecute(TourList4j g4j) {
+
+				if (g4j.isSuccess()) {
+					if(g4j.list!=null && g4j.list.size()>0){
+						if(isLoadMore==false){//如果是刷新数据
+							mListData.clear();//清空以前的
+							mAdapter.notifyDataSetChanged();
+						}
+						mListData.addAll(g4j.list);
+						mAdapter.notifyDataSetChanged();
+						dismissLoding(isLoadMore,null);
+					}else{
+						dismissLoding(isLoadMore,"未查询到任何数据！");
+					}
+				} else {
+					DialogUtil.showToastCust(ctx, g4j.getMsg());
+					dismissLoding(isLoadMore,null);
+				}
+
+			}
+		}.execute();
+
+
+
 	}
 
 	// ////////////////加载效果////////////////////////////////////////////////////////////////////////////////
@@ -175,8 +171,16 @@ public class ListTourFragment extends BaseFragment implements PullToRefreshBase.
 	}
 
 
-	private void dismissLoding(String msg) {
+	private void dismissLoding(boolean isLoadMore,String msg) {
 		try{
+			if(isLoadMore==false){//如果是刷新数据
+				lv_data.stopRefresh();
+			}else{
+				lv_data.stopLoadMore();
+			}
+			if(mListData.size()==0){
+				lv_data.end();
+			}
 			/// ((AnimationDrawable) iv_loading.getDrawable()).stop();
 			if (mListData == null || mListData.size() == 0) {
 				iv_loading.setVisibility(View.VISIBLE);

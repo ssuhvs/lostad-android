@@ -25,6 +25,7 @@ import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.view.fragment.IntegrationFragment;
+import com.lostad.app.demo.view.fragment.ListWaterFragment;
 import com.lostad.app.demo.view.fragment.SettingsFragment;
 import com.zxing.view.CaptureActivity;
 
@@ -134,7 +135,7 @@ public class MainActivity extends BaseActivity {
     private void initTabs() {
 
         fragments.add(new IntegrationFragment());
-        fragments.add(new SettingsFragment());
+        fragments.add(new ListWaterFragment());
         fragments.add(new SettingsFragment());
         fragments.add(new SettingsFragment());
 
