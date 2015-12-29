@@ -1,7 +1,6 @@
 package com.lostad.app.demo.view.fragment;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +9,17 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;
 import com.lostad.app.demo.entity.TourList4j;
-import com.lostad.app.demo.manager.TourManager;
 import com.lostad.app.demo.view.tour.OrderPayActivity;
 import com.lostad.applib.util.DialogUtil;
 import com.lostad.applib.util.Validator;
@@ -102,7 +105,7 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Tour t = mListData.get(position-1);
 		Intent i = new Intent(ctx,OrderPayActivity.class);
-		i.putExtra("bean",t);
+		i.putExtra("bean", t);
 		startActivity(i);
 	}
 
@@ -117,50 +120,74 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
      * @Author:      sszvip@qq.com
      * @Create Date: 2015-9-18下午5:10:16
      */
+//	private void loadData(final boolean isLoadMore) {
+//		showLoading();
+//		new AsyncTask<Integer,Integer,TourList4j>(){
+//			@Override
+//			protected TourList4j doInBackground(Integer... integers) {
+//				int start = 0;
+//				if(isLoadMore){//加载更多
+//					start = mListData.size();
+//				}
+//				TourList4j g4j = TourManager.getInstance().listTourAll(mType, start);
+//
+//				return g4j;
+//			}
+//
+//			@Override
+//			protected void onPostExecute(TourList4j g4j) {
+//				if(g4j.isSuccess()) {
+//					if(g4j.list!=null && g4j.list.size()>0){
+//						if(isLoadMore==false){//如果是刷新数据
+//							mListData.clear();//清空以前的
+//							mAdapter.notifyDataSetChanged();
+//						}
+//						mListData.addAll(g4j.list);
+//						mAdapter.notifyDataSetChanged();
+//					}else{
+//						lv_data.end();
+//					}
+//				} else {
+//					DialogUtil.showToastCust(ctx, g4j.getMsg());
+//
+//				}
+//				dismissLoding(isLoadMore,null);
+//			}
+//		}.execute(); //线程池里的线程逐个顺次执行
+//	}
+
 	private void loadData(final boolean isLoadMore) {
 		showLoading();
-
-		new AsyncTask<Integer,Integer,TourList4j>(){
-			@Override
-			protected TourList4j doInBackground(Integer... integers) {
-				int start = 0;
-				if(isLoadMore){//加载更多
-					start = mListData.size();
-				}
-				TourList4j g4j = TourManager.getInstance().listTourAll(mType, start);
-
-				return g4j;
-			}
-
-			@Override
-			protected void onPostExecute(TourList4j g4j) {
-
-				if (g4j.isSuccess()) {
-					if(g4j.list!=null && g4j.list.size()>0){
-						if(isLoadMore==false){//如果是刷新数据
-							mListData.clear();//清空以前的
-							mAdapter.notifyDataSetChanged();
+        String url = "";
+		new HttpUtils().send(HttpRequest.HttpMethod.GET,
+				url,
+				new RequestCallBack<TourList4j>() {
+					@Override
+					public void onSuccess(ResponseInfo<TourList4j> responseInfo) {
+						TourList4j data4j = responseInfo.result;
+						if(data4j.isSuccess()) {
+							if(data4j.list.size()==0){//加载完毕，（也可以比较pageSize）
+								lv_data.end();
+							}else{//未加载完毕
+								if(isLoadMore==false){//如果是刷新数据
+									mListData.clear();//清空以前的
+								}
+								mListData.addAll(data4j.list);
+								mAdapter.notifyDataSetChanged();
+							}
 						}
-						mListData.addAll(g4j.list);
-						mAdapter.notifyDataSetChanged();
-						dismissLoding(isLoadMore,null);
-					}else{
-						dismissLoding(isLoadMore,"未查询到任何数据！");
+						dismissLoding(isLoadMore, data4j.getMsg());
 					}
-				} else {
-					DialogUtil.showToastCust(ctx, g4j.getMsg());
-					dismissLoding(isLoadMore,null);
-				}
 
-			}
-		}.execute();
-
-
-
+					@Override
+					public void onFailure(HttpException error, String msg) {
+						dismissLoding(isLoadMore,null);
+						DialogUtil.showToastCust(ctx, msg);
+					}
+				});
 	}
 
-	// ////////////////加载效果////////////////////////////////////////////////////////////////////////////////
-	//////////////////加载效果////////////////////////////////////////////////////////////////////////////////
+	//////////////////加载效果,以下代码可以直接复制粘贴////////////////////////////////////////////////////////////////////////////////
 	private void showLoading() {
 		if (mListData == null || mListData.size() == 0) {
 			iv_loading.setVisibility(View.GONE);
@@ -178,9 +205,9 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 			}else{
 				lv_data.stopLoadMore();
 			}
-			if(mListData.size()==0){
-				lv_data.end();
-			}
+//			if(mListData.size()==0){
+//				lv_data.end();
+//			}
 			/// ((AnimationDrawable) iv_loading.getDrawable()).stop();
 			if (mListData == null || mListData.size() == 0) {
 				iv_loading.setVisibility(View.VISIBLE);
