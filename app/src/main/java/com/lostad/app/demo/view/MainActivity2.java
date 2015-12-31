@@ -3,6 +3,8 @@ package com.lostad.app.demo.view;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.lostad.app.base.view.BaseActivity;
@@ -41,11 +43,22 @@ public class MainActivity2 extends BaseActivity {
     }
 
 
-    public BaseFragment getInstanceByIndex(int index) {
+    private void resetColor(int resId){
+        for(int i=0;i<radioGroup.getChildCount();i++){
+            RadioButton radio = (RadioButton)radioGroup.getChildAt(i);
+            radio.setTextColor(ContextCompat.getColor(this,R.color.txt_gray));
+        }
+        RadioButton radio = (RadioButton)findViewById(resId);
+        radio.setTextColor(ContextCompat.getColor(this,R.color.txt_green));
+    }
+    public BaseFragment getInstanceByIndex(int resId) {
         BaseFragment fragment = null;
-        switch (index) {
+
+        resetColor(resId);
+        switch (resId) {
             case R.id.rb_0:
                 fragment = new IntegrationFragment();
+
                 break;
             case R.id.rb_1:
                 fragment = new ListTourFragment();

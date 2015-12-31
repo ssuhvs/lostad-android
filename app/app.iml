@@ -125,8 +125,8 @@
     <orderEntry type="library" exported="" name="org.apache.http.legacy" level="project" />
     <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_QQZone_1" level="project" />
-    <orderEntry type="library" exported="" name="SocialSDK_UserCenter" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_QQZone_2" level="project" />
+    <orderEntry type="library" exported="" name="SocialSDK_UserCenter" level="project" />
     <orderEntry type="library" exported="" name="universal-image-loader-1.9.2-SNAPSHOT-with-sources" level="project" />
     <orderEntry type="library" exported="" name="GetuiSdk2.4.1.0" level="project" />
     <orderEntry type="library" exported="" name="SocialSDK_QQZone_3" level="project" />

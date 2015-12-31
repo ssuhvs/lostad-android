@@ -26,6 +26,7 @@
             android:button="@null"
             android:layout_weight="1"
             android:gravity="center"
+            android:background="@color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@xml/tab_icon0"
@@ -43,13 +44,15 @@
             android:drawableTop="@xml/tab_icon1"
             android:gravity="center"
             android:textSize="@dimen/sp_content3"
+            android:background="@color/transparent"
             android:textColor="@color/txt_gray"
             android:drawablePadding="2dp"
-            android:text="好友" />
+            android:text="订单" />
         <RadioButton
             android:id="@+id/rb_2"
             android:button="@null"
             android:layout_weight="1"
+            android:background="@color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@xml/tab_icon2"
@@ -57,11 +60,13 @@
             android:textSize="@dimen/sp_content3"
             android:textColor="@color/txt_gray"
             android:drawablePadding="2dp"
-            android:text="发现" />
+            android:text="售服"
+            android:checked="false" />
         <RadioButton
             android:id="@+id/rb_3"
             android:button="@null"
             android:layout_weight="1"
+            android:background="@color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableTop="@xml/tab_icon3"
