@@ -44,4 +44,4 @@ gson(最好用的Json解析工具)等、
 
  （<a href="http://weibo.com/lostbottle">欢迎关注本人微博进行各种吐槽</a>）
 
-<img src="http://ww1.sinaimg.cn/bmiddle/45ad345ajw1ey6k1kla26j20y50ke0y7.jpg"/>
+<img src="http://ww1.sinaimg.cn/large/45ad345ajw1ey6k1kla26j20y50ke0y7.jpg"/>
