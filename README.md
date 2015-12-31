@@ -1,5 +1,7 @@
 # lostad-android （<a href="http://weibo.com/lostbottle">有图有真相</a>）
 
+<img src="http://ww3.sinaimg.cn/bmiddle/45ad345ajw1ey6k1hgtyzj20k00zk77w.jpg">
+
 一、框架简介：
 
 本框架是作者在长期的项目开发中积累的劳动成果，是最优秀android开发框架的整合.
@@ -40,4 +42,6 @@ gson(最好用的Json解析工具)等、
    后面，本项目也会放出android端的代码生成器的相关源码。
 
 
-   （<a href="http://weibo.com/lostbottle">欢迎关注本人微博进行各种吐槽</a>）
+ （<a href="http://weibo.com/lostbottle">欢迎关注本人微博进行各种吐槽</a>）
+
+<img src="http://ww1.sinaimg.cn/bmiddle/45ad345ajw1ey6k1kla26j20y50ke0y7.jpg">
