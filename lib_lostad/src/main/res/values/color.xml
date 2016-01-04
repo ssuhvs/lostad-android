@@ -27,7 +27,7 @@
     <color name="text_normal">#5b5b5b</color>
     <!-- 内容性文字、提示性文字 -->
     <color name="text_content">#555555</color>
-    
+
     <color name="transparent">#00000000</color>
     <color name="dark">#000000</color>
     <color name="black">#333333</color> 
