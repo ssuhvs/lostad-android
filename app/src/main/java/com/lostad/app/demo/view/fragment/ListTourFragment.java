@@ -1,6 +1,5 @@
 package com.lostad.app.demo.view.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -18,7 +17,6 @@ import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;
 import com.lostad.app.demo.entity.TourList4j;
 import com.lostad.app.demo.manager.TourManager;
-import com.lostad.app.demo.view.tour.OrderPayActivity;
 import com.lostad.applib.util.DialogUtil;
 import com.lostad.applib.util.Validator;
 import com.lostad.applib.view.listview.ListViewPull;
@@ -109,9 +107,7 @@ public class ListTourFragment extends BaseFragment implements PullToRefreshBase.
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Tour t = mListData.get(position-1);
-		Intent i = new Intent(ctx,OrderPayActivity.class);
-		i.putExtra("bean",t);
-		startActivity(i);
+
 	}
 
 

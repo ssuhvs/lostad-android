@@ -10,7 +10,6 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.LocationManagerProxy;
 import com.amap.api.location.LocationProviderProxy;
-import com.igexin.sdk.PushManager;
 import com.lostad.app.base.AppConfig;
 import com.lostad.app.demo.entity.LoginConfig;
 import com.lostad.app.base.util.PrefManager;
@@ -50,7 +49,6 @@ public class MyApplication extends BaseApplication implements AMapLocationListen
 		initLocation();
 		initDb();
 		mVibrator = (Vibrator) getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
-		PushManager.getInstance().initialize(this.getApplicationContext());
 	}
 
 	private void initDb(){

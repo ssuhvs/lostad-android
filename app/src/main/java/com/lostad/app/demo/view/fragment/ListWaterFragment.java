@@ -1,6 +1,5 @@
 package com.lostad.app.demo.view.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;
-import com.lostad.app.demo.view.tour.OrderPayActivity;
 import com.lostad.applib.util.Validator;
 import com.lostad.applib.view.widget.WaterDropListView;
 
@@ -98,10 +96,7 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Tour t = mListData.get(position-1);
-		Intent i = new Intent(ctx,OrderPayActivity.class);
-		i.putExtra("bean", t);
-		startActivity(i);
+
 	}
 
 
