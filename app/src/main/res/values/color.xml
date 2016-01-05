@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <resources>  
     
-    <color name="background">#F1F1F1</color><!--全局灰白色背景色 -->
-    <color name="background_gray">#F1F1F1</color><!--全局灰白色背景色 -->
+    <color name="background_app">#f7f7f7</color><!--全局灰白色背景色 -->
     <color name="bg_yellow">#EDE4D6</color><!--全局背景色 -->  
     <color name="bg_title_blue">#0195ff</color>
     <color name="bg_gray_light">#eeeef2</color>
