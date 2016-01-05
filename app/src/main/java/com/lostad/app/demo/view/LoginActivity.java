@@ -20,7 +20,6 @@ import com.lostad.applib.util.Validator;
 
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
 
 public class LoginActivity extends BaseActivity {
     @ViewInject(R.id.et_phone)
@@ -35,8 +34,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        x.view().inject(this);
-
+        //x.view().inject(this);
         //社会化分享
         // UmengPlatUtil.getInstance(this);
         ILoginConfig login = getLoginConfig();
@@ -48,13 +46,13 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Event(R.id.tv_reg)
-    public void toReg(View v) {
+    private void onClickToReg(View v) {
         Intent i = new Intent(ctx, Register0Activity.class);
         startActivity(i);
     }
 
     @Event(R.id.tv_find_pwd)
-    public void toFindPwd(View v) {
+    private void onClickToFindPwd(View v) {
         Intent i = new Intent(ctx, FindPwd0Activity.class);
         startActivity(i);
     }
@@ -189,7 +187,7 @@ public class LoginActivity extends BaseActivity {
 //        loginTask.execute();
 //    }
     @Event(R.id.btn_login)
-    public void loginByPhone(View v) {
+    private void onClickLoginByPhone(View v) {
 
         String username = et_phone.getText().toString();
         String pwd = et_password.getText().toString();
