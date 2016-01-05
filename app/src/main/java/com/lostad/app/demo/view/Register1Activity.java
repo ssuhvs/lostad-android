@@ -8,17 +8,19 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.lostad.app.demo.IConst;
-import com.lostad.applib.util.DialogUtil;
 import com.lostad.app.base.view.BaseActivity;
+import com.lostad.app.demo.IConst;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.LoginConfig;
 import com.lostad.app.demo.manager.UserManager;
 import com.lostad.app.demo.task.LoginTask;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.entity.BaseBeanRsult;
+import com.lostad.applib.util.DialogUtil;
+
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 /**
  *
@@ -41,21 +43,21 @@ public class Register1Activity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register1);
 		setTitle("用户注册");
-		com.lidroid.xutils.ViewUtils.inject(this);
+		x.view().inject(this);
 
 		mPhone = getIntent().getStringExtra("phone");
 
 	}
 
 
-        @OnClick(R.id.tv_protocol)
+        @Event(R.id.tv_protocol)
 		public void onClickProtocal(View arg0) {
 			String url = IConst.URL_BASE + IConst.API_PROTOCOL;
 			Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 			startActivity(it);
 		}
 
-	@OnClick(R.id.btn_register)
+	@Event(R.id.btn_register)
 	public void onClickReg(View arg0) {
 		register();
 	}

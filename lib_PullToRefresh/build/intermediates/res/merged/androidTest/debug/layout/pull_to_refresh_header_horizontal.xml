@@ -26,4 +26,4 @@
             android:visibility="gone" />
     </FrameLayout>
 
-</merge><!-- From: file:/Users/sszvip/AndroidStudioProjects/lostad-android/lostad-android/lib_PullToRefresh/res/layout/pull_to_refresh_header_horizontal.xml --><!-- From: file:/Users/sszvip/AndroidStudioProjects/lostad-android/lostad-android/lib_PullToRefresh/build/intermediates/bundles/debug/res/layout/pull_to_refresh_header_horizontal.xml -->
+</merge><!-- From: file:/Volumes/data/android_studio/lostad-android/lib_PullToRefresh/res/layout/pull_to_refresh_header_horizontal.xml --><!-- From: file:/Volumes/data/android_studio/lostad-android/lib_PullToRefresh/build/intermediates/bundles/debug/res/layout/pull_to_refresh_header_horizontal.xml -->

@@ -7,13 +7,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lostad.app.base.util.DownloadUtil;
 import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;
 import com.lostad.applib.util.Validator;
+
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.util.List;
 
@@ -75,7 +76,7 @@ public class ListMyTourAdapter extends BaseAdapter {
 	public class ViewHolder {    
 		public ViewHolder(View convertView) {
 
-    		ViewUtils.inject(this,convertView);
+			x.view().inject(this, convertView);
 		}
 		
 		@ViewInject(R.id.iv_pic)

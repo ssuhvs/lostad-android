@@ -15,10 +15,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lostad.app.demo.R;
 import com.lostad.app.base.view.fragment.BaseFragment;
+import com.lostad.app.demo.R;
+
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,11 +49,11 @@ public class IntegrationFragment extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 	    super.onCreateView(inflater, container,savedInstanceState);
 		View rootView = inflater.inflate(R.layout.intergration_fragment, container, false);
-		ViewUtils.inject(this,rootView);
+		x.view().inject(this, rootView);
 	    DisplayMetrics getDisplayMetrics = getActivity().getApplicationContext().getResources().getDisplayMetrics(); 
 		screenWidth = getDisplayMetrics.widthPixels;
 		initTabs(inflater);
-		
+
 		return rootView;
 	}
 

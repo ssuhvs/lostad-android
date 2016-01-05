@@ -11,8 +11,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.R;
@@ -22,6 +20,9 @@ import com.lostad.app.demo.manager.TourManager;
 import com.lostad.app.demo.view.tour.OrderPayActivity;
 import com.lostad.applib.util.Validator;
 import com.lostad.applib.view.listview.ListViewPull;
+
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,8 @@ public class ListMyTourActivity extends BaseActivity implements ListViewPull.OnR
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_tour);
-		ViewUtils.inject(this);
+
+		x.view().inject(this);
 		setTitle("我的项目");
 		mApp = (MyApplication)ctx.getApplication();
 

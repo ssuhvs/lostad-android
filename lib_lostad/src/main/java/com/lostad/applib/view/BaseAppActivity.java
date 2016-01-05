@@ -32,9 +32,6 @@ public class BaseAppActivity extends ActivitySupport implements IActivitySupport
 		return super.onOptionsItemSelected(item);
 	}
 
-
-
-
 	    
 /////////////////////////////////////////////////////////////////////////
 // 退出事件

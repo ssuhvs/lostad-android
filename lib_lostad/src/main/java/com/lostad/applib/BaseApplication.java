@@ -1,11 +1,8 @@
 package com.lostad.applib;
 
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.Application;
-import android.content.Context;
 
-import com.lidroid.xutils.DbUtils;
 import com.lostad.applib.entity.ILoginConfig;
 
 import java.util.LinkedList;
@@ -36,9 +33,6 @@ public abstract class BaseApplication extends Application {
 
 
 	public abstract void quit(boolean isClearData);
-	public abstract void startService();
-	public abstract void stopService();
-	public abstract DbUtils getDb();
 	public abstract ILoginConfig getLoginConfig();
 	public abstract void saveLoginConfig(ILoginConfig mLoginConfig);
 }

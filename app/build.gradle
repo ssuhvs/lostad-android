@@ -64,4 +64,5 @@ dependencies {
     compile files('libs/zxing.jar')
     compile 'com.android.support:design:23.0.1'
     compile project(':lib_PullToRefresh')
+    compile 'org.xutils:xutils:3.1.24'
 }

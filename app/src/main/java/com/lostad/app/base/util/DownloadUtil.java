@@ -18,11 +18,9 @@ package com.lostad.app.base.util;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.graphics.Bitmap;
 import android.os.Looper;
 import android.widget.ImageView;
 
-import com.lidroid.xutils.BitmapUtils;
 import com.lostad.app.demo.R;
 import com.lostad.applib.core.MyCallback;
 
@@ -31,6 +29,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.xutils.image.ImageOptions;
+import org.xutils.x;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -69,36 +69,38 @@ public class DownloadUtil {
 //		}
 //
 //	}
-
+//public static void loadImage(ImageView imageView,String url,DisplayImageOptions options){
+//	ImageLoader.getInstance().displayImage(url, imageView, options);
+//}
+	private static ImageOptions mImageOptions;
 	public static void loadImage(Activity ctx,ImageView iv_pic,String url){
-		try{
-			BitmapUtils bitmapUtils = new BitmapUtils(ctx);
-			bitmapUtils.display(iv_pic,url);
-			bitmapUtils.configDefaultLoadingImage(R.mipmap.ic_launcher);//默认背景图片
-			bitmapUtils.configDefaultLoadFailedImage(R.mipmap.load_fail);//加载失败图片
-			bitmapUtils.configDefaultBitmapConfig(Bitmap.Config.RGB_565);//设置图片压缩类型
-			bitmapUtils.configDiskCacheEnabled(true);//缓存
-		}catch (Exception e){
-			e.printStackTrace();
-		}
+		loadImage(ctx, iv_pic,R.mipmap.ic_launcher,url);
 	}
 
 	public static void loadImage(Activity ctx,ImageView iv_pic,int defalutImgId,String url){
 		try{
-			BitmapUtils bitmapUtils = new BitmapUtils(ctx);
-			bitmapUtils.display(iv_pic,url);
-			bitmapUtils.configDefaultLoadingImage(defalutImgId);//默认背景图片
-			bitmapUtils.configDefaultLoadFailedImage(defalutImgId);//加载失败图片
-			bitmapUtils.configDefaultBitmapConfig(Bitmap.Config.RGB_565);//设置图片压缩类型
-			bitmapUtils.configDiskCacheEnabled(true);//缓存
+			if(mImageOptions==null){
+				mImageOptions = new ImageOptions.Builder()
+						// 加载中或错误图片的ScaleType
+						//.setPlaceholderScaleType(ImageView.ScaleType.MATRIX)
+						// 默认自动适应大小
+						// .setSize(...)
+						.setFailureDrawableId(R.mipmap.load_fail)
+						.setLoadingDrawableId(R.mipmap.ic_launcher)
+						.setIgnoreGif(false)
+						.setUseMemCache(true)
+						.setImageScaleType(ImageView.ScaleType.CENTER).build();
+				x.image().bind(iv_pic, url, mImageOptions);
+			}
 		}catch (Exception e){
 			e.printStackTrace();
 		}
 	}
 
-//	public static void loadImage(ImageView imageView,String url,DisplayImageOptions options){
-//		ImageLoader.getInstance().displayImage(url, imageView, options);
-//	}
+public static void loadImage(ImageView iv_pic,String url,ImageOptions options){
+	x.image().bind(iv_pic, url, options);
+}
+
 
 	public static void downFileAsyn(final Activity ctx, final String upgradeUrl,
 			final String savedPath, final MyCallback<Boolean> callback) {

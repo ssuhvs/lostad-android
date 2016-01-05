@@ -9,21 +9,15 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.lidroid.xutils.HttpUtils;
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
-import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;
-import com.lostad.app.demo.entity.TourList4j;
 import com.lostad.app.demo.view.tour.OrderPayActivity;
-import com.lostad.applib.util.DialogUtil;
 import com.lostad.applib.util.Validator;
 import com.lostad.applib.view.widget.WaterDropListView;
+
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +46,8 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		super.onCreateView(inflater,container,savedInstanceState);
 		View rootView = inflater.inflate(R.layout.fragment_list_water, container, false);
-		ViewUtils.inject(this, rootView);//注入
+		x.view().inject(this, rootView);//注入
+
 		mListData= new ArrayList<Tour>();
 		mAdapter = new ListTourAdapter(mType,ctx, mListData);
 		lv_data.setAdapter(mAdapter);
@@ -159,32 +154,32 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 	private void loadData(final boolean isLoadMore) {
 		showLoading();
         String url = "";
-		new HttpUtils().send(HttpRequest.HttpMethod.GET,
-				url,
-				new RequestCallBack<TourList4j>() {
-					@Override
-					public void onSuccess(ResponseInfo<TourList4j> responseInfo) {
-						TourList4j data4j = responseInfo.result;
-						if(data4j.isSuccess()) {
-							if(data4j.list.size()==0){//加载完毕，（也可以比较pageSize）
-								lv_data.end();
-							}else{//未加载完毕
-								if(isLoadMore==false){//如果是刷新数据
-									mListData.clear();//清空以前的
-								}
-								mListData.addAll(data4j.list);
-								mAdapter.notifyDataSetChanged();
-							}
-						}
-						dismissLoding(isLoadMore, data4j.getMsg());
-					}
-
-					@Override
-					public void onFailure(HttpException error, String msg) {
-						dismissLoding(isLoadMore,null);
-						DialogUtil.showToastCust(ctx, msg);
-					}
-				});
+//		new HttpUtils().send(HttpRequest.HttpMethod.GET,
+//				url,
+//				new RequestCallBack<TourList4j>() {
+//					@Override
+//					public void onSuccess(ResponseInfo<TourList4j> responseInfo) {
+//						TourList4j data4j = responseInfo.result;
+//						if(data4j.isSuccess()) {
+//							if(data4j.list.size()==0){//加载完毕，（也可以比较pageSize）
+//								lv_data.end();
+//							}else{//未加载完毕
+//								if(isLoadMore==false){//如果是刷新数据
+//									mListData.clear();//清空以前的
+//								}
+//								mListData.addAll(data4j.list);
+//								mAdapter.notifyDataSetChanged();
+//							}
+//						}
+//						dismissLoding(isLoadMore, data4j.getMsg());
+//					}
+//
+//					@Override
+//					public void onFailure(HttpException error, String msg) {
+//						dismissLoding(isLoadMore,null);
+//						DialogUtil.showToastCust(ctx, msg);
+//					}
+//				});
 	}
 
 	//////////////////加载效果,以下代码可以直接复制粘贴////////////////////////////////////////////////////////////////////////////////

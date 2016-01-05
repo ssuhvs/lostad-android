@@ -7,16 +7,17 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.alipay.sdk.pay.demo.PayDemoActivity;
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.lostad.applib.util.DialogUtil;
 import com.lostad.app.base.util.LogMe;
 import com.lostad.app.base.util.Validator;
-import com.lostad.app.demo.view.MainActivity;
 import com.lostad.app.demo.R;
+import com.lostad.app.demo.view.MainActivity;
 import com.lostad.applib.core.MyCallback;
+import com.lostad.applib.util.DialogUtil;
 import com.zxing.view.CaptureActivity;
+
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 /**
  * sszvip
@@ -42,7 +43,8 @@ public class OrderPayActivity extends PayDemoActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_pay);
-        ViewUtils.inject(this);
+
+        x.view().inject(this);
         setTitle("订单确认");
         Intent i = getIntent();
 
@@ -88,7 +90,7 @@ public class OrderPayActivity extends PayDemoActivity {
         return mOrderNo;
     }
 
-    @OnClick(R.id.btn_pay)
+    @Event(R.id.btn_pay)
     public void payMoney(View v){
        DialogUtil.showAlertOkCancel(this, "您确定要进行结算吗？", new MyCallback<Boolean>() {
            @Override
@@ -116,7 +118,7 @@ public class OrderPayActivity extends PayDemoActivity {
         }
     }
 
-    @OnClick(R.id.btn_qr)
+    @Event(R.id.btn_qr)
     public void getQr(View v){
         Intent i = new Intent(this,CaptureActivity.class);
         startActivityForResult(i, 0);

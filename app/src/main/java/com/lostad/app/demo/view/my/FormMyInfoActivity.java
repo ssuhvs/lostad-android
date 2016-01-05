@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.lostad.app.base.util.DownloadUtil;
 import com.lostad.app.base.util.ImageChooserUtil;
 import com.lostad.app.base.util.ImageTools;
@@ -22,6 +20,10 @@ import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.UserInfo;
 import com.lostad.applib.util.DialogUtil;
 import com.lostad.applib.util.FileDataUtil;
+
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.io.File;
 
@@ -54,12 +56,12 @@ public class FormMyInfoActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_form_myinfo);
-
+		x.view().inject(this);
 		setTitle("个人资料");
 		initUI(mSysConfig);
 	}
 
-	@OnClick(R.id.iv_head)
+	@Event(R.id.iv_head)
 	public void onClickHead(View v) {
 	  ImageChooserUtil.showPicturePicker(this, true);
 //      Intent i = new Intent(this,HeadGridActivity.class);

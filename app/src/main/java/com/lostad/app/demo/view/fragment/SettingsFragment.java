@@ -7,18 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.lostad.applib.util.DialogUtil;
 import com.lostad.app.base.view.fragment.BaseFragment;
-import com.lostad.app.demo.view.LoginActivity;
 import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.R;
+import com.lostad.app.demo.view.LoginActivity;
 import com.lostad.app.demo.view.my.FormMyInfoActivity;
 import com.lostad.app.demo.view.my.ListMyTourActivity;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.entity.ILoginConfig;
+import com.lostad.applib.util.DialogUtil;
+
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
 
 
 /**
@@ -42,10 +42,8 @@ public class SettingsFragment extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
-        ViewUtils.inject(this,rootView);    
         mApp = (MyApplication)getApp();
-
-        //initVersionInof(mSysconfig.getVersion(),v.versioninfo.versionCode);
+		//注入view
 		return rootView;
 	}
 
@@ -65,8 +63,8 @@ public class SettingsFragment extends BaseFragment {
 		}
 	}
 
-	@OnClick(R.id.ll_userinfo)
-	public void onClickUserInfo(View v){
+	@Event(R.id.ll_userinfo)
+	private void onClickUserInfo(View v){
 		if(mLogin==null){
              toLoginActivity();
 		}else{
@@ -82,8 +80,8 @@ public class SettingsFragment extends BaseFragment {
 
 
 
-	@OnClick(R.id.ll_10)
-	public void onClick_ll_11(View v){
+	@Event(R.id.ll_10)
+	private void onClick_ll_11(View v){
 		if(mLogin==null){
 			toLoginActivity();
 		}else {
@@ -91,8 +89,8 @@ public class SettingsFragment extends BaseFragment {
 //			startActivity(i);
 		}
 	}
-	@OnClick(R.id.ll_11)
-	public void onClick_ll_12(View v){
+	@Event(R.id.ll_11)
+	private void onClick_ll_12(View v){
 		if(mLogin==null){
 			toLoginActivity();
 		}else {
@@ -102,8 +100,8 @@ public class SettingsFragment extends BaseFragment {
 	}
 
 
-	@OnClick(R.id.ll_20)
-	public void onClick_ll_20(View v){
+	@Event(R.id.ll_20)
+	private void onClick_ll_20(View v){
 		if(mLogin==null){
 			toLoginActivity();
 		}else {
@@ -112,8 +110,8 @@ public class SettingsFragment extends BaseFragment {
 		}
 	}
 
-	@OnClick(R.id.ll_21)
-	public void onClick_ll_21(View v){
+	@Event(R.id.ll_21)
+	private void onClick_ll_21(View v){
 		if(mLogin==null){
 			toLoginActivity();
 		}else {
@@ -122,8 +120,8 @@ public class SettingsFragment extends BaseFragment {
 	    }
 	}
 
-	@OnClick(R.id.ll_30)
-	public void onClick_ll_30(View v){
+	@Event(R.id.ll_30)
+	private void onClick_ll_30(View v){
 		if(mLogin==null){
 			toLoginActivity();
 		}else {
@@ -133,8 +131,8 @@ public class SettingsFragment extends BaseFragment {
 	}
 
 
-	@OnClick(R.id.btn_quit)
-	public void onClickQuit(View v){
+	@Event(R.id.btn_quit)
+	private void onClickQuit(View v){
 		if(mLogin==null) {
 			toLoginActivity();
 		}else{

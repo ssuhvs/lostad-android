@@ -9,10 +9,11 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lostad.app.base.util.Validator;
 import com.lostad.app.demo.R;
 import com.lostad.applib.util.StringUtil;
-import com.lostad.app.base.util.Validator;
+
+import org.xutils.view.annotation.ViewInject;
 
 
 public class FormTextChinaeseActivity extends BaseFormActivity {

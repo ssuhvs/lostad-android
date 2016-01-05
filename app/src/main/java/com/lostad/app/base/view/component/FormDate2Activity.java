@@ -10,10 +10,11 @@ import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lostad.app.demo.R;
 import com.lostad.app.base.util.Validator;
+import com.lostad.app.demo.R;
 import com.lostad.applib.util.DateUtil;
+
+import org.xutils.view.annotation.ViewInject;
 
 import java.util.Calendar;
 import java.util.Date;

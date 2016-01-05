@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lostad.app.base.util.LogMe;
 import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.base.view.fragment.BaseFragment;
@@ -28,6 +27,9 @@ import com.lostad.app.demo.view.fragment.IntegrationFragment;
 import com.lostad.app.demo.view.fragment.ListWaterFragment;
 import com.lostad.app.demo.view.fragment.SettingsFragment;
 import com.zxing.view.CaptureActivity;
+
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +70,7 @@ public class MainActivity extends BaseActivity {
         ctx = this;
         currentIndex = getIntent().getIntExtra("indexTab", 0);
 
-        com.lidroid.xutils.ViewUtils.inject(this);
+        x.view().inject(this);
         this.mInflater = LayoutInflater.from(this);
         setTitle(R.string.app_name);
         mApp = (MyApplication) getApplication();

@@ -1,6 +1,7 @@
 package com.lostad.app.base.view.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import com.lostad.app.base.util.LogMe;
 import com.lostad.applib.BaseApplication;
 import com.lostad.applib.entity.ILoginConfig;
 
+import org.xutils.x;
+
 
 /**
  * @author sszvip
@@ -22,15 +25,33 @@ import com.lostad.applib.entity.ILoginConfig;
 public abstract class BaseFragment extends Fragment {
     private BaseApplication mApp;
     protected Activity ctx;
+
+	private boolean injected = false;
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+		LogMe.d("fragment", this.getClass().getName() + "===========onCreateView");
+		injected = true;
 		setHasOptionsMenu(true);//启用onCreateOptionMenu
+		View v =  x.view().inject(this, inflater, container);
+		return v;
+	}
+
+	@Override
+	public void onAttach(Context context) {
+		super.onAttach(context);
+
 		ctx = getActivity();
 		mApp = (BaseApplication)ctx.getApplication();
+	}
 
-		LogMe.d("fragment", this.getClass().getName() + "===========onCreate");
-
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		LogMe.d("fragment", this.getClass().getName() + "===========onViewCreated");
+		if (!injected) {
+			x.view().inject(this, this.getView());
+		}
 	}
 
 	@Override
@@ -38,11 +59,13 @@ public abstract class BaseFragment extends Fragment {
 		super.onResume();
 		LogMe.d("fragment", this.getClass().getName() + "===========onResume");
 	}
-
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		LogMe.d("fragment", this.getClass().getName() + "===========onCreateView");
-		return super.onCreateView(inflater, container, savedInstanceState);
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		return super.onOptionsItemSelected(item);
 	}
 
 //   @Override
@@ -54,16 +77,6 @@ public abstract class BaseFragment extends Fragment {
 //           //相当于Fragment的onPause
 //       }
 //   }
-	
-	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-		super.onCreateOptionsMenu(menu, inflater);
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		return super.onOptionsItemSelected(item);
-	}
-	
 
 
 	public BaseApplication getApp(){

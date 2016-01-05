@@ -18,9 +18,10 @@
 
 package com.lostad.app.demo.entity;
 
-import com.lidroid.xutils.db.annotation.Id;
-import com.lidroid.xutils.db.annotation.Table;
 import com.lostad.applib.entity.ILoginConfig;
+
+import org.xutils.db.annotation.Column;
+import org.xutils.db.annotation.Table;
 
 import java.io.Serializable;
 
@@ -29,7 +30,7 @@ public class LoginConfig implements Serializable,ILoginConfig {
 	/**
 	 * 
 	 */
-	@Id
+	@Column(name = "id", isId = true)
 	public String id;
 	public String name;
 	public String nickname;

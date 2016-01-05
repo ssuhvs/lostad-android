@@ -8,18 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.lostad.app.demo.R;
-import com.lostad.app.demo.entity.LoginConfig;
-import com.lostad.app.demo.task.LoginTask;
 import com.lostad.app.base.util.EffectUtil;
 import com.lostad.app.base.util.PrefManager;
 import com.lostad.app.base.view.BaseActivity;
+import com.lostad.app.demo.R;
+import com.lostad.app.demo.entity.LoginConfig;
+import com.lostad.app.demo.task.LoginTask;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.entity.ILoginConfig;
 import com.lostad.applib.util.Validator;
+
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 public class LoginActivity extends BaseActivity {
     @ViewInject(R.id.et_phone)
@@ -34,7 +35,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ViewUtils.inject(this);
+        x.view().inject(this);
 
         //社会化分享
         // UmengPlatUtil.getInstance(this);
@@ -46,13 +47,13 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.tv_reg)
+    @Event(R.id.tv_reg)
     public void toReg(View v) {
         Intent i = new Intent(ctx, Register0Activity.class);
         startActivity(i);
     }
 
-    @OnClick(R.id.tv_find_pwd)
+    @Event(R.id.tv_find_pwd)
     public void toFindPwd(View v) {
         Intent i = new Intent(ctx, FindPwd0Activity.class);
         startActivity(i);
@@ -187,7 +188,7 @@ public class LoginActivity extends BaseActivity {
 //        LoginTask loginTask = new LoginTask(LoginActivity.this,mLoginConfig);
 //        loginTask.execute();
 //    }
-    @OnClick(R.id.btn_login)
+    @Event(R.id.btn_login)
     public void loginByPhone(View v) {
 
         String username = et_phone.getText().toString();

@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/lib_PullToRefresh/lib_PullToRefresh.iml" filepath="$PROJECT_DIR$/lib_PullToRefresh/lib_PullToRefresh.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib_lostad/lib_lostad.iml" filepath="$PROJECT_DIR$/lib_lostad/lib_lostad.iml" />
       <module fileurl="file://$PROJECT_DIR$/lostad-android.iml" filepath="$PROJECT_DIR$/lostad-android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lostad_demo_as.iml" filepath="$PROJECT_DIR$/lostad_demo_as.iml" />
     </modules>
   </component>
 </project>

@@ -10,15 +10,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnClick;
-import com.lostad.app.demo.R;
-import com.lostad.app.demo.manager.SysManager;
-import com.lostad.applib.util.DialogUtil;
 import com.lostad.app.base.util.Validator;
 import com.lostad.app.base.view.BaseActivity;
+import com.lostad.app.demo.R;
+import com.lostad.app.demo.manager.SysManager;
 import com.lostad.applib.entity.BaseBeanRsult;
+import com.lostad.applib.util.DialogUtil;
+
+import org.xutils.view.annotation.Event;
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 /**
  * 用户注册
@@ -42,7 +43,8 @@ public class FindPwd0Activity extends BaseActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register0);
 		setTitle("找回密码");
-		ViewUtils.inject(this);
+
+		x.view().inject(this);
 	}
 
 
@@ -109,7 +111,7 @@ public class FindPwd0Activity extends BaseActivity implements OnClickListener {
 
 	}
 
-	@OnClick(R.id.btn_get_vercode)
+	@Event(R.id.btn_get_vercode)
 	public void onClick(View v) {
 		// 验证码
 		final String mPhone = et_phone.getText().toString();

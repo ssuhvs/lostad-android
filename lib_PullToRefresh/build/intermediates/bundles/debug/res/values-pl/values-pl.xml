@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/sszvip/AndroidStudioProjects/lostad-android/lostad-android/lib_PullToRefresh/res/values-pl/pull_refresh_strings.xml -->
+    <!-- From: file:/Volumes/data/android_studio/lostad-android/lib_PullToRefresh/res/values-pl/pull_refresh_strings.xml -->
     <eat-comment/>
     <string name="pull_to_refresh_pull_label">Pociągnij, aby odświeżyć…</string>
     <string name="pull_to_refresh_refreshing_label">Wczytywanie…</string>

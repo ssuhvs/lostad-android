@@ -19,4 +19,4 @@
     android:duration="@android:integer/config_longAnimTime"
     android:fromYDelta="0"
     android:toYDelta="100%p" />
-<!-- From: file:/Users/sszvip/AndroidStudioProjects/lostad-android/lostad-android/lib_PullToRefresh/res/anim/slide_out_to_bottom.xml -->
+<!-- From: file:/Volumes/data/android_studio/lostad-android/lib_PullToRefresh/res/anim/slide_out_to_bottom.xml -->

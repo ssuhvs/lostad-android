@@ -11,12 +11,16 @@ import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.LocationManagerProxy;
 import com.amap.api.location.LocationProviderProxy;
 import com.igexin.sdk.PushManager;
-import com.lidroid.xutils.DbUtils;
-import com.lidroid.xutils.exception.DbException;
+import com.lostad.app.base.AppConfig;
 import com.lostad.app.demo.entity.LoginConfig;
 import com.lostad.app.base.util.PrefManager;
+import com.lostad.app.demo.entity.UserInfo;
 import com.lostad.applib.BaseApplication;
 import com.lostad.applib.entity.ILoginConfig;
+
+import org.xutils.DbManager;
+import org.xutils.ex.DbException;
+import org.xutils.x;
 
 import java.io.File;
 import java.util.List;
@@ -31,9 +35,9 @@ public class MyApplication extends BaseApplication implements AMapLocationListen
 
 	public Vibrator mVibrator;
 	private LoginConfig mLoginConfig;
-	private DbUtils mDb;
-
-    private static MyApplication instance;  
+	private DbManager mDb;
+	private DbManager.DaoConfig mDaoConfig;
+	private static MyApplication instance;
     
     public static MyApplication getInstance() {  
         return instance;  
@@ -44,11 +48,33 @@ public class MyApplication extends BaseApplication implements AMapLocationListen
 		super.onCreate();
 		initFiles();
 		initLocation();
+		initDb();
 		mVibrator = (Vibrator) getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
 		PushManager.getInstance().initialize(this.getApplicationContext());
 	}
 
-	
+	private void initDb(){
+		x.Ext.init(this);
+		x.Ext.setDebug(AppConfig.isTestMode);
+		mDaoConfig = new DbManager.DaoConfig()
+				.setDbName(IConst.DB_NAME)
+				.setDbDir(new File(IConst.PATH_ROOT))
+				.setDbVersion(IConst.DB_VER_NUM)
+				.setDbUpgradeListener(new DbManager.DbUpgradeListener() {
+					@Override
+					public void onUpgrade(DbManager db, int oldVersion, int newVersion) {
+						// TODO: ...
+						// db.addColumn(...);
+						// db.dropTable(...);
+						try {
+							db.dropTable(LoginConfig.class);
+							db.dropTable(UserInfo.class);
+						} catch (DbException e) {
+							e.printStackTrace();
+						}
+					}
+				});
+	}
 	private void initFiles() {
 		File dir = new File(IConst.PATH_ROOT);
 		if (!dir.exists()) {
@@ -56,68 +82,10 @@ public class MyApplication extends BaseApplication implements AMapLocationListen
 		}
 	}
 
-	// 遍历所有Activity并finish
-	public void exit() {
 
-		clearActivity();
-	}
-
-	// public Member getCurrMember(){
-	// LoginConfig lc = getLoginConfig();
-	// Integer id = lc.getId();
-	// if(mMember == null){
-	// mMember = getDb().findById(id,Member.class);
-	// }
-	// return mMember;
-	// }
-
-
-	@Override
-	public void startService() {
-		// 好友联系人服务
-		// Intent server = new Intent(this, IMContactService.class);
-		// startService(server);
-		// // 聊天服务
-		// Intent chatServer = new Intent(this, IMChatService.class);
-		// startService(chatServer);
-		// // 系统消息连接服务
-		// Intent imSystemMsgService = new
-		// Intent(this,IMSystemMsgService.class);
-		// startService(imSystemMsgService);
-
-		// 自动恢复连接服务
-	}
-
-	/**
-	 * 
-	 * 销毁服务.
-	 * 
-	 * @author shimiso
-	 * @update 2012-5-16 下午12:16:08
-	 */
-	public void stopService() {
-		// // 好友联系人服务
-		// Intent server = new Intent(this, IMContactService.class);
-		// stopService(server);
-		// // 聊天服务
-		// Intent chatServer = new Intent(this, IMChatService.class);
-		// stopService(chatServer);
-		//
-		//
-		// // 系统消息连接服务
-		// Intent imSystemMsgService = new Intent(this,
-		// IMSystemMsgService.class);
-		// stopService(imSystemMsgService);
-
-		// 自动恢复连接服务
-//		Intent reConnectService = new Intent(this, ReConnectService.class);
-//		stopService(reConnectService);
-	}
-
-	@Override
-	public DbUtils getDb() {
+	public DbManager getDb() {
 		if(mDb==null){
-           mDb = DbUtils.create(this,IConst.PATH_ROOT,IConst.DB_NAME);
+           mDb =  x.getDb(mDaoConfig);
 		}
 		return mDb;
 	}
@@ -148,35 +116,6 @@ public class MyApplication extends BaseApplication implements AMapLocationListen
 			}
 		}
 	}
-
-	/**
-	 * 实现实位回调监听
-	 */
-//	 public class MyLocationListener implements BDLocationListener {
-//	
-//	 @Override
-//	 public void onReceiveLocation(BDLocation location) {
-//	 String province = location.getProvince();
-//	 String city = location.getCity();
-//	 String district = location.getDistrict();//区
-//	 Double lat = location.getLatitude();
-//	 Double log = location.getLongitude();
-//	
-//	 PrefManager.saveToPref(getApplicationContext(), IConst.KEY_GIS_PROVINCE,
-//	 province);
-//	 PrefManager.saveToPref(getApplicationContext(), IConst.KEY_GIS_CITY,
-//	 city);
-//	 PrefManager.saveToPref(getApplicationContext(), IConst.KEY_GIS_DISTRICT,
-//	 district);
-//	
-//	 PrefManager.saveFloatToPref(getApplicationContext(),
-//	 IConst.KEY_GIS_LATITUDE, lat.floatValue());
-//	 PrefManager.saveFloatToPref(getApplicationContext(),
-//	 IConst.KEY_GIS_LONGTITUDE, log.floatValue());
-//	 }
-//	
-//	 }
-	//
 
 	/**
 	 * 初始化定位
@@ -210,7 +149,6 @@ public class MyApplication extends BaseApplication implements AMapLocationListen
 	@Override
 	public void onLocationChanged(Location arg0) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -218,7 +156,6 @@ public class MyApplication extends BaseApplication implements AMapLocationListen
 
 		if (location != null && location.getAMapException().getErrorCode() == 0) {
 			// 定位成功回调信息，设置相关消息
-
 			String province = location.getProvince();
 			String city = location.getCity();
 			String district = location.getDistrict();// 区
@@ -236,7 +173,6 @@ public class MyApplication extends BaseApplication implements AMapLocationListen
 					IConst.KEY_GIS_LATITUDE, lat.floatValue());
 			PrefManager.saveFloat(getApplicationContext(),
 					IConst.KEY_GIS_LONGTITUDE, log.floatValue());
-
 		} else {
 			Log.e("AmapErr", "Location ERR:"
 					+ location.getAMapException().getErrorCode());
@@ -249,15 +185,14 @@ public class MyApplication extends BaseApplication implements AMapLocationListen
 	@Override
 	public void quit(boolean isClearData) {
 		try {
-			stopService();
-			clearActivity();
 			if(isClearData){
-				getDb().deleteAll(LoginConfig.class);
+				getDb().delete(LoginConfig.class);
 			}
 			System.exit(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 
 }

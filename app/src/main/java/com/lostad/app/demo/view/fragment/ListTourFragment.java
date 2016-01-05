@@ -13,8 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;
@@ -24,6 +22,9 @@ import com.lostad.app.demo.view.tour.OrderPayActivity;
 import com.lostad.applib.util.DialogUtil;
 import com.lostad.applib.util.Validator;
 import com.lostad.applib.view.listview.ListViewPull;
+
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class ListTourFragment extends BaseFragment implements PullToRefreshBase.
 		mType = getArguments().getString("type");
 
 		View rootView = inflater.inflate(R.layout.fragment_list_rank, container, false);
-		ViewUtils.inject(this, rootView);//注入
+		x.view().inject(this, rootView);//注入
 
 		lv_data.setMode(ListViewPull.Mode.BOTH);
 		lv_data.setOnRefreshListener(this);

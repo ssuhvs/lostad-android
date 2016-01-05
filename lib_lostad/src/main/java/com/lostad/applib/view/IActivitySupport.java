@@ -1,7 +1,4 @@
 package com.lostad.applib.view;
-
-
-import com.lidroid.xutils.DbUtils;
 import com.lostad.applib.BaseApplication;
 import com.lostad.applib.entity.ILoginConfig;
 
@@ -21,19 +18,14 @@ public interface IActivitySupport {
 	void showToast(String text);
 
 	ILoginConfig getLoginConfig();
-	DbUtils getDb();
 	//是否连网状态
 	boolean hasInternetConnected();
 	/**
 	 * 
 	 * 发出Notification的method.
-	 *
-	 * @param iconId
-	 *            图标
-	 * @param contentTitle
-	 *            标题
-	 * @param contentText
-	 *            你内容
+	 * @param iconId       图标
+	 * @param contentTitle 标题
+	 * @param contentText  你内容
 	 * @param activity
 	 *
 	 */

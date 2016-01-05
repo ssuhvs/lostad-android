@@ -18,9 +18,10 @@
 
 package com.lostad.app.demo.entity;
 
-import com.lidroid.xutils.db.annotation.Id;
-import com.lidroid.xutils.db.annotation.Table;
 import com.lostad.applib.entity.ILoginConfig;
+
+import org.xutils.db.annotation.Column;
+import org.xutils.db.annotation.Table;
 
 import java.io.Serializable;
 
@@ -29,7 +30,8 @@ public class UserInfo implements Serializable,ILoginConfig {
 	/**
 	 *
 	 */
-	@Id
+
+	@Column(name = "id", isId = true)
 	public String id;
 	public String name;
 	public String nickname;
@@ -41,8 +43,7 @@ public class UserInfo implements Serializable,ILoginConfig {
 	public String   loginType="0" ;//0:表示跑伴登录1:表示QQ登录2:微信登录3:新浪微博登录
 	public String    uid3;//第三方登录 ｉｄ
 	public String    sex;
-	// 用于推送
-	public String token;
+	public String token;// 用于推送
 	public Double longitude;
 	public Double latitude;
 

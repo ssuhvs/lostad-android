@@ -21,7 +21,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.lidroid.xutils.DbUtils;
 import com.lostad.applib.BaseApplication;
 import com.lostad.applib.R;
 import com.lostad.applib.entity.ILoginConfig;
@@ -41,14 +40,11 @@ public abstract class ActivitySupport extends AppCompatActivity implements IActi
 		super.onCreate(savedInstanceState);
 		notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		mBaseApplication = (BaseApplication) getApplication();
-		mBaseApplication.addActivity(this);
 		setSystemBarStyle(R.color.bg_title);
 		if(!validateInternet()){
 			showToast("网络已断开！");
 		}
 	}
-
-
 
 	@Override
 	public boolean hasInternetConnected() {
@@ -252,11 +248,6 @@ public abstract class ActivitySupport extends AppCompatActivity implements IActi
 	}
 
 	
-	@Override
-	public DbUtils getDb() {
-		return mBaseApplication.getDb();
-	}
-
 	////////////////////////////////////////////////////////////////////////
 	//导航条渐变
 	//
