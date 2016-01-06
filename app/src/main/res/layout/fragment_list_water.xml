@@ -19,7 +19,6 @@
 
             <com.lostad.applib.view.widget.WaterDropListView
                 android:id="@+id/lv_data"
-                android:divider="@color/background_gray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
