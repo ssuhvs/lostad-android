@@ -50,7 +50,7 @@ public class IntegrationFragment extends BaseFragment {
 	    super.onCreateView(inflater, container,savedInstanceState);
 		View rootView = inflater.inflate(R.layout.intergration_fragment, container, false);
 		x.view().inject(this, rootView);
-	    DisplayMetrics getDisplayMetrics = getActivity().getApplicationContext().getResources().getDisplayMetrics(); 
+	    DisplayMetrics getDisplayMetrics = getActivity().getApplicationContext().getResources().getDisplayMetrics();
 		screenWidth = getDisplayMetrics.widthPixels;
 		initTabs(inflater);
 

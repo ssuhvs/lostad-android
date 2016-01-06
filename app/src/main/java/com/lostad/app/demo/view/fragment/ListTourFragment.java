@@ -52,10 +52,8 @@ public class ListTourFragment extends BaseFragment implements PullToRefreshBase.
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		super.onCreateView(inflater,container,savedInstanceState);
 		mType = getArguments().getString("type");
-
 		View rootView = inflater.inflate(R.layout.fragment_list_rank, container, false);
-		x.view().inject(this, rootView);//注入
-
+		x.view().inject(this,rootView);
 		lv_data.setMode(ListViewPull.Mode.BOTH);
 		lv_data.setOnRefreshListener(this);
 		lv_data.setOnLastItemVisibleListener(this);
@@ -69,9 +67,9 @@ public class ListTourFragment extends BaseFragment implements PullToRefreshBase.
 		actualListView.setAdapter(mAdapter);
 
 		lv_data.setRefreshing();
-
 		return rootView;
 	}
+
 //////////////////////////////////////////////////////////////////
 //  切换fragment界面时需要刷新时，打开这里 。此方法在fragment初始化后才有效
 //	@Override

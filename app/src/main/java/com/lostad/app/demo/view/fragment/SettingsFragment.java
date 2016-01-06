@@ -19,6 +19,7 @@ import com.lostad.applib.util.DialogUtil;
 
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 
 /**
@@ -42,6 +43,7 @@ public class SettingsFragment extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 		Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
+		x.view().inject(this, rootView);
         mApp = (MyApplication)getApp();
 		//注入view
 		return rootView;

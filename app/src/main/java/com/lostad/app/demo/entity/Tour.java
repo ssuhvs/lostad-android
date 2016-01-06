@@ -22,6 +22,11 @@ public class Tour implements Serializable{
 
 	public Tour() {
 	}
-
+	public Tour(String id,String title,String picUrl,String desc) {
+		this.id = id;
+		this.title = title;
+		this.picUrl = picUrl;
+		this.desc = desc;
+	}
 
 }

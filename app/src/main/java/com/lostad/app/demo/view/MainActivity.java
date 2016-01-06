@@ -119,6 +119,7 @@ public class MainActivity extends BaseActivity {
         }else if(id==R.id.action_more){
             Intent i = new Intent(this, MainActivity2.class);
             startActivity(i);
+        }else{
         }
 
         return super.onOptionsItemSelected(item);

@@ -1,5 +1,6 @@
 package com.lostad.app.demo.view.fragment;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;
-import com.lostad.applib.util.Validator;
+import com.lostad.app.demo.entity.TourList4j;
 import com.lostad.applib.view.widget.WaterDropListView;
 
 import org.xutils.view.annotation.ViewInject;
@@ -38,13 +39,15 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 	private ImageView iv_loading;
 
 	private ListTourAdapter mAdapter;
-	private List<Tour> mListData;
+	private List<Tour> mListData = null;
     private String mType = null;
+
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		super.onCreateView(inflater,container,savedInstanceState);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+							 Bundle savedInstanceState) {
+
 		View rootView = inflater.inflate(R.layout.fragment_list_water, container, false);
-		x.view().inject(this, rootView);//注入
+		x.view().inject(this, rootView);
 
 		mListData= new ArrayList<Tour>();
 		mAdapter = new ListTourAdapter(mType,ctx, mListData);
@@ -53,8 +56,10 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 		lv_data.setPullLoadEnable(true);
 
 		loadData(false);
+
 		return rootView;
 	}
+
 //////////////////////////////////////////////////////////////////
 //  切换fragment界面时需要刷新时，打开这里 。此方法在fragment初始化后才有效
 //	@Override
@@ -99,8 +104,6 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 
 	}
 
-
-	 
     /**
      * 如果是下拉刷新，先不要清空数据，以免闪屏体验不好。
      * 上拉加载数据时，不清空数据
@@ -147,34 +150,56 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 //	}
 
 	private void loadData(final boolean isLoadMore) {
+//		if(lv_data.isLoading()){
+//			return;
+//		}
 		showLoading();
         String url = "";
-//		new HttpUtils().send(HttpRequest.HttpMethod.GET,
-//				url,
-//				new RequestCallBack<TourList4j>() {
-//					@Override
-//					public void onSuccess(ResponseInfo<TourList4j> responseInfo) {
-//						TourList4j data4j = responseInfo.result;
-//						if(data4j.isSuccess()) {
-//							if(data4j.list.size()==0){//加载完毕，（也可以比较pageSize）
-//								lv_data.end();
-//							}else{//未加载完毕
-//								if(isLoadMore==false){//如果是刷新数据
-//									mListData.clear();//清空以前的
-//								}
-//								mListData.addAll(data4j.list);
-//								mAdapter.notifyDataSetChanged();
-//							}
-//						}
-//						dismissLoding(isLoadMore, data4j.getMsg());
-//					}
-//
-//					@Override
-//					public void onFailure(HttpException error, String msg) {
-//						dismissLoding(isLoadMore,null);
-//						DialogUtil.showToastCust(ctx, msg);
-//					}
-//				});
+        new AsyncTask<String,String,TourList4j>(){
+			@Override
+			protected TourList4j doInBackground(String... params) {
+				showLoading();
+				TourList4j g4j = null ;
+				try {
+					Thread.sleep(1000);
+					List<Tour> list = new ArrayList<Tour>();
+					list.add(new Tour("1", "11", null, "1111"));
+					list.add(new Tour("1","11",null,"1111"));
+					list.add(new Tour("1","11",null,"1111"));
+					list.add(new Tour("1","11",null,"1111"));
+					list.add(new Tour("1","11",null,"1111"));
+					list.add(new Tour("1","11",null,"1111"));
+					list.add(new Tour("1","11",null,"1111"));
+
+					g4j = new TourList4j(true,"success");
+					g4j.list = list;
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				return g4j;
+			}
+
+			@Override
+			protected void onPostExecute(TourList4j g4j) {
+				boolean isTheEnd = false ;
+                if(g4j.isSuccess()){
+					if(g4j.list.size()==0){
+						isTheEnd = true;
+					}else{
+						mListData.addAll(g4j.list);
+						mAdapter.notifyDataSetChanged();
+					}
+				}
+
+				dismissLoding(isTheEnd);
+			}
+
+			@Override
+			protected void onCancelled() {
+				dismissLoding(true);
+			}
+
+		}.execute();
 	}
 
 	//////////////////加载效果,以下代码可以直接复制粘贴////////////////////////////////////////////////////////////////////////////////
@@ -188,33 +213,21 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 	}
 
 
-	private void dismissLoding(boolean isLoadMore,String msg) {
+	private void dismissLoding(boolean isNoData) {
 		try{
-			if(isLoadMore==false){//如果是刷新数据
-				lv_data.stopRefresh();
-			}else{
-				lv_data.stopLoadMore();
+			lv_data.stopLoading();
+			if(isNoData){
+				lv_data.end();
 			}
-//			if(mListData.size()==0){
-//				lv_data.end();
-//			}
 			/// ((AnimationDrawable) iv_loading.getDrawable()).stop();
 			if (mListData == null || mListData.size() == 0) {
 				iv_loading.setVisibility(View.VISIBLE);
 				tv_loading.setVisibility(View.VISIBLE);
-
 				iv_loading.setImageResource(R.mipmap.img_no_data);
-				if(Validator.isBlank(msg)){
-					tv_loading.setText("加载数据失败！");
-				}else{
-					tv_loading.setText(msg);
-				}
 			} else {
 				iv_loading.setVisibility(View.GONE);
 				tv_loading.setVisibility(View.GONE);
 			}
-
-
 		}catch (Exception e){
 			e.printStackTrace();
 		}

@@ -15,8 +15,6 @@ import com.lostad.app.base.util.LogMe;
 import com.lostad.applib.BaseApplication;
 import com.lostad.applib.entity.ILoginConfig;
 
-import org.xutils.x;
-
 
 /**
  * @author sszvip
@@ -26,33 +24,46 @@ public abstract class BaseFragment extends Fragment {
     private BaseApplication mApp;
     protected Activity ctx;
 
-	private boolean injected = false;
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		LogMe.d("fragment", this.getClass().getName() + "===========onCreateView");
-		injected = true;
-		setHasOptionsMenu(true);//启用onCreateOptionMenu
-		//View v =  x.view().inject(this, inflater, container);
-		return super.onCreateView(inflater,container,savedInstanceState);
-	}
-
-	@Override
-	public void onAttach(Context context) {
-		super.onAttach(context);
-
-		ctx = getActivity();
-		mApp = (BaseApplication)ctx.getApplication();
-	}
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		LogMe.d("fragment", this.getClass().getName() + "===========onViewCreated");
-		if (!injected) {
-			x.view().inject(this, this.getView());
-		}
 	}
+
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		setHasOptionsMenu(true);//启用onCreateOptionMenu
+		return super.onCreateView(inflater,container,savedInstanceState);
+	}
+
+
+//	@Override
+//	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+//		LogMe.d("fragment", this.getClass().getName() + "===========onCreateView");
+//		injected = true;
+//		setHasOptionsMenu(true);//启用onCreateOptionMenu
+//		View v =  x.view().inject(this, inflater, container);
+//		//return super.onCreateView(inflater,container,savedInstanceState);
+//		return v;
+//	}
+//@Override
+//public void onViewCreated(View view, Bundle savedInstanceState) {
+//	super.onViewCreated(view, savedInstanceState);
+//	LogMe.d("fragment", this.getClass().getName() + "===========onViewCreated");
+//	if (!injected) {
+//		x.view().inject(this, this.getView());
+//	}
+//}
+//
+	@Override
+	public void onAttach(Context context) {
+		super.onAttach(context);
+		ctx = getActivity();
+		mApp = (BaseApplication)ctx.getApplication();
+	}
+
+
 
 	@Override
 	public void onResume() {

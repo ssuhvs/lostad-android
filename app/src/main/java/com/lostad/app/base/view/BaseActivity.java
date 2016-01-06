@@ -12,8 +12,6 @@ import com.lostad.app.demo.view.LoginActivity;
 import com.lostad.app.demo.view.MainActivity;
 import com.lostad.applib.view.BaseAppActivity;
 
-import org.xutils.x;
-
 
 public class BaseActivity extends BaseAppActivity{
     protected BaseActivity ctx;
