@@ -41,7 +41,7 @@
 
 4、修复了一些第三方组件的bug,并进行了扩展 ListviewPull、WaterDropListView 等。
 
-   比如 pullToRefresh-ListView 类似微博的效果，进入列表自动展现刷新提示， 滚动到地步自动出现loadding.
+   比如 pullToRefresh-ListView 类似微博的效果，WaterDropListView 控件简化调用方式，效果优化。
 
 5、良好的架构
    您直接继承listad 这个lib工程中的BaseApplication和BaseAppActivity就可以。
