@@ -22,7 +22,6 @@ public class BaseActivity extends BaseAppActivity{
 		super.onCreate(savedInstanceState);
 		ctx = this;
 		setSystemBarStyle(com.lostad.applib.R.color.bg_title);
-		x.view().inject(this);//注入UI
 	}
 
 //	public void showHomeButton(){
