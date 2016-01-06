@@ -33,8 +33,8 @@ public abstract class BaseFragment extends Fragment {
 		LogMe.d("fragment", this.getClass().getName() + "===========onCreateView");
 		injected = true;
 		setHasOptionsMenu(true);//启用onCreateOptionMenu
-		View v =  x.view().inject(this, inflater, container);
-		return v;
+		//View v =  x.view().inject(this, inflater, container);
+		return super.onCreateView(inflater,container,savedInstanceState);
 	}
 
 	@Override
