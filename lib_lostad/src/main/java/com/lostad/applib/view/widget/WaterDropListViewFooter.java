@@ -19,7 +19,7 @@ import com.lostad.applib.R;
 
 public class WaterDropListViewFooter extends LinearLayout {
 	private Context mContext;
-
+    private STATE mCurrSTATE;
 	private View mContentView;
 	private View mProgressBar;
 	private TextView mHintView;
@@ -34,7 +34,12 @@ public class WaterDropListViewFooter extends LinearLayout {
 		super(context);
 		initView(context);
 	}
-	
+
+
+	public boolean isInProgress(){
+		return mCurrSTATE==STATE.loading ;
+	}
+
 	public WaterDropListViewFooter(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView(context);
@@ -42,6 +47,7 @@ public class WaterDropListViewFooter extends LinearLayout {
 
 	
 	public void setState(STATE state) {
+		mCurrSTATE = state;
 		mHintView.setVisibility(View.INVISIBLE);
 		mProgressBar.setVisibility(View.INVISIBLE);
 		mHintView.setVisibility(View.INVISIBLE);

@@ -20,10 +20,9 @@
             waterdrop:bottomcircle_y="20dp"/>
 
         <ProgressBar
+            android:layout_marginTop="6dp"
             android:id="@+id/waterdroplist_header_progressbar"
             android:layout_width="27dp"
             android:layout_height="27dp"
             android:visibility="gone" />
-    <!--</RelativeLayout>
--->
 </LinearLayout>

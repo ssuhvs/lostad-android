@@ -32,7 +32,7 @@ public class WaterDropListViewHeader extends FrameLayout {
 
     private int stretchHeight;
     private  int readyHeight;
-    private static final int DISTANCE_BETWEEN_STRETCH_READY = 250;
+    private static final int DISTANCE_BETWEEN_STRETCH_READY = 100;
 
     public enum STATE {
         normal,//正常
@@ -42,6 +42,9 @@ public class WaterDropListViewHeader extends FrameLayout {
         end//刷新结束，回滚
     }
 
+    public boolean isInProgress(){
+        return getCurrentState()==STATE.refreshing ;
+    }
     public WaterDropListViewHeader(Context context) {
         super(context);
         initView(context);

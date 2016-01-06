@@ -39,7 +39,6 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 	// -- footer view
 	private WaterDropListViewFooter mFooterView;
 	private boolean mEnablePullLoad;
-	private boolean mPullLoading;
 	private boolean mIsFooterReady = false;
 
 	// total list items, used to detect is at the bottom of listview.
@@ -51,7 +50,7 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 
 //	private int mStretchHeight; // view开始变形的高度
 //	private int mReadyHeight; // view由stretch变成ready的高度
-	private final static int SCROLL_DURATION = 400; // scroll back duration
+	private final static int SCROLL_DURATION = 300; // scroll back duration
 	private final static int PULL_LOAD_MORE_DELTA = 50; // when pull up >= 50px
 														// at bottom, trigger
 														// load more.
@@ -59,6 +58,11 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 
 	public void end() {
 		mFooterView.setVisibility(View.INVISIBLE);
+	}
+
+	public boolean isLoading() {
+
+		return mFooterView.isInProgress() || mHeaderView.isInProgress();
 	}
 
 	private enum ScrollBack{
@@ -110,31 +114,13 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 	}
 
 	/**
-	 * enable or disable pull down refresh feature.
-	 *
-	 * @param enable
-	 */
-	/*public void setPullRefreshEnable(boolean enable) {
-		mEnablePullRefresh = enable;
-		if (!mEnablePullRefresh) { // disable, hide the content
-			mHeaderViewContent.setVisibility(View.INVISIBLE);
-		} else {
-			mHeaderViewContent.setVisibility(View.VISIBLE);
-		}
-	}*/
-
-	/**
 	 * enable or disable pull up load more feature.
 	 *
 	 * @param enable
 	 */
 	public void setPullLoadEnable(boolean enable) {
 		mEnablePullLoad = enable;
-		if (!mEnablePullLoad) {
-			mFooterView.hide();
-			mFooterView.setOnClickListener(null);
-		} else {
-			mPullLoading = false;
+		if (mEnablePullLoad) {//重置状态
 			mFooterView.show();
 			mFooterView.setState(WaterDropListViewFooter.STATE.normal);
 			// both "pull up" and "click" will invoke load more.
@@ -145,31 +131,22 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 					startLoadMore();
 				}
 			});
+		} else {
+			mFooterView.hide();
+			mFooterView.setOnClickListener(null);
 		}
-	}
-
-	/**
-	 * stop refresh, reset header view.
-	 */
-	public void stopRefresh() {
-
-		//if (mHeaderView.getCurrentState() == WaterDropListViewHeader.STATE.refreshing) {
-			mHeaderView.updateState(WaterDropListViewHeader.STATE.end);
-			if(!isTouchingScreen){
-				resetHeaderHeight();
-			}
-			mFooterView.setVisibility(View.VISIBLE);
-//		}else{
-//			throw  new IllegalStateException("can not stop refresh while it is not refreshing!");
-//		}
 	}
 
 	/**
 	 * stop load more, reset footer view.
 	 */
-	public void stopLoadMore() {
-		if (mPullLoading == true) {
-			mPullLoading = false;
+	public void stopLoading() {
+		if(mScrollBack==ScrollBack.header){//头部操作
+			mHeaderView.updateState(WaterDropListViewHeader.STATE.end);
+			if(!isTouchingScreen){
+				resetHeaderHeight();
+			}
+		}else{//底部操作
 			mFooterView.setState(WaterDropListViewFooter.STATE.normal);
 		}
 		mFooterView.setEnabled(true);
@@ -240,7 +217,7 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 
 	private void updateFooterHeight(float delta) {
 		int height = mFooterView.getBottomMargin() + (int) delta;
-		if (mEnablePullLoad && !mPullLoading) {
+		if (mEnablePullLoad && !mFooterView.isInProgress()) {
 			if (height > PULL_LOAD_MORE_DELTA) { // height enough to invoke load
 													// more.
 				mFooterView.setState(WaterDropListViewFooter.STATE.ready);
@@ -264,7 +241,6 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 	}
 
 	private void startLoadMore() {
-		mPullLoading = true;
 		mFooterView.setState(WaterDropListViewFooter.STATE.loading);
 		if (mListViewListener != null) {
 			mListViewListener.onLoadMore();
