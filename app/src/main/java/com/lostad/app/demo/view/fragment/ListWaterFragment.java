@@ -13,6 +13,7 @@ import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;
 import com.lostad.app.demo.entity.TourList4j;
+import com.lostad.app.demo.manager.TourManager;
 import com.lostad.applib.view.widget.WaterDropListView;
 
 import org.xutils.view.annotation.ViewInject;
@@ -158,23 +159,13 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
         new AsyncTask<String,String,TourList4j>(){
 			@Override
 			protected TourList4j doInBackground(String... params) {
-				TourList4j g4j = null ;
-				try {
-					Thread.sleep(1000);
-					List<Tour> list = new ArrayList<Tour>();
-					list.add(new Tour("1", "11", null, "1111"));
-					list.add(new Tour("1","11",null,"1111"));
-					list.add(new Tour("1","11",null,"1111"));
-					list.add(new Tour("1","11",null,"1111"));
-					list.add(new Tour("1","11",null,"1111"));
-					list.add(new Tour("1","11",null,"1111"));
-					list.add(new Tour("1","11",null,"1111"));
-
-					g4j = new TourList4j(true,"success");
-					g4j.list = list;
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+				int start = 0;
+				if(isLoadMore){
+				   start = mListData.size();
 				}
+
+				TourList4j g4j = TourManager.getInstance().listTourAll(start);
+
 				return g4j;
 			}
 
@@ -185,6 +176,9 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 					if(g4j.list.size()==0){
 						isTheEnd = true;
 					}else{
+						if(!isLoadMore){//刷新
+							mListData.clear();
+						}
 						mListData.addAll(g4j.list);
 						mAdapter.notifyDataSetChanged();
 					}

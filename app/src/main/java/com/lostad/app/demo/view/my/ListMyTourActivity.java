@@ -14,6 +14,7 @@ import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;
 import com.lostad.app.demo.entity.TourList4j;
+import com.lostad.app.demo.manager.TourManager;
 import com.lostad.app.demo.view.fragment.ListWaterAdapter;
 import com.lostad.applib.view.widget.WaterDropListView;
 
@@ -107,7 +108,6 @@ public class ListMyTourActivity extends BaseActivity implements WaterDropListVie
 	 * @Create Date: 2015-9-18下午5:10:16
 	 */
 
-
 	private void loadData(final boolean isLoadMore) {
 //		if(lv_data.isLoading()){
 //			return;
@@ -117,24 +117,13 @@ public class ListMyTourActivity extends BaseActivity implements WaterDropListVie
 		new AsyncTask<String,String,TourList4j>(){
 			@Override
 			protected TourList4j doInBackground(String... params) {
-				showLoading();
-				TourList4j g4j = null ;
-				try {
-					Thread.sleep(1000);
-					List<Tour> list = new ArrayList<Tour>();
-					list.add(new Tour("1", "title1", null,"Lostad-android framework"));
-					list.add(new Tour("2","title12",null,"Lostad-android framework"));
-					list.add(new Tour("3","title13",null,"Lostad-android framework"));
-					list.add(new Tour("4","title14",null,"Lostad-android framework"));
-					list.add(new Tour("5","title15",null,"Lostad-android framework"));
-					list.add(new Tour("6","title16",null,"Lostad-android framework"));
-					list.add(new Tour("7","title17",null,"Lostad-android framework"));
-
-					g4j = new TourList4j(true,"success");
-					g4j.list = list;
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+				int start = 0;
+				if(isLoadMore){
+					start = mListData.size();
 				}
+
+				TourList4j g4j = TourManager.getInstance().listTourAll(start);
+
 				return g4j;
 			}
 
@@ -145,6 +134,9 @@ public class ListMyTourActivity extends BaseActivity implements WaterDropListVie
 					if(g4j.list.size()==0){
 						isTheEnd = true;
 					}else{
+						if(!isLoadMore){//刷新
+							mListData.clear();
+						}
 						mListData.addAll(g4j.list);
 						mAdapter.notifyDataSetChanged();
 					}
