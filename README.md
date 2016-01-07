@@ -41,7 +41,7 @@
 
 4、修复了一些第三方组件的bug,并进行了扩展 ListviewPull、WaterDropListView 等。
 
-   比如 pullToRefresh-ListView 类似微博的效果，WaterDropListView 控件简化调用方式，效果优化。
+   比如 类似知呼刷新的效果，WaterDropListView 控件简化调用方式，效果优化。
 
 5、良好的架构
    您直接继承listad 这个lib工程中的BaseApplication和BaseAppActivity就可以。
@@ -51,7 +51,6 @@
 ## 三、本框架具体整合了哪些东西 ##
 
   Xutils （最著名的android开发框架之一,Http请求、View注入、db操作、图像加载）、
-  PullToRefresh-ListView （最流行的listView）、
   WaterDropListView（下拉刷新水滴效果）、
   gson(Google的Json解析库)、
   多种形状的 ImagageView 控件等。
