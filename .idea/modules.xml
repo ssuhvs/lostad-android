@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/lib_PullToRefresh/lib_PullToRefresh.iml" filepath="$PROJECT_DIR$/lib_PullToRefresh/lib_PullToRefresh.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib_lostad/lib_lostad.iml" filepath="$PROJECT_DIR$/lib_lostad/lib_lostad.iml" />
       <module fileurl="file://$PROJECT_DIR$/lostad-android.iml" filepath="$PROJECT_DIR$/lostad-android.iml" />
     </modules>
