@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.lostad.app.demo.view.LoginActivity;
-import com.lostad.app.demo.view.MainActivity;
+import com.lostad.app.demo.view.PagerChildActivity;
 import com.lostad.applib.entity.ILoginConfig;
 
 
@@ -37,7 +37,7 @@ public class BaseAppLoginActivity extends BaseActivity{
 			targetAct = Class.forName(target);
 		} catch (Exception e) {
 			e.printStackTrace();
-			targetAct = MainActivity.class ;//MainActivity.class;
+			targetAct = PagerChildActivity.class ;//MainActivity.class;
 		}
 		return targetAct;
 	}

@@ -9,27 +9,17 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.lostad.app.demo.view.LoginActivity;
-import com.lostad.app.demo.view.MainActivity;
+import com.lostad.app.demo.view.PagerChildActivity;
 import com.lostad.applib.view.BaseAppActivity;
 
 
 public class BaseActivity extends BaseAppActivity{
-    protected BaseActivity ctx;
+	protected  BaseActivity ctx;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ctx = this;
-		setSystemBarStyle(com.lostad.applib.R.color.bg_title);
 	}
-
-//	public void showHomeButton(){
-//		ActionBar actionBar = getActionBar();
-//		actionBar.setDisplayShowHomeEnabled(false);//
-//		actionBar.setHomeButtonEnabled(true);
-//		actionBar.setDisplayHomeAsUpEnabled(true);
-//		//actionBar.setBackgroundDrawable(R.mipmap.bg_title);
-//	}
-	
 
 //	@Override
 //	public boolean onCreateOptionsMenu(Menu menu) {
@@ -90,7 +80,7 @@ public class BaseActivity extends BaseAppActivity{
 		boolean isExit;
 
 	public void  toMainActivty(){
-		Intent intent = new Intent(ctx, MainActivity.class);
+		Intent intent = new Intent(ctx, PagerChildActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 	}
@@ -99,4 +89,6 @@ public class BaseActivity extends BaseAppActivity{
 		Intent intent = new Intent(ctx, LoginActivity.class);
 		startActivity(intent);
 	}
+
+
 }

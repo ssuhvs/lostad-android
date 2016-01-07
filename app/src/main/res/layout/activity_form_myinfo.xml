@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
@@ -7,10 +7,10 @@
     android:clipToPadding="true"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
-
+    <include layout="@layout/common_toolbar"/>
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:gravity="center|top"
         android:orientation="vertical">
@@ -59,7 +59,7 @@
                         android:layout_weight="1"
                         android:focusable="false"
                         android:gravity="right|center"
-                        android:hint="未设置？"
+                        android:hint="未设置"
                         android:paddingRight="12dp"
                         android:textColor="@color/txt_blue_deep"
                         android:textSize="@dimen/sp_content" />
@@ -298,4 +298,4 @@
     </ScrollView>
 
 
-</RelativeLayout>
+</LinearLayout>

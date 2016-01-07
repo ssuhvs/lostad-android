@@ -39,9 +39,9 @@ public class UserManager
 	public UserInfo4j login(String phone,String password) {
 		UserInfo4j c = new UserInfo4j(true,"success");
         c.data = new UserInfo();
-		c.data.setId("testId");
-		c.data.setNickname("nickname");
-		c.data.setName("TestName");
+		c.data.id = "testId";
+		c.data.nickname = "nickname";
+		c.data.name = "TestName";
 		c.data.phone = "15865257900";
 
 		try {

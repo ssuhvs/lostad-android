@@ -43,7 +43,7 @@ public class IntegrationFragment extends BaseFragment {
 	// 屏幕宽度
 	private int screenWidth;
 	// 三个tab页面的列表
-	private List<ListTourFragment> fragments = new ArrayList<ListTourFragment>();
+	private List<ListWaterFragment> fragments = new ArrayList<ListWaterFragment>();
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class IntegrationFragment extends BaseFragment {
 
 	private void initTabs(LayoutInflater inflater) {
         for(int i=0;i<3;i++){
-			ListTourFragment f = new ListTourFragment();
+			ListWaterFragment f = new ListWaterFragment();
 			Bundle b = new Bundle();
 			b.putString("type",i+"");
 			f.setArguments(b);

@@ -1,11 +1,12 @@
 <resources>
-    <style name="AppTheme" parent="AppBaseTheme">
+    <style name="AppTheme" parent="AppTheme.Base">
 
     </style>
 
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="windowActionBar">true</item>
-        <item name="android:windowNoTitle">true</item>
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light">
+        <!--no actionbar and title-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
         <!-- 状态栏颜色 -->
         <item name="colorPrimaryDark">@color/red</item>
         <!-- toolbar（actionbar）颜色 -->

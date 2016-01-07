@@ -1,34 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/white"
-    android:padding="12dp"
-    android:orientation="vertical" >
+    android:orientation="vertical">
+
+    <include layout="@layout/common_toolbar" />
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="12dp">
 
-        <EditText
-            android:id="@+id/et_input"
-            android:focusable="true"
-            android:hint="输入内容"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/txt_blue_deep"
-            android:textColorHint="@color/txt_gray_light"
-            android:textSize="@dimen/sp_content" />
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_input"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:hint="输入内容"
+                android:textColor="@color/txt_blue_deep"
+                android:textColorHint="@color/txt_gray_light"
+                android:textSize="@dimen/sp_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="字段描述信息"
+            android:textColor="@color/txt_gray"
+            android:textSize="@dimen/sp_content2" />
+
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_desc"
-        android:layout_marginTop="12dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="字段描述信息"
-        android:textColor="@color/txt_gray"
-        android:textSize="@dimen/sp_content" />
-
 </LinearLayout>

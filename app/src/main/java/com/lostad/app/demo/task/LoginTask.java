@@ -22,11 +22,11 @@ import com.lostad.applib.core.MyCallback;
  * @author sszvip
  */
 @SuppressLint("NewApi")
-public class LoginTask extends AsyncTask<String, Integer, Integer> {
+public class LoginTask extends AsyncTask<String, Integer, UserInfo4j> {
 	private Activity ctx;
 	private LoginConfig mLoginConfig;
     private MyApplication mApp;
-    private UserInfo4j mU4j;
+
 	private MyCallback myCallback;
 
 	public LoginTask(Activity activitySupport, LoginConfig loginConfig,MyCallback<Boolean> callback) {
@@ -42,9 +42,10 @@ public class LoginTask extends AsyncTask<String, Integer, Integer> {
 	}
 
 	@Override
-	protected Integer doInBackground(String... params) {
-		mU4j = UserManager.getInstance().login(mLoginConfig.phone,mLoginConfig.pwd);
-		 return 0;
+	protected UserInfo4j doInBackground(String... params) {
+
+		UserInfo4j mU4j = UserManager.getInstance().login(mLoginConfig.phone,mLoginConfig.pwd);
+		return mU4j;
 	}
 
 	@Override
@@ -52,7 +53,7 @@ public class LoginTask extends AsyncTask<String, Integer, Integer> {
 	}
 
 	@Override
-	protected void onPostExecute(Integer result) {
+	protected void onPostExecute(UserInfo4j mU4j) {
 		DialogUtil.dismissProgress();
 		if(myCallback!=null){
 			myCallback.onCallback(mU4j.isSuccess());
@@ -74,12 +75,14 @@ public class LoginTask extends AsyncTask<String, Integer, Integer> {
 	private boolean saveLoginConfig(UserInfo u) {
 		boolean success = false;
 		try{
-			mLoginConfig.setId(u.getUserId());
+			mLoginConfig.setId(u.id);
 			mLoginConfig.setName(u.name);
 			mLoginConfig.setNickname(u.nickname);
 
-			mApp.saveLoginConfig(mLoginConfig);
 			mApp.getDb().saveOrUpdate(u);
+
+			mApp.saveLoginConfig(mLoginConfig);
+
 			success = true;
 		}catch (Exception e){
 			e.printStackTrace();

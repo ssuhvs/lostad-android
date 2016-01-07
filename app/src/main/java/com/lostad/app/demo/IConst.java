@@ -5,10 +5,10 @@ import android.os.Environment;
 
 public class IConst {
    public final static String PATH_ROOT                   = Environment.getExternalStorageDirectory().toString()+ "/1_tour";
-   public static final String    DB_NAME                  = "tour_1113.db";
+   public static final String    DB_NAME                  = "tour_0107.db";
    public static final int       DB_VER_NUM               = 1;
 
-   public final static String URL_BASE                    = "http://115.29.77.29:8080";//"http://192.168.2.104:8080";//"
+   public final static String URL_BASE                    = "http://192.168.2.104:8080";//"
    public final static String URL_SERVICE                 = URL_BASE+"/MYPF/serviceBroker.do";//"http://218.245.5.79:80/vt/services";
 
    public final static String KEY_GIS_PROVINCE                 = "province";

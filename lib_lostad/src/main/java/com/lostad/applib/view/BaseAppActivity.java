@@ -1,21 +1,60 @@
 package com.lostad.applib.view;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.lostad.applib.R;
+import com.lostad.applib.util.DialogUtil;
 
 
 public class BaseAppActivity extends ActivitySupport implements IActivitySupport{
 
 	protected BaseAppActivity ctx = null;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ctx = this;
+		setSystemBarStyle(R.color.bg_title);
+	}
+
+	protected void initToolBar(Toolbar tb_toolbar) {
+		if(tb_toolbar!=null) {
+			tb_toolbar.setTitleTextColor(getResources().getColor(R.color.bg_title));
+			setSupportActionBar(tb_toolbar);
+			tb_toolbar.setTitleTextColor(Color.WHITE);
+		}else{
+			DialogUtil.showToastCust(this, R.string.msg_toolbar_no_found);
+		}
+	}
+	protected void initToolBarWithBack(Toolbar tb_toolbar) {
+		if(tb_toolbar!=null){
+			tb_toolbar.setTitleTextColor(getResources().getColor(R.color.bg_title));
+			setSupportActionBar(tb_toolbar);
+			tb_toolbar.setNavigationIcon(R.drawable.ic_action_back);
+			tb_toolbar.setTitleTextColor(Color.WHITE);
+		}else{
+			DialogUtil.showToastCust(this,R.string.msg_toolbar_no_found);
+		}
+
+	}
+	protected void initToolBarWithBack(Toolbar tb_toolbar,String title) {
+		if(tb_toolbar!=null){
+			tb_toolbar.setTitleTextColor(getResources().getColor(R.color.bg_title));
+			setSupportActionBar(tb_toolbar);
+			tb_toolbar.setNavigationIcon(R.drawable.ic_action_back);
+			tb_toolbar.setTitleTextColor(Color.WHITE);
+			super.setTitle(title);
+		}else{
+			DialogUtil.showToastCust(this,R.string.msg_toolbar_no_found);
+		}
 
 	}
 

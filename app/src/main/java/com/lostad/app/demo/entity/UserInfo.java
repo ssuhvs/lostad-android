@@ -18,99 +18,45 @@
 
 package com.lostad.app.demo.entity;
 
-import com.lostad.applib.entity.ILoginConfig;
-
 import org.xutils.db.annotation.Column;
 import org.xutils.db.annotation.Table;
 
 import java.io.Serializable;
 
 @Table(name = "UserInfo")
-public class UserInfo implements Serializable,ILoginConfig {
+public class UserInfo implements Serializable {
 	/**
 	 *
 	 */
-
 	@Column(name = "id", isId = true)
 	public String id;
+	@Column(name="name")
 	public String name;
+	@Column(name="nickname")
 	public String nickname;
+	@Column(name="pwd")
 	public String pwd;
+	@Column(name="headUrl")
 	public String headUrl;
+	@Column(name="phone")
 	public String phone;
+	@Column(name="phoneType")
 	public String phoneType;
 	// 贝壳数目
-	public String   loginType="0" ;//0:表示跑伴登录1:表示QQ登录2:微信登录3:新浪微博登录
-	public String    uid3;//第三方登录 ｉｄ
-	public String    sex;
+	@Column(name="loginType")
+	public String loginType="0" ;//0:表示跑伴登录1:表示QQ登录2:微信登录3:新浪微博登录
+	@Column(name="uid3")
+	public String uid3;//第三方登录 ｉｄ
+	@Column(name="sex")
+	public String sex;
+	@Column(name="token")
 	public String token;// 用于推送
+	@Column(name="longitude")
 	public Double longitude;
+	@Column(name="latitude")
 	public Double latitude;
 
-	public UserInfo(String phone, String pwd) {
-		this.phone = phone;
-		this.pwd = pwd;
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
 	public UserInfo() {
-	}
-
-	
-	public Double getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
-	}
-
-	public Double getLatitude() {
-		return latitude;
-	}
-
-
-	public String getPwd() {
-		return pwd;
-	}
-
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
-
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
-	}
-
-	public String getPhoneType() {
-		return phoneType;
-	}
-
-	public void setPhoneType(String phoneType) {
-		this.phoneType = phoneType;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getSex() {
-		return sex;
-	}
-
-	public void setSex(String sex) {
-		this.sex = sex;
 	}
 
 	public String getId() {
@@ -120,74 +66,4 @@ public class UserInfo implements Serializable,ILoginConfig {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-
-	public void setLoginType(String loginType) {
-		this.loginType = loginType;
-	}
-
-	public String getUid3() {
-		return uid3;
-	}
-
-	public void setUid3(String uid3) {
-		this.uid3 = uid3;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	
-
-
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-	public String getHeadUrl() {
-		return headUrl;
-	}
-
-	public void setHeadUrl(String headUrl) {
-		this.headUrl = headUrl;
-	}
-
-
-	public String getSexStr() {
-		if("1".equals(sex)){
-			return "女";
-		}else{
-			return "男";
-		}
-	}
-
-	@Override
-	public String getUserId() {
-		return this.id;
-	}
-
-	@Override
-	public String getName() {
-		return this.name;
-	}
-
-	@Override
-	public String getLoginType() {
-		return loginType;
-	}
-
-	@Override
-	public String getPassword() {
-		return this.pwd;
-	}
-
-
-
 }

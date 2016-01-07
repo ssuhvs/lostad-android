@@ -5,20 +5,15 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Rect;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.PopupWindow;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,11 +21,7 @@ import com.lostad.applib.R;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.view.widget.CustomProgressDialog;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import android.widget.LinearLayout.LayoutParams;
 /**
  * 窗口工具类,提供可重用的窗口
  * @author     sszvip@qq.com
@@ -140,6 +131,18 @@ public class DialogUtil {
 		TextView message = (TextView) mToast.getView().findViewById(R.id.tv_toast);
 		message.setText(msg);
         mToast.show();
+	}
+	public static void showToastCust(Context ctx, int resId) {
+		if(mToast==null){
+			mToast = new Toast(ctx);
+			mToast.setGravity(Gravity.CENTER, 0, 0);
+			mToast.setDuration(Toast.LENGTH_LONG);
+			View toastRoot = ((Activity) ctx).getLayoutInflater().inflate(R.layout.toast_my, null);
+			mToast.setView(toastRoot);
+		}
+		TextView message = (TextView) mToast.getView().findViewById(R.id.tv_toast);
+		message.setText(resId);
+		mToast.show();
 	}
 	public static void showNoNet(Context ctx) {
 		showToastCust(ctx, "网络不可用，请检查网络！");

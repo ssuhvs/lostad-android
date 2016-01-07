@@ -14,8 +14,6 @@ public class WelActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_wel);
-
-		//checkVersionInfo();
 		toMain();
 	}
 
@@ -35,38 +33,7 @@ public class WelActivity extends Activity {
 			 }
 		 }.start();
 	}
-	public void checkVersionInfo(){
-		new Thread(){
-//			Version4j v;
-//			public void run() {
-//				v = SysManger.getInstance().loadVersion();
-//				runOnUiThread(new Runnable() {
-//					@Override
-//					public void run() {
-//						if(v.isSuccess()){
-//							int code = PhoneUtil.getVersionCode(context);
-//							if(code<v.versioninfo.versionCode){
-//								if("1".equals(v.versioninfo.mandatory)){
-//									toUpdate(v.versioninfo,"强制升级！");
-//								}else{
-//									showAlert(v.versioninfo);
-//								}
-//
-//							}else{
-//								login();
-//							}
-//						}else{
-//							//showToast(v.errorDesc);
-//							login();
-//						}
-//					}
-//
-//
-//				});
-//			};
-		}.start();
-	}
-	
+
 //	private void login() {
 //		new Thread(){
 //			LoginConfig mLoginConfig;

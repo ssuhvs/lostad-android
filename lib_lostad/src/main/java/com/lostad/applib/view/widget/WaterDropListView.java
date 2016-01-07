@@ -98,9 +98,9 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 		mHeaderView = new WaterDropListViewHeader(context);
 		mHeaderView.setStateChangedListener(this);
 		addHeaderView(mHeaderView);
-
 		// init footer view
 		mFooterView = new WaterDropListViewFooter(context);
+		mFooterView.setVisibility(View.GONE);
 	}
 
 	@Override

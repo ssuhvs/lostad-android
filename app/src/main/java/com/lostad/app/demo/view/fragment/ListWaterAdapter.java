@@ -18,7 +18,7 @@ import org.xutils.x;
 
 import java.util.List;
 
-public class ListTourAdapter extends BaseAdapter {
+public class ListWaterAdapter extends BaseAdapter {
 
 	private Activity mContext;
     private String mType;
@@ -26,7 +26,7 @@ public class ListTourAdapter extends BaseAdapter {
 
 	private LayoutInflater mInflater;
 	private String myId;
-	public ListTourAdapter(String type, Activity context, List<Tour> list) {
+	public ListWaterAdapter(String type, Activity context, List<Tour> list) {
 		this.mType = type;
 		mContext = context;
 		this.mListData = list;

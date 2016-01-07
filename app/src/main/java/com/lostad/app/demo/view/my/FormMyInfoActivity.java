@@ -3,6 +3,7 @@ package com.lostad.app.demo.view.my;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,9 @@ import org.xutils.x;
 import java.io.File;
 
 public class FormMyInfoActivity extends BaseActivity {
+	@ViewInject(R.id.tb_toolbar)
+	private Toolbar tb_toolbar;
+
 	@ViewInject(R.id.iv_head)
 	private ImageView iv_head;
 
@@ -57,6 +61,7 @@ public class FormMyInfoActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_form_myinfo);
 		x.view().inject(this);
+		super.initToolBarWithBack(tb_toolbar);
 		setTitle("个人资料");
 		initUI(mSysConfig);
 	}
@@ -239,9 +244,8 @@ public class FormMyInfoActivity extends BaseActivity {
 		if(Validator.isNotEmpty(config.headUrl)){
 			DownloadUtil.loadImage(this,iv_head, config.headUrl);
 		}
-		tv_nickname.setText(config.getName());
-		String sex = mSysConfig.getSex();
-		setSexValue(sex);
+		tv_nickname.setText(config.nickname);
+		setSexValue(mSysConfig.sex);
 	}
 
 

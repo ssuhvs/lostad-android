@@ -38,7 +38,7 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 	@ViewInject(R.id.iv_loading)
 	private ImageView iv_loading;
 
-	private ListTourAdapter mAdapter;
+	private ListWaterAdapter mAdapter;
 	private List<Tour> mListData = null;
     private String mType = null;
 
@@ -50,7 +50,7 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 		x.view().inject(this, rootView);
 
 		mListData= new ArrayList<Tour>();
-		mAdapter = new ListTourAdapter(mType,ctx, mListData);
+		mAdapter = new ListWaterAdapter(mType,ctx, mListData);
 		lv_data.setAdapter(mAdapter);
 		lv_data.setWaterDropListViewListener(this);
 		lv_data.setPullLoadEnable(true);
@@ -158,7 +158,6 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
         new AsyncTask<String,String,TourList4j>(){
 			@Override
 			protected TourList4j doInBackground(String... params) {
-				showLoading();
 				TourList4j g4j = null ;
 				try {
 					Thread.sleep(1000);

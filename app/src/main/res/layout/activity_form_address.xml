@@ -4,35 +4,36 @@
     android:layout_height="fill_parent"
     android:background="@color/white"
     android:fitsSystemWindows="true"
-    android:orientation="vertical" >
-
+    android:orientation="vertical">
+    <include layout="@layout/common_toolbar" />
     <LinearLayout
-        android:paddingTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
- <EditText
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+        <EditText
             android:id="@+id/et_input"
-            android:focusable="true"
-            android:editable="false"
-            android:hint="输入内容"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:editable="false"
+            android:focusable="true"
+            android:hint="输入内容"
             android:textColor="@color/txt_blue_deep"
             android:textColorHint="@color/txt_gray_light"
             android:textSize="@dimen/sp_content" />
-       
+
     </LinearLayout>
 
     <TextView
         android:id="@+id/tv_desc"
-        android:layout_margin="6dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="6dp"
         android:text="好的名字可以让朋友更容易记住你"
         android:textColor="@color/txt_gray_light"
         android:textSize="@dimen/sp_content" />
-    
-   
+
+
 </LinearLayout>

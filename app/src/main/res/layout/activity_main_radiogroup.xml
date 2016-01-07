@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <include layout="@layout/common_toolbar"/>
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"

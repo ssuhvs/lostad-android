@@ -3,6 +3,7 @@ package com.lostad.app.demo.view;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,6 +29,10 @@ import org.xutils.x;
  * */
 
 public class FindPwd1Activity extends BaseActivity {
+
+	@ViewInject(R.id.tb_toolbar)
+	private Toolbar  tb_toolbar;
+
 	@ViewInject(R.id.et_register_pass)
 	private EditText  et_register_pass;
 
@@ -37,10 +42,11 @@ public class FindPwd1Activity extends BaseActivity {
 	public String mPhone;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_update_pwd1);
-		setTitle("修改密码");
 
+		setContentView(R.layout.activity_update_pwd1);
 		x.view().inject(this);
+		super.initToolBar(tb_toolbar);
+		setTitle("修改密码");
 
 		mPhone = getIntent().getStringExtra("phone");
 	}

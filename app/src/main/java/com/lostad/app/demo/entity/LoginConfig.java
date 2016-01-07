@@ -32,19 +32,28 @@ public class LoginConfig implements Serializable,ILoginConfig {
 	 */
 	@Column(name = "id", isId = true)
 	public String id;
+	@Column(name="name")
 	public String name;
+	@Column(name="nickname")
 	public String nickname;
+	@Column(name="pwd")
 	public String pwd;
+	@Column(name="headUrl")
 	public String headUrl;
+	@Column(name="phone")
 	public String phone;
-	public String phoneType;
-	// 贝壳数目
-	public String   loginType="0" ;//0:表示跑伴登录1:表示QQ登录2:微信登录3:新浪微博登录
-	public String    uid3;//第三方登录 ｉｄ
-	public String    sex;
-	// 用于推送
-	public String token;
+	@Column(name="loginType")
+	public String loginType="0" ;//0:表示跑伴登录1:表示QQ登录2:微信登录3:新浪微博登录
+	@Column(name="uid3")
+	public String uid3;//第三方登录 ｉｄ
+	@Column(name="sex")
+	public String sex;
+
+	@Column(name="token")
+	public String token;// 用于推送
+	@Column(name="longitude")
 	public Double longitude;
+	@Column(name="latitude")
 	public Double latitude;
 	
 	public LoginConfig(String phone, String pwd) {
@@ -89,13 +98,6 @@ public class LoginConfig implements Serializable,ILoginConfig {
 		this.latitude = latitude;
 	}
 
-	public String getPhoneType() {
-		return phoneType;
-	}
-
-	public void setPhoneType(String phoneType) {
-		this.phoneType = phoneType;
-	}
 
 	public String getPhone() {
 		return phone;

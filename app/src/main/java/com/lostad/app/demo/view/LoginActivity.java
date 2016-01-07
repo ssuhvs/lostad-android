@@ -20,6 +20,7 @@ import com.lostad.applib.util.Validator;
 
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 public class LoginActivity extends BaseActivity {
     @ViewInject(R.id.et_phone)
@@ -34,7 +35,7 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //x.view().inject(this);
+        x.view().inject(this);
         //社会化分享
         // UmengPlatUtil.getInstance(this);
         ILoginConfig login = getLoginConfig();

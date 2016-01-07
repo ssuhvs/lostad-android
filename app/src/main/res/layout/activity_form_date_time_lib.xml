@@ -4,9 +4,9 @@
     android:layout_height="fill_parent"
     android:background="@color/white"
     android:gravity="center_horizontal"
-    android:padding="@dimen/paddings"
-    android:orientation="vertical" >
 
+    android:orientation="vertical" >
+    <include layout="@layout/common_toolbar"/>
     <TextView
         android:id="@+id/tv_desc"
         android:layout_margin="6dp"
@@ -17,10 +17,11 @@
         android:textSize="@dimen/sp_content" />
       
     <LinearLayout
+        android:padding="@dimen/paddings"
         android:gravity="center_horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:paddingTop="10dp" >
  
         <DatePicker

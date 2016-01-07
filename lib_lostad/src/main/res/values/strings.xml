@@ -10,4 +10,6 @@
 
     <string name="listfooterview_normal">查看更多</string>
     <string name="listfooterview_ready">松开载入更多</string>
+
+    <string name="msg_toolbar_no_found">ToolBar未注入:\n1、布局文件是否包含了ToolBar；2、java代码是否正确使用了inject操作?</string>
 </resources>
