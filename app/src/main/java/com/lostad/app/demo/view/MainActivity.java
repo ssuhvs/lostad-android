@@ -6,17 +6,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.R;
-import com.lostad.app.demo.view.fragment.IntegrationFragment;
-import com.lostad.app.demo.view.fragment.ListWaterFragment;
-import com.lostad.app.demo.view.fragment.SettingsFragment;
+import com.lostad.app.demo.view.mainFragment.IntegrationFragment;
+import com.lostad.app.demo.view.mainFragment.ListWaterFragment;
+import com.lostad.app.demo.view.mainFragment.SettingsFragment;
 import com.zxing.view.CaptureActivity;
 
 import org.xutils.view.annotation.ViewInject;
@@ -116,7 +118,7 @@ public class MainActivity extends BaseActivity {
             startActivityForResult(i,0);
             return true;
         }else if(id==R.id.action_more){
-            Intent i = new Intent(this, MainActivity.class);
+            Intent i = new Intent(this, PagerChildActivity.class);
             startActivity(i);
         }else{
         }
@@ -154,6 +156,23 @@ public class MainActivity extends BaseActivity {
 //				});
 //			};
         }.start();
+    }
+
+    private long exitTime = 0;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Toast.makeText(MainActivity.this,"再按一次退出程序",Toast.LENGTH_LONG).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+            }
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
 }

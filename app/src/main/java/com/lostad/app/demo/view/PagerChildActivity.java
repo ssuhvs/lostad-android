@@ -21,9 +21,9 @@ import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.R;
-import com.lostad.app.demo.view.fragment.IntegrationFragment;
-import com.lostad.app.demo.view.fragment.ListWaterFragment;
-import com.lostad.app.demo.view.fragment.SettingsFragment;
+import com.lostad.app.demo.view.mainFragment.IntegrationFragment;
+import com.lostad.app.demo.view.mainFragment.ListWaterFragment;
+import com.lostad.app.demo.view.mainFragment.SettingsFragment;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;

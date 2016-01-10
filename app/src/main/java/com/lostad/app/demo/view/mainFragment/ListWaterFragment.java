@@ -1,4 +1,4 @@
-package com.lostad.app.demo.view.fragment;
+package com.lostad.app.demo.view.mainFragment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -163,6 +163,11 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 				if(isLoadMore){
 				   start = mListData.size();
 				}
+				try{
+					Thread.sleep(1000);
+				}catch (Exception e){
+					e.printStackTrace();
+				}
 
 				TourList4j g4j = TourManager.getInstance().listTourAll(start);
 
@@ -189,6 +194,7 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 
 			@Override
 			protected void onCancelled() {
+
 				dismissLoding(true);
 			}
 

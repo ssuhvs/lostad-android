@@ -1,4 +1,4 @@
-package com.lostad.app.demo.view.fragment;
+package com.lostad.app.demo.view.mainFragment;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

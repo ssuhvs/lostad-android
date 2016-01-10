@@ -15,7 +15,7 @@ import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.Tour;
 import com.lostad.app.demo.entity.TourList4j;
 import com.lostad.app.demo.manager.TourManager;
-import com.lostad.app.demo.view.fragment.ListWaterAdapter;
+import com.lostad.app.demo.view.mainFragment.ListWaterAdapter;
 import com.lostad.applib.view.widget.WaterDropListView;
 
 import org.xutils.view.annotation.ViewInject;
