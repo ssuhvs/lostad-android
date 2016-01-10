@@ -27,10 +27,9 @@ public class LayoutUtil {
             double fromHigh,
             double toLow,
             double toHigh) {
-        double fromRangeSize = fromHigh - fromLow;
-        double toRangeSize = toHigh - toLow;
-        double valueScale = (value - fromLow) / fromRangeSize;
-        return toLow + (valueScale * toRangeSize);
+
+        double valueScale = (value - fromLow) / (fromHigh - fromLow);
+        return toLow + valueScale * (toHigh - toLow);
     }
 
     /**

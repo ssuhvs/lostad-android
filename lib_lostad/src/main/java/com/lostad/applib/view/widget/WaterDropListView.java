@@ -10,6 +10,7 @@ package com.lostad.applib.view.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -57,7 +58,7 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 	private final static float OFFSET_RADIO = 1.8f; // support iOS like pull
 
 	public void end() {
-		mFooterView.setVisibility(View.INVISIBLE);
+		mFooterView.setVisibility(View.GONE);
 	}
 
 	public boolean isLoading() {
@@ -68,11 +69,8 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 	private enum ScrollBack{
 		header,
 		footer
-	}												// feature.
+	}// feature.
 
-	/**
-	 * @param context
-	 */
 	public WaterDropListView(Context context) {
 		super(context);
 		initWithContext(context);
@@ -93,20 +91,19 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 		// XListView need the scroll event, and it will dispatch the event to
 		// user's listener (as a proxy).
 		super.setOnScrollListener(this);
-
 		// init header view
 		mHeaderView = new WaterDropListViewHeader(context);
 		mHeaderView.setStateChangedListener(this);
 		addHeaderView(mHeaderView);
 		// init footer view
 		mFooterView = new WaterDropListViewFooter(context);
-		mFooterView.setVisibility(View.GONE);
+		//mFooterView.setVisibility(View.GONE);
 	}
 
 	@Override
 	public void setAdapter(ListAdapter adapter) {
 		// make sure XListViewFooter is the last footer view, and only add once.
-		if (mIsFooterReady == false) {
+		if (!mIsFooterReady) {
 			mIsFooterReady = true;
 			addFooterView(mFooterView);
 		}
@@ -116,7 +113,7 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 	/**
 	 * enable or disable pull up load more feature.
 	 *
-	 * @param enable
+	 * @param enable  是否可以上拉
 	 */
 	public void setPullLoadEnable(boolean enable) {
 		mEnablePullLoad = enable;
@@ -138,19 +135,22 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 	}
 
 	/**
-	 * stop load more, reset footer view.
+	 * stop load more, or stop refresh ,reset footer view.
 	 */
 	public void stopLoading() {
-		if(mScrollBack==ScrollBack.header){//头部操作
+		if(mHeaderView.isInProgress()){//头部操作
 			mHeaderView.updateState(WaterDropListViewHeader.STATE.end);
 			if(!isTouchingScreen){
 				resetHeaderHeight();
 			}
-		}else{//底部操作
-			mFooterView.setState(WaterDropListViewFooter.STATE.normal);
 		}
-		mFooterView.setEnabled(true);
-		mFooterView.setVisibility(View.VISIBLE);
+
+		if(mFooterView.isInProgress()){
+			mFooterView.setState(WaterDropListViewFooter.STATE.normal);
+			mFooterView.setEnabled(true);
+			mFooterView.setVisibility(View.VISIBLE);
+		}
+
 	}
 
 
@@ -163,22 +163,23 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 
 	private void updateHeaderHeight(int height){
 		if (mEnablePullRefresh) {
-			if (mHeaderView.getCurrentState() == WaterDropListViewHeader.STATE.normal && height >= mHeaderView.getStretchHeight()) {
-				//由normal变成stretch的逻辑：1、当前状态是normal；2、下拉头达到了stretchheight的高度
-				mHeaderView.updateState(WaterDropListViewHeader.STATE.stretch);
-			} else if(mHeaderView.getCurrentState() == WaterDropListViewHeader.STATE.stretch && height >= mHeaderView.getReadyHeight()){
-				//由stretch变成ready的逻辑：1、当前状态是stretch；2、下拉头达到了readyheight的高度
-				mHeaderView.updateState(WaterDropListViewHeader.STATE.ready);
-			}else if (mHeaderView.getCurrentState() == WaterDropListViewHeader.STATE.stretch && height < mHeaderView.getStretchHeight()){
-				// 由stretch变成normal的逻辑：1、当前状态是stretch；2、下拉头高度小于stretchheight的高度
-				mHeaderView.updateState(WaterDropListViewHeader.STATE.normal);
+			int maxStretchHeight = mHeaderView.getReadyHeight();
+			int heightToStretch  = mHeaderView.getStretchHeight();
+			WaterDropListViewHeader.STATE currState =  mHeaderView.getCurrentState();
+			if(currState == WaterDropListViewHeader.STATE.normal){//正常状态
+				if(height>=heightToStretch){//到达需要拉伸的高度
+					//由normal变成stretch的逻辑：1、当前状态是normal；2、下拉头达到了stretchheight的高度
+					mHeaderView.updateState(WaterDropListViewHeader.STATE.stretch);
+				}
+			}else if(currState == WaterDropListViewHeader.STATE.stretch){//拉伸状态
+				if(height >= maxStretchHeight){
+					//由stretch变成ready的逻辑：1、当前状态是stretch；2、下拉头达到了readyheight的高度
+					mHeaderView.updateState(WaterDropListViewHeader.STATE.ready);
+				}
 			}else if(mHeaderView.getCurrentState() == WaterDropListViewHeader.STATE.end && height < 2){
 				//由end变成normal的逻辑：1、当前状态是end；2、下拉头高度小于一个极小值
 				mHeaderView.updateState(WaterDropListViewHeader.STATE.normal);
 			}
-			/*else{
-				throw new IllegalStateException("WaterDropListView's state is illegal!");
-			}*/
 		}
 		mHeaderView.setVisiableHeight(height);//动态设置HeaderView的高度
 	}
@@ -241,10 +242,15 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 	}
 
 	private void startLoadMore() {
-		mFooterView.setState(WaterDropListViewFooter.STATE.loading);
-		if (mListViewListener != null) {
-			mListViewListener.onLoadMore();
+		if(!mFooterView.isInProgress()){
+			mFooterView.setState(WaterDropListViewFooter.STATE.loading);
+			if (mListViewListener != null) {
+				mListViewListener.onLoadMore();
+			}
+		}else{
+			Log.d("WaterDropListView","LoadMore Action be ignored ....");
 		}
+
 	}
 
 	@Override
