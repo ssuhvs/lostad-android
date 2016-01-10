@@ -15,10 +15,10 @@ import com.lostad.applib.entity.ILoginConfig;
  * @author sszvip
  * 
  */
-public class BaseFragment extends Fragment {
+public class BaseAppFragment extends Fragment {
     private BaseApplication mApp;
     protected Activity ctx;
-	public BaseFragment(){
+	public BaseAppFragment(){
 	}
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

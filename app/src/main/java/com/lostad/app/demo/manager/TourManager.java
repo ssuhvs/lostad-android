@@ -41,15 +41,15 @@ public class TourManager
      */
 	public TourList4j listTourAll(int start) {
 		TourList4j g4j = null;
-
+        String index = "Title :"+ start++;
 		List<Tour> list = new ArrayList<Tour>();
-		list.add(new Tour("1", "title1", null,"Lostad-android framework"));
-		list.add(new Tour("2","title12",null,"Lostad-android framework"));
-		list.add(new Tour("3","title13",null,"Lostad-android framework"));
-		list.add(new Tour("4","title14",null,"Lostad-android framework"));
-		list.add(new Tour("5","title15",null,"Lostad-android framework"));
-		list.add(new Tour("6","title16",null,"Lostad-android framework"));
-		list.add(new Tour("7","title17",null,"Lostad-android framework"));
+		list.add(new Tour(index,index, null,"Lostad-android framework is ready for u !"));
+		index = "Title :"+ start++;
+		list.add(new Tour(index,index,null,"Lostad-android framework"));
+		index = "Title :"+ start++;
+		list.add(new Tour(index,index,null,"Lostad-android framework"));
+		index = "Title :"+ start++;
+		list.add(new Tour(index,index,null,"Lostad-android framework"));
 
 		g4j = new TourList4j(true,"success");
 		g4j.list = list;

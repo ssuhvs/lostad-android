@@ -105,6 +105,10 @@
             android:name=".view.my.ListMyTourActivity"
             android:parentActivityName="com.lostad.app.base.view.BaseActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".view.article.FreshNewsDetailActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
     </application>
 
 </manifest>
