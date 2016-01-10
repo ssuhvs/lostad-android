@@ -97,7 +97,7 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 		addHeaderView(mHeaderView);
 		// init footer view
 		mFooterView = new WaterDropListViewFooter(context);
-		//mFooterView.setVisibility(View.GONE);
+		mFooterView.setVisibility(View.GONE);
 	}
 
 	@Override
@@ -144,12 +144,10 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 				resetHeaderHeight();
 			}
 		}
-
-		if(mFooterView.isInProgress()){
-			mFooterView.setState(WaterDropListViewFooter.STATE.normal);
-			mFooterView.setEnabled(true);
-			mFooterView.setVisibility(View.VISIBLE);
-		}
+	    //默认状态下footer将一直显示
+		mFooterView.setState(WaterDropListViewFooter.STATE.normal);
+		mFooterView.setEnabled(true);
+		mFooterView.setVisibility(View.VISIBLE);
 
 	}
 
@@ -176,9 +174,10 @@ public class WaterDropListView extends ListView implements OnScrollListener,Wate
 					//由stretch变成ready的逻辑：1、当前状态是stretch；2、下拉头达到了readyheight的高度
 					mHeaderView.updateState(WaterDropListViewHeader.STATE.ready);
 				}
-			}else if(mHeaderView.getCurrentState() == WaterDropListViewHeader.STATE.end && height < 2){
+			}else if(mHeaderView.getCurrentState() == WaterDropListViewHeader.STATE.end && height < 2){//结束状态
 				//由end变成normal的逻辑：1、当前状态是end；2、下拉头高度小于一个极小值
 				mHeaderView.updateState(WaterDropListViewHeader.STATE.normal);
+
 			}
 		}
 		mHeaderView.setVisiableHeight(height);//动态设置HeaderView的高度
