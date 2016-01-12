@@ -17,7 +17,8 @@ import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.view.mainFragment.IntegrationFragment;
-import com.lostad.app.demo.view.mainFragment.ListWaterFragment;
+import com.lostad.app.demo.view.mainFragment.IntegrationFragment1;
+import com.lostad.app.demo.view.mainFragment.IntegrationFragment2;
 import com.lostad.app.demo.view.mainFragment.SettingsFragment;
 import com.zxing.view.CaptureActivity;
 
@@ -80,14 +81,13 @@ public class MainActivity extends BaseActivity {
                 fragment = new IntegrationFragment();
                 break;
             case R.id.rb_1:
-                fragment = new ListWaterFragment();
+                fragment = new IntegrationFragment1();
                 Bundle b1 = new Bundle();
                 b1.putString("type", "0");
                 fragment.setArguments(b1);
-
                 break;
             case R.id.rb_2:
-                fragment = new ListWaterFragment();
+                fragment = new IntegrationFragment2();
                 Bundle b2 = new Bundle();
                 b2.putString("type", "1");
                 fragment.setArguments(b2);
@@ -126,6 +126,25 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    private long exitTime = 0;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Toast.makeText(MainActivity.this,"再按一次退出程序",Toast.LENGTH_LONG).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+            }
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+
     public void checkVersionInfo(){
         new Thread(){
 //			Version4j v;
@@ -156,23 +175,6 @@ public class MainActivity extends BaseActivity {
 //				});
 //			};
         }.start();
-    }
-
-    private long exitTime = 0;
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK
-                && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if ((System.currentTimeMillis() - exitTime) > 2000) {
-                Toast.makeText(MainActivity.this,"再按一次退出程序",Toast.LENGTH_LONG).show();
-                exitTime = System.currentTimeMillis();
-            } else {
-                finish();
-            }
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
     }
 
 }

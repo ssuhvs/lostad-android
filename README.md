@@ -36,30 +36,33 @@
 
 3、现成的工具类，提示窗口工具类（DialogUtil、UI特效工具类EffectUtil等），主界面、登陆、注册界面和基本交互流程。
    
-   用户基本信息编辑的模块，仿微信的交互方式（一次只可编辑一项，完事直接保存，录入界面友好可重用性高）。
-   把头像选择、裁剪封装到一个工具类里，简化您的操作过程，操作完成后，直接返回图片的bitmap !
+     用户基本信息编辑的模块，仿微信的交互方式（一次只可编辑一项，完事直接保存，录入界面友好可重用性高）。
+     把头像选择、裁剪封装到一个工具类里，简化您的操作过程，操作完成后，直接返回图片的bitmap !
 
-4、修复了一些第三方组件的bug,并进行了扩展 ListviewPull、WaterDropListView 等。
+4、修复了一些第三方组件的bug,并进行了扩展、WaterDropListView 等。
 
-   比如 类似知呼刷新的效果，WaterDropListView 控件简化调用方式，效果优化。
+     比如 类似知呼刷新的效果，WaterDropListView 控件简化调用方式，效果优化。
 
 5、良好的架构
-   您直接继承listad 这个lib工程中的BaseApplication和BaseAppActivity就可以。
-   当然您也要实现这两个抽象类的抽象方法。
 
+     您直接继承listad 这个lib工程。
+     其中，自定义的Application要继承BaseApplication
+     自定义的Activity要继承 BaseAppActivity
+     自定义的用于保存用户登录信息的bean要实现ILogin接口。
 
 ## 三、本框架具体整合了哪些东西 ##
 
-  Xutils （最著名的android开发框架之一,Http请求、View注入、db操作、图像加载）、
-  WaterDropListView（下拉刷新水滴效果）、
-  gson(Google的Json解析库)、
-  多种形状的 ImagageView 控件等。
-
+    Xutils （最著名的android开发框架之一,Http请求、View注入、db操作、图像加载）、
+    WaterDropListView（下拉刷新水滴效果）、
+    gson(Google的Json解析库)、
+    JumpingBeans ( 跳动的 loading... )、
+    多种形状的 ImagageView 控件等、
+    效果丰富的Tab组建：SmartTabLayout。
+    
 ## 四、如何使用？##
 
 直接下载本项目，在app项目下的gradle配置文件中的 applicationId 改成您自己的applicationId
 就可以在上面进行二次开发了。
-
 
 ## 五、最后，期待您在使用过本项目后前来发表有任何吐槽或建议##
    后面，本项目也会放出android端的代码生成器的相关源码。

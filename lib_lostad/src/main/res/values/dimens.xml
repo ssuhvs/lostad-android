@@ -8,6 +8,7 @@
     <dimen name="margins">10dp</dimen>
     <dimen name="height_list_item">64.0dip</dimen>
     <dimen name="height_list_item_mid">56dp</dimen>
+    <dimen name="tab_height">42dp</dimen>
     <!-- sp 本App中 -->
     <dimen name="sp_content3">12sp</dimen>
     <dimen name="sp_content2">14sp</dimen>

@@ -16,6 +16,8 @@ import com.lostad.app.demo.entity.TourList4j;
 import com.lostad.app.demo.manager.TourManager;
 import com.lostad.applib.view.widget.WaterDropListView;
 
+import net.frakbot.jumpingbeans.JumpingBeans;
+
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
@@ -208,6 +210,9 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 
 			tv_loading.setVisibility(View.VISIBLE);
 			tv_loading.setText("正在加载...");
+			mJumpingBeans = JumpingBeans.with(tv_loading)
+					.appendJumpingDots()
+					.build();
 		}
 	}
 
@@ -217,6 +222,9 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 			lv_data.stopLoading();
 			if(isNoData){
 				lv_data.end();
+			}
+			if(mJumpingBeans!=null){
+				mJumpingBeans.stopJumping();
 			}
 			/// ((AnimationDrawable) iv_loading.getDrawable()).stop();
 			if (mListData == null || mListData.size() == 0) {
@@ -231,4 +239,5 @@ public class ListWaterFragment extends BaseFragment implements WaterDropListView
 			e.printStackTrace();
 		}
 	}
+	private JumpingBeans mJumpingBeans;
 }

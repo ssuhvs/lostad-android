@@ -4,6 +4,6 @@
     tools:context="com.lostad.app.MainActivity">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_more" android:title="主界面Tab不可滑动"
+    <item android:id="@+id/action_more" android:title="主界面Tab可滑动"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
