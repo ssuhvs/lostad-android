@@ -6,8 +6,10 @@
 
 本框架是作者在长期的项目开发中积累的劳动成果，是最优秀android开发框架的整合.
 项目的目标:做为二次发的框架，减少重复劳动，提高开发效率！
+QQ群： 
 
-
+①群：102096901
+<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=fee4ace8124254ff4698495b0607b143425e70b2d57c8abd333d12c455c5a5e4"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="Lostad-android 官方群" title="Lostad-android 官方群"></a>
 ## 二、为什么选择使用该框架？##
 
 1、提供了一个基础的开发框架，并为您做好了多渠道分发的相关配置，简化开发步骤，让初学者也可以轻松开发出一个专业的App。
