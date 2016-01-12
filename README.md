@@ -5,8 +5,7 @@
 ## 一、框架简介：##
 
 本框架是作者在长期的项目开发中积累的劳动成果，是最优秀android开发框架的整合.
-项目的目标:做为二次发的框架，减少重复劳动，提高开发效率！
-QQ群： 
+项目的目标:做为二次发的框架，减少重复劳动，提高开发效率！ 
 
 ①群：102096901
 <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=fee4ace8124254ff4698495b0607b143425e70b2d57c8abd333d12c455c5a5e4"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="Lostad-android 官方群" title="Lostad-android 官方群"></a>
