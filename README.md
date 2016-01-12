@@ -44,12 +44,9 @@
      比如 类似知呼刷新的效果，WaterDropListView 控件简化调用方式，效果优化。
 
 5、良好的架构
-
-     您直接继承listad 这个lib工程。
-     其中，自定义的Application要继承BaseApplication
-     自定义的Activity要继承 BaseAppActivity
-     自定义的用于保存用户登录信息的bean要实现ILogin接口。
-
+     
+     自己看去吧！
+   
 ## 三、本框架具体整合了哪些东西 ##
 
     Xutils （最著名的android开发框架之一,Http请求、View注入、db操作、图像加载）、
@@ -60,16 +57,19 @@
     效果丰富的Tab组建：SmartTabLayout。
     
 ## 四、如何使用？##
-
-直接下载本项目，在app项目下的gradle配置文件中的 applicationId 改成您自己的applicationId
-就可以在上面进行二次开发了。
+    
+    下载本项目，在app项目下的gradle配置文件中的 applicationId 改成您自己的applicationId,就可以在上面进行二次开发了。
+    注意：
+         1）自定义的Application要继承BaseApplication
+         2）自定义的Activity要继承 BaseAppActivity
+         3）自定义的用于保存用户登录信息的bean要实现ILogin接口。
+    
 
 ## 五、最后，期待您在使用过本项目后前来发表有任何吐槽或建议##
-   后面，本项目也会放出android端的代码生成器的相关源码。
-
-
-  （<a href="http://weibo.com/lostbottle">欢迎关注本人微博进行各种吐槽</a>）
+     
+    本项目不断的进行改进，如果您觉得本项目对您有所帮助，请您Star一下本项目，也欢迎大家fork本项目
+    后面，本项目也会放出android端的代码生成器的相关源码。
+    （<a href="http://weibo.com/lostbottle">欢迎关注本人微博进行各种吐槽</a>）
 
  
-
 <img src="http://ww1.sinaimg.cn/large/45ad345ajw1ey6k1kla26j20y50ke0y7.jpg"/>
