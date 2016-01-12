@@ -1,17 +1,22 @@
 package com.lostad.applib.view;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.lostad.applib.R;
 import com.lostad.applib.util.DialogUtil;
+import com.lostad.applib.util.SystemBarTintManager;
 
 
 public class BaseAppActivity extends ActivitySupport implements IActivitySupport{
@@ -22,7 +27,7 @@ public class BaseAppActivity extends ActivitySupport implements IActivitySupport
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ctx = this;
-		setSystemBarStyle(R.color.bg_title);
+
 	}
 
 	protected void initToolBar(Toolbar tb_toolbar) {
@@ -71,6 +76,35 @@ public class BaseAppActivity extends ActivitySupport implements IActivitySupport
 		return super.onOptionsItemSelected(item);
 	}
 
+	////////////////////////////////////////////////////////////////////////
+	//导航条渐变
+	//
+	////////////////////////////////////////////////////////////////////////
+	/**
+	 * 浸染状态栏底色背景，若使用布局的背景图浸染，设置resId为透明色即可
+	 * 其它情况设置resId为ToolBar(ActionBar)的背景色
+	 * @param resId 颜色id
+	 */
+	public void setStatusBarStyle(int resId){
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			setTranslucentStatus(true);
+		}
+		SystemBarTintManager tintManager = new SystemBarTintManager(this);
+		tintManager.setStatusBarTintEnabled(true);
+		tintManager.setStatusBarTintResource(resId);//通知栏所需颜色
+	}
+	@TargetApi(19)
+	private void setTranslucentStatus(boolean on) {
+		Window win = getWindow();
+		WindowManager.LayoutParams winParams = win.getAttributes();
+		final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+		if (on) {
+			winParams.flags |= bits;
+		} else {
+			winParams.flags &= ~bits;
+		}
+		win.setAttributes(winParams);
+	}
 	    
 /////////////////////////////////////////////////////////////////////////
 // 退出事件

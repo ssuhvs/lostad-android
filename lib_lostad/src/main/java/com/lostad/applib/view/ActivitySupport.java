@@ -1,7 +1,6 @@
 package com.lostad.applib.view;
 
 
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -11,20 +10,16 @@ import android.content.Intent;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.lostad.applib.BaseApplication;
 import com.lostad.applib.R;
 import com.lostad.applib.entity.ILoginConfig;
-import com.lostad.applib.util.SystemBarTintManager;
 
 /**
  * Actity 工具支持类
@@ -40,10 +35,8 @@ public abstract class ActivitySupport extends AppCompatActivity implements IActi
 		super.onCreate(savedInstanceState);
 		notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		mBaseApplication = (BaseApplication) getApplication();
-		setSystemBarStyle(R.color.bg_title);
-		if(!validateInternet()){
-			showToast("网络已断开！");
-		}
+		validateInternet();
+
 	}
 
 	@Override
@@ -248,39 +241,7 @@ public abstract class ActivitySupport extends AppCompatActivity implements IActi
 	}
 
 	
-	////////////////////////////////////////////////////////////////////////
-	//导航条渐变
-	//
-	////////////////////////////////////////////////////////////////////////
-	public void setSystemBarStyle(Integer colorId){
-		if(colorId==null){
-			setSystemBarStyle(R.color.red);
-		}
-	}
-	/**
-	 * 设置导航渐变样式
-	 * @param colorId
-	 */
-	public void setSystemBarStyle(int colorId){
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-			setTranslucentStatus(true);
-		}
-		SystemBarTintManager tintManager = new SystemBarTintManager(this);
-		tintManager.setStatusBarTintEnabled(true);
-		tintManager.setStatusBarTintResource(colorId);//通知栏所需颜色
-	}
-	@TargetApi(19)
-	private void setTranslucentStatus(boolean on) {
-		Window win = getWindow();
-		WindowManager.LayoutParams winParams = win.getAttributes();
-		final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-		if (on) {
-			winParams.flags |= bits;
-		} else {
-			winParams.flags &= ~bits;
-		}
-		win.setAttributes(winParams);
-	}
+
 
 
 }

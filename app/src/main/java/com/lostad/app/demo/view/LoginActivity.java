@@ -43,7 +43,8 @@ public class LoginActivity extends BaseActivity {
             et_phone.setText(login.getPhone());
             et_password.setText(login.getPassword());
         }
-
+        //使用背景图片浸染
+        setStatusBarStyle(R.color.transparent);
     }
 
     @Event(R.id.tv_reg)
