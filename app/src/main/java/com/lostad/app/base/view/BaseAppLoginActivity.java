@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.lostad.app.demo.view.LoginActivity;
-import com.lostad.app.demo.view.PagerChildActivity;
 import com.lostad.applib.entity.ILoginConfig;
 
 
@@ -29,18 +28,5 @@ public class BaseAppLoginActivity extends BaseActivity{
 		startActivity(intent);
 		finish();
 	}
-
-	protected Class getCallbackActivityClass() {
-		String target = getIntent().getStringExtra("target");
-		Class targetAct;
-		try {
-			targetAct = Class.forName(target);
-		} catch (Exception e) {
-			e.printStackTrace();
-			targetAct = PagerChildActivity.class ;//MainActivity.class;
-		}
-		return targetAct;
-	}
-
 
 }

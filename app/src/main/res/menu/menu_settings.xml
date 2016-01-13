@@ -2,8 +2,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.lostad.app.MainActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_more" android:title="主界面Tab可滑动"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="扫描二维码样例"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_drawer"
+        android:orderInCategory="100"
+        android:title="主界面Drawer"
+        app:showAsAction="never" />
 </menu>

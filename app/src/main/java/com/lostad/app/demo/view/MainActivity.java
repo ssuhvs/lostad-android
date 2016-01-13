@@ -117,10 +117,12 @@ public class MainActivity extends BaseActivity {
             Intent i = new Intent(this, CaptureActivity.class);
             startActivityForResult(i,0);
             return true;
-        }else if(id==R.id.action_more){
-            Intent i = new Intent(this, PagerChildActivity.class);
+        }else if(id==R.id.action_drawer){
+            Intent i = new Intent(this, DrawerActivity.class);
             startActivity(i);
         }else{
+            Intent i = new Intent(this, DrawerActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

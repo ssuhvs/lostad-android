@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.view.LoginActivity;
-import com.lostad.app.demo.view.PagerChildActivity;
+import com.lostad.app.demo.view.MainActivity;
 import com.lostad.applib.view.BaseAppActivity;
 
 
@@ -82,7 +82,7 @@ public class BaseActivity extends BaseAppActivity{
 		boolean isExit;
 
 	public void  toMainActivty(){
-		Intent intent = new Intent(ctx, PagerChildActivity.class);
+		Intent intent = new Intent(ctx,MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
 	}
