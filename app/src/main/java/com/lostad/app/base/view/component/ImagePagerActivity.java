@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.lostad.app.demo.R;
 import com.lostad.app.base.view.widget.ScaleImageView;
+import com.lostad.app.demo.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -37,8 +37,9 @@ public class ImagePagerActivity extends BaseFormActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.ac_image_pager_lib);
-
+		setContentView(R.layout.common_view_pager);
+		android.support.v7.widget.Toolbar tb = (android.support.v7.widget.Toolbar)findViewById(R.id.tb_toolbar);
+		super.initToolBar(tb);
 		Bundle bundle = getIntent().getExtras();
 		assert bundle != null;
 		String[] imageUrls = bundle.getStringArray(Extra.IMAGES);
@@ -59,7 +60,7 @@ public class ImagePagerActivity extends BaseFormActivity {
 			.displayer(new FadeInBitmapDisplayer(300))
 			.build();
 
-		pager = (ViewPager) findViewById(R.id.pager);
+		pager = (ViewPager) findViewById(R.id.viewpager);
 		pager.setAdapter(new ImagePagerAdapter(imageUrls));
 		pager.setCurrentItem(pagerPosition);
 	}
@@ -91,7 +92,7 @@ public class ImagePagerActivity extends BaseFormActivity {
 
 		@Override
 		public Object instantiateItem(ViewGroup view, int position) {
-			View imageLayout = inflater.inflate(R.layout.item_pager_image, view, false);
+			View imageLayout = inflater.inflate(R.layout.common_view_pager, view, false);
 			assert imageLayout != null;
 			ScaleImageView imageView = (ScaleImageView) imageLayout.findViewById(R.id.scaleImageView_image);
 			imageView.setCanRotate(true);

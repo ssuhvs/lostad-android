@@ -13,15 +13,18 @@ import com.lostad.app.base.util.ImageChooserUtil;
 import com.lostad.app.base.util.ImageTools;
 import com.lostad.app.base.util.Validator;
 import com.lostad.app.base.view.BaseActivity;
+import com.lostad.app.base.view.component.BaseFormActivity;
 import com.lostad.app.base.view.component.FormNumActivity;
 import com.lostad.app.base.view.component.FormTextActivity;
 import com.lostad.app.base.view.component.FormTextChinaeseActivity;
 import com.lostad.app.demo.IConst;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.entity.UserInfo;
+import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.util.DialogUtil;
 import com.lostad.applib.util.FileDataUtil;
 
+import org.xutils.ex.DbException;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -63,11 +66,18 @@ public class FormMyInfoActivity extends BaseActivity {
 		x.view().inject(this);
 		super.initToolBarWithBack(tb_toolbar);
 		setTitle("个人资料");
-		initUI(mSysConfig);
+		try {
+			mSysConfig = getMyApp().getDb().findById(UserInfo.class,getLoginConfig().getUserId());
+		} catch (DbException e) {
+			e.printStackTrace();
+		}
+		if(mSysConfig!=null){
+			initUI(mSysConfig);
+		}
 	}
 
 	@Event(R.id.iv_head)
-	public void onClickHead(View v) {
+	private void onClickHead(View v) {
 	  ImageChooserUtil.showPicturePicker(this, true);
 //      Intent i = new Intent(this,HeadGridActivity.class);
 //      startActivityForResult(i, 100);
@@ -76,8 +86,8 @@ public class FormMyInfoActivity extends BaseActivity {
 //	public void onClickNext(View v) {
 //		next();
 //	}
-
-	public void onClickName(View v) {
+    @Event(R.id.ll_nickname)
+	private void onClickName(View v) {
 		try{
 			Intent i = new Intent(FormMyInfoActivity.this, FormTextChinaeseActivity.class);
 			i.putExtra("value",tv_nickname.getText());
@@ -87,34 +97,41 @@ public class FormMyInfoActivity extends BaseActivity {
 			e.printStackTrace();
 		}
 	}
-	
-	public void onClickSex(View v) {
+	@Event(R.id.ll_sex)
+	private void onClickSex(View v) {
 		try{
 			String[] itemList = {"男","女","取消"};
-//			DialogUtil.showAlertMenuCust(ctx, "选择性别", itemList,new MyCallback<Integer>(){
-//				@Override
-//				public void onCallback(Integer index) {
-//					if(0==index){
-//						tv_sex.setText("男");
-//						mSysConfig.setSex("1");
-//					}else if(1==index){
-//						tv_sex.setText("女");
-//						mSysConfig.setSex("2");
-//					}else{
-//						tv_sex.setText("");
-//						mSysConfig.setSex("");
-//					}
-//					update(mSysConfig);
-//				}
-//
-//			});
+			DialogUtil.showAlertMenuCust(ctx, "选择性别", itemList,new MyCallback<Integer>(){
+				@Override
+				public void onCallback(Integer index) {
+					if(0==index){
+						tv_sex.setText("男");
+						mSysConfig.setSex("1");
+					}else if(1==index){
+						tv_sex.setText("女");
+						mSysConfig.setSex("2");
+					}else{
+						tv_sex.setText("");
+						mSysConfig.setSex("");
+					}
+					update(mSysConfig);
+				}
+
+			});
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
-	
-	
-	public void onClickWeight(View v) {
+
+	private void update(UserInfo u){
+		try {
+			getMyApp().getDb().saveOrUpdate(u);
+		} catch (DbException e) {
+			e.printStackTrace();
+		}
+	}
+	@Event(R.id.ll_weight)
+	private void onClickWeight(View v) {
 		Intent i = new Intent(FormMyInfoActivity.this, FormNumActivity.class);
 		i.putExtra(FormNumActivity.KEY_IS_INT,true);
 		i.putExtra("value",tv_weight.getText());
@@ -127,8 +144,8 @@ public class FormMyInfoActivity extends BaseActivity {
 		i.putExtra(FormNumActivity.KEY_NULL_ABLE,false);
 		startActivityForResult(i, 1);
 	}
-
-	public void onClickHeight(View v) {
+	@Event(R.id.ll_height)
+	private void onClickHeight(View v) {
 		Intent i = new Intent(FormMyInfoActivity.this, FormNumActivity.class);
 		i.putExtra("value",tv_height.getText());
 		i.putExtra("desc","填写身高，让系统对您的运动做出更合理的评估");
@@ -139,8 +156,8 @@ public class FormMyInfoActivity extends BaseActivity {
 		i.putExtra(FormNumActivity.KEY_NULL_ABLE,false);
 		startActivityForResult(i, 2);
 	}
-
-	public void onClickBirt(View v) {
+	@Event(R.id.ll_age)
+	private void onClickBirt(View v) {
 		Intent i = new Intent(FormMyInfoActivity.this, FormNumActivity.class);
 		i.putExtra(FormNumActivity.KEY_MAX_LEN,2);
 		i.putExtra(FormNumActivity.KEY_IS_INT, true);
@@ -162,17 +179,17 @@ public class FormMyInfoActivity extends BaseActivity {
 		String d;
 		switch (requestCode) {
 		case 0:
-//			d = data.getStringExtra("data");
-//			tv_nickname.setText(d);
-//			mSysConfig.name(d);
-//
-//			if (!Validator.isBlank(d)) {
-//				update(mSysConfig);
-//			}
+			d = data.getStringExtra(BaseFormActivity.KEY_VALUE);
+			tv_nickname.setText(d);
+			mSysConfig.setNickname(d);
+
+			if (!Validator.isBlank(d)) {
+				update(mSysConfig);
+			}
 			break;
 		case 1:
-//			d = data.getStringExtra("data");
-//			tv_weight.setText(d);
+			d = data.getStringExtra(BaseFormActivity.KEY_VALUE);
+			tv_weight.setText(d);
 //			if (!Validator.isBlank(d)) {
 //				mSysConfig.setWeight(d);
 //				update(mSysConfig);

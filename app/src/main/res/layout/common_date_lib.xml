@@ -4,7 +4,7 @@
 	android:gravity="center"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content">
-
+	<include layout="@layout/common_toolbar" />
 	<DatePicker 
 	    android:id="@+id/datepicker"
 		android:layout_width="wrap_content" 

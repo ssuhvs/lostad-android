@@ -78,12 +78,7 @@
             android:parentActivityName="com.lostad.app.base.view.BaseActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name=".view.PagerChildActivity"
-            android:label="@string/app_name"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" >
-        </activity>
+
         <activity
             android:name=".view.Register1Activity"
             android:parentActivityName="com.lostad.app.base.view.BaseActivity"
@@ -112,7 +107,33 @@
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".view.DrawerActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
+       <!--  能用组件 -->
+        <activity
+            android:name="com.lostad.app.base.view.component.FormTextActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysVisible" />
+        <activity
+            android:name="com.lostad.app.base.view.component.FormNumActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysVisible" />
+        <activity
+            android:name="com.lostad.app.base.view.component.FormTextChinaeseActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysVisible" />
+        <activity
+            android:name="com.lostad.app.base.view.component.FormDateActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysVisible" />
+        <activity
+            android:name="com.lostad.app.base.view.component.CommonBrowserActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysVisible" />
+        <activity
+            android:name="com.lostad.app.base.view.component.ImagePagerActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysVisible" />
 
     </application>
 

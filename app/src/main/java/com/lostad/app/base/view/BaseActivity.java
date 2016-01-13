@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.view.LoginActivity;
 import com.lostad.app.demo.view.MainActivity;
@@ -23,6 +24,9 @@ public class BaseActivity extends BaseAppActivity{
 		setStatusBarStyle(R.color.bg_title);
 	}
 
+	protected MyApplication getMyApp(){
+		return MyApplication.getInstance();
+	}
 //	@Override
 //	public boolean onCreateOptionsMenu(Menu menu) {
 //		// Inflate the menu; this adds items to the action bar if it is present.

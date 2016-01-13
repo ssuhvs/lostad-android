@@ -5,22 +5,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Window;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.EditText;
-import android.widget.TextView;
 
-import com.lostad.app.demo.R;
 import com.lostad.app.base.util.LogMe;
 import com.lostad.app.base.util.Validator;
 import com.lostad.app.base.view.BaseActivity;
+import com.lostad.app.demo.R;
+import com.lostad.applib.core.MyCallback;
+import com.lostad.applib.util.DialogUtil;
 
 public class CommonBrowserActivity extends BaseActivity {
 	private String reportURL;
@@ -32,6 +31,7 @@ public class CommonBrowserActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.report_link);
+		super.initToolBar((Toolbar)findViewById(R.id.tb_toolbar));
 		Intent i = getIntent();
 		String title = i.getStringExtra("title");
 		reportURL = i.getStringExtra("url");
@@ -139,43 +139,17 @@ public class CommonBrowserActivity extends BaseActivity {
 
 			@Override
 			public boolean onJsPrompt(WebView view, String url, String message,
-					String defaultValue, final JsPromptResult result) {
-				final LayoutInflater factory = LayoutInflater
-						.from(CommonBrowserActivity.this);
-				final View v = factory.inflate(
-						R.layout.browser_js_prompt_dialog_lib, null);
-				((TextView) v.findViewById(R.id.prompt_message_text))
-						.setText(message);
-				((EditText) v.findViewById(R.id.prompt_input_field))
-						.setText(defaultValue);
-
-				AlertDialog.Builder b = new AlertDialog.Builder(
-						CommonBrowserActivity.this);
-				b.setTitle("Prompt");
-				b.setView(v);
-				b.setPositiveButton(android.R.string.ok,
-						new AlertDialog.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int which) {
-								String value = ((EditText) v
-										.findViewById(R.id.prompt_input_field))
-										.getText().toString();
-								result.confirm(value);
-							}
-						});
-				b.setNegativeButton(android.R.string.cancel,
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int which) {
-								result.cancel();
-							}
-						});
-				b.setOnCancelListener(new DialogInterface.OnCancelListener() {
-					public void onCancel(DialogInterface dialog) {
-						result.cancel();
+				final String defaultValue, final JsPromptResult result) {
+				DialogUtil.showAlertOkCancel(CommonBrowserActivity.this, message, new MyCallback<Boolean>() {
+					@Override
+					public void onCallback(Boolean ok) {
+						if(ok){
+							result.confirm(defaultValue);
+						}else{
+							result.cancel();
+						}
 					}
 				});
-				b.show();
 				return true;
 			}
 

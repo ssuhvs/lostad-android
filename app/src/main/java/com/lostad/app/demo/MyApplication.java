@@ -45,6 +45,7 @@ public class MyApplication extends BaseApplication implements AMapLocationListen
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		instance = this;
 		initFiles();
 		initLocation();
 		initDb();

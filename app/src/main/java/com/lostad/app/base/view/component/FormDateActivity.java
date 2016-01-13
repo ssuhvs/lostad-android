@@ -2,6 +2,7 @@ package com.lostad.app.base.view.component;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.lostad.app.demo.R;
 import com.lostad.applib.util.DateUtil;
 
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -25,6 +27,10 @@ public class FormDateActivity extends BaseFormActivity {
 	public static final String KEY_MIN_DATE = "min_date";
 	public static final String KEY_IS_DATE  = "isDate";
 	public static final String KEY_IS_TIME  = "isTime";
+
+	@ViewInject(R.id.tb_toolbar)
+	private Toolbar tb_toolbar;
+
 	@ViewInject(R.id.tv_desc)
 	private TextView tv_desc;
 	
@@ -33,7 +39,8 @@ public class FormDateActivity extends BaseFormActivity {
 	
 	@ViewInject(R.id.tpPicker)
 	private TimePicker tpPicker;
-	
+
+
 	private String desc = null;
 	private boolean isDate ;
 	private boolean isTime ;
@@ -42,7 +49,9 @@ public class FormDateActivity extends BaseFormActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form_date_time_lib);
+        setContentView(R.layout.common_date_lib);
+		x.view().inject(this);
+        super.initToolBar(tb_toolbar);
         Intent i = getIntent();
         value = i.getStringExtra("value");
         desc = i.getStringExtra("desc");

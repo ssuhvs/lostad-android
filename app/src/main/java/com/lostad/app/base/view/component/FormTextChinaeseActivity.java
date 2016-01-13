@@ -2,6 +2,7 @@ package com.lostad.app.base.view.component;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.InputFilter;
 import android.text.InputFilter.LengthFilter;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import com.lostad.app.demo.R;
 import com.lostad.applib.util.StringUtil;
 
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 
 public class FormTextChinaeseActivity extends BaseFormActivity {
@@ -28,7 +30,11 @@ public class FormTextChinaeseActivity extends BaseFormActivity {
 		
 	@ViewInject(R.id.et_input)
 	private EditText et_input;
-	
+
+
+	@ViewInject(R.id.tb_toolbar)
+	private Toolbar tb_toolbar;
+
 	private String value  = null;
 	private String desc = null;
 	private Integer maxLen;
@@ -37,8 +43,10 @@ public class FormTextChinaeseActivity extends BaseFormActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form_edit_text_lib);
-        Intent i = getIntent();
+        setContentView(R.layout.activity_form_edit_text);
+		x.view().inject(this);
+		super.initToolBar(tb_toolbar);
+		Intent i = getIntent();
         value = i.getStringExtra(KEY_VALUE);
         desc = i.getStringExtra(KEY_DESC);
         

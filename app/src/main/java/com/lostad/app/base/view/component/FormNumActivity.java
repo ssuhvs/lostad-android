@@ -2,6 +2,7 @@ package com.lostad.app.base.view.component;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -16,6 +17,7 @@ import com.lostad.app.base.util.Validator;
 import com.lostad.app.demo.R;
 
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 
 public class FormNumActivity extends BaseFormActivity {
@@ -27,6 +29,9 @@ public class FormNumActivity extends BaseFormActivity {
 	public static final String KEY_MAX_DESC = "max_desc";
 	public static final String KEY_IS_INT = "key_is_int";
 	public static final String KEY_NUM_AFTER_POINT = "key_num_after_point";
+	@ViewInject(R.id.tb_toolbar)
+	private Toolbar tb_toolbar;
+
 	@ViewInject( R.id.tv_desc)
 	private TextView tv_desc;
 
@@ -44,7 +49,10 @@ public class FormNumActivity extends BaseFormActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_form_edit_text_lib);
+		setContentView(R.layout.activity_form_edit_text);
+		x.view().inject(this);
+		super.initToolBar(tb_toolbar);
+
 		Intent i = getIntent();
 		value = i.getStringExtra(KEY_VALUE);
 		desc = i.getStringExtra(KEY_DESC);
