@@ -1,9 +1,8 @@
 package com.lostad.app.demo.view.mainFragment;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,12 +15,16 @@ import android.widget.TextView;
 import com.lostad.app.base.view.fragment.BaseFragment;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.view.DrawerActivity;
+import com.lostad.app.demo.view.my.ListMyTourActivity;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
 
+/**
+ * 抽屉菜单
+ */
 public class DrawerMenuFragment extends BaseFragment {
 
     @ViewInject(R.id.recycler_view)
@@ -32,24 +35,14 @@ public class DrawerMenuFragment extends BaseFragment {
     private LinearLayoutManager mLayoutManager;
     private DrawerActivity mainActivity;
     private MenuAdapter mAdapter;
-    private SideMenuItem.FragmentType currentFragment = SideMenuItem.FragmentType.FreshNews;
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        if (activity instanceof DrawerActivity) {
-            mainActivity = (DrawerActivity) activity;
-        } else {
-            throw new IllegalArgumentException("The activity must be a MainActivity !");
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        mainActivity = (DrawerActivity)getActivity();
         View view = inflater.inflate(R.layout.fragment_drawer_menu, container, false);
+
         x.view().inject(this,view);
+
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         rl_container.setOnClickListener(new View.OnClickListener() {
@@ -68,13 +61,10 @@ public class DrawerMenuFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
         mAdapter = new MenuAdapter();
         mAdapter.menuItems.clear();
-        mAdapter.menuItems.add(new SideMenuItem("新鲜事", R.drawable.ic_action_chat, SideMenuItem.FragmentType.FreshNews,
-                ListWaterFragment.class));
-        mAdapter.menuItems.add(new SideMenuItem("无聊图", R.drawable.ic_action_chat, SideMenuItem.FragmentType.BoringPicture,
-                ListWaterFragment.class));
-        mAdapter.menuItems.add(new SideMenuItem("小电影", R.drawable.ic_action_chat, SideMenuItem.FragmentType.Video,
-                ListWaterFragment.class));
-        mAdapter.notifyDataSetChanged();
+
+        mAdapter.menuItems.add(new SideMenuItem("新鲜事", R.drawable.ic_action_chat, ListMyTourActivity.class));
+        mAdapter.menuItems.add(new SideMenuItem("无聊图", R.drawable.ic_action_chat, ListMyTourActivity.class));
+        mAdapter.menuItems.add(new SideMenuItem("小电影", R.drawable.ic_action_chat, ListMyTourActivity.class));
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -97,23 +87,15 @@ public class DrawerMenuFragment extends BaseFragment {
         public void onBindViewHolder(ViewHolder holder, int position) {
             final SideMenuItem menuItem = menuItems.get(position);
 
-            holder.tv_title.setText(menuItem.getTitle());
-            holder.img_menu.setImageResource(menuItem.getResourceId());
+            holder.tv_title.setText(menuItem.title);
+            holder.img_menu.setImageResource(menuItem.resourceId);
             holder.rl_container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    try {
-                        if (currentFragment != menuItem.getType()) {
-                            Fragment fragment = (Fragment) Class.forName(menuItem.getFragment()
-                                    .getName()).newInstance();
-                            mainActivity.replaceFragment(R.id.frame_container, fragment);
-                            currentFragment = menuItem.getType();
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
                     mainActivity.closeDrawer();
+
+                    Intent i = new Intent(ctx,menuItem.activity);
+                    startActivity(i);
                 }
             });
         }

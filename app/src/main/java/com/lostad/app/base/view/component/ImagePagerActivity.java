@@ -39,7 +39,7 @@ public class ImagePagerActivity extends BaseFormActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.common_view_pager);
 		android.support.v7.widget.Toolbar tb = (android.support.v7.widget.Toolbar)findViewById(R.id.tb_toolbar);
-		super.initToolBar(tb);
+		super.initToolBarWithBack(tb);
 		Bundle bundle = getIntent().getExtras();
 		assert bundle != null;
 		String[] imageUrls = bundle.getStringArray(Extra.IMAGES);

@@ -32,7 +32,6 @@ public class BaseAppActivity extends ActivitySupport implements IActivitySupport
 
 	protected void initToolBar(Toolbar tb_toolbar) {
 		if(tb_toolbar!=null) {
-			tb_toolbar.setTitleTextColor(getResources().getColor(R.color.bg_title));
 			setSupportActionBar(tb_toolbar);
 			tb_toolbar.setTitleTextColor(Color.WHITE);
 		}else{
@@ -41,7 +40,6 @@ public class BaseAppActivity extends ActivitySupport implements IActivitySupport
 	}
 	protected void initToolBarWithBack(Toolbar tb_toolbar) {
 		if(tb_toolbar!=null){
-			tb_toolbar.setTitleTextColor(getResources().getColor(R.color.bg_title));
 			setSupportActionBar(tb_toolbar);
 			tb_toolbar.setNavigationIcon(R.drawable.ic_action_back);
 			tb_toolbar.setTitleTextColor(Color.WHITE);
@@ -52,7 +50,6 @@ public class BaseAppActivity extends ActivitySupport implements IActivitySupport
 	}
 	protected void initToolBarWithBack(Toolbar tb_toolbar,String title) {
 		if(tb_toolbar!=null){
-			tb_toolbar.setTitleTextColor(getResources().getColor(R.color.bg_title));
 			setSupportActionBar(tb_toolbar);
 			tb_toolbar.setNavigationIcon(R.drawable.ic_action_back);
 			tb_toolbar.setTitleTextColor(Color.WHITE);

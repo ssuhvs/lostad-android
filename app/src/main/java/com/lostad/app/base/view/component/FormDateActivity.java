@@ -50,8 +50,10 @@ public class FormDateActivity extends BaseFormActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.common_date_lib);
+
 		x.view().inject(this);
-        super.initToolBar(tb_toolbar);
+		super.initToolBarWithBack((Toolbar)findViewById(R.id.tb_toolbar));
+
         Intent i = getIntent();
         value = i.getStringExtra("value");
         desc = i.getStringExtra("desc");

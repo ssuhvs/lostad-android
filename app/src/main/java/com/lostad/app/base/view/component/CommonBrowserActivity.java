@@ -21,6 +21,8 @@ import com.lostad.app.demo.R;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.util.DialogUtil;
 
+import org.xutils.x;
+
 public class CommonBrowserActivity extends BaseActivity {
 	private String reportURL;
 	private WebView mWebView;
@@ -29,9 +31,11 @@ public class CommonBrowserActivity extends BaseActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.getWindow().requestFeature(Window.FEATURE_PROGRESS);//
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.report_link);
-		super.initToolBar((Toolbar)findViewById(R.id.tb_toolbar));
+
+		x.view().inject(this);
+		super.initToolBarWithBack((Toolbar)findViewById(R.id.tb_toolbar));
+
 		Intent i = getIntent();
 		String title = i.getStringExtra("title");
 		reportURL = i.getStringExtra("url");

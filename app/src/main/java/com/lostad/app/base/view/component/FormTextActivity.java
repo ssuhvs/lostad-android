@@ -23,8 +23,6 @@ public class FormTextActivity extends BaseFormActivity {
 	public static final String KEY_MAX_LEN  = "max_len";
 	public static final String KEY_MIN_LEN  = "min_len";
 	public static final String KEY_NULL_ABLE    = "key_null_able";
-	@ViewInject(R.id.tb_toolbar)
-	private Toolbar tb_toolbar;
 	@ViewInject(R.id.tv_desc)
 	private TextView tv_desc;
 		
@@ -40,8 +38,10 @@ public class FormTextActivity extends BaseFormActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_edit_text);
+
 		x.view().inject(this);
-		super.initToolBar(tb_toolbar);
+		super.initToolBarWithBack((Toolbar)findViewById(R.id.tb_toolbar));
+
         Intent i = getIntent();
         value = i.getStringExtra(KEY_VALUE);
         desc = i.getStringExtra(KEY_DESC);

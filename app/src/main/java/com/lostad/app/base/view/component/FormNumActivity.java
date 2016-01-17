@@ -50,8 +50,9 @@ public class FormNumActivity extends BaseFormActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_form_edit_text);
+
 		x.view().inject(this);
-		super.initToolBar(tb_toolbar);
+		super.initToolBarWithBack((Toolbar) findViewById(R.id.tb_toolbar));
 
 		Intent i = getIntent();
 		value = i.getStringExtra(KEY_VALUE);

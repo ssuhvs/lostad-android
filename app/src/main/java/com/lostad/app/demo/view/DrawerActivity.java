@@ -14,8 +14,8 @@ import android.widget.Toast;
 
 import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.demo.R;
-import com.lostad.app.demo.view.mainFragment.ListWaterFragment;
 import com.lostad.app.demo.view.mainFragment.DrawerMenuFragment;
+import com.lostad.app.demo.view.mainFragment.MainFragment;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -60,7 +60,7 @@ public class DrawerActivity extends BaseActivity {
         mActionBarDrawerToggle.syncState();
         mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
 
-        replaceFragment(R.id.frame_container, new ListWaterFragment());
+        replaceFragment(R.id.frame_container, new MainFragment());
         replaceFragment(R.id.drawer_container, new DrawerMenuFragment());
     }
 
