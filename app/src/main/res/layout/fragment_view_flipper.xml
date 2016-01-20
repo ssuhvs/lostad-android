@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.lostad.app.base.view.widget.MyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sv_my"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <ViewFlipper
+                android:id="@+id/vf_pic"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_pic0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@mipmap/bg_pic0" />
+
+                <ImageView
+                    android:id="@+id/iv_pic1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@mipmap/bg_pic0" />
+
+                <ImageView
+                    android:id="@+id/iv_pic2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@mipmap/bg_pic0" />
+            </ViewFlipper>
+
+            <LinearLayout
+                android:id="@+id/ll_points"
+                android:layout_alignParentBottom="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_gray_light"
+                android:gravity="right"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <ImageView
+                    android:id="@+id/iv_p0"
+                    android:layout_width="9dp"
+                    android:layout_height="9dp"
+                    android:layout_marginRight="6dp"
+                    android:background="@drawable/dian_select" />
+
+                <ImageView
+                    android:id="@+id/iv_p1"
+                    android:layout_width="9dp"
+                    android:layout_height="9dp"
+                    android:layout_marginRight="6dp"
+                    android:background="@drawable/dian_select" />
+
+                <ImageView
+                    android:id="@+id/iv_p2"
+                    android:layout_width="9dp"
+                    android:layout_height="9dp"
+                    android:layout_marginRight="6dp"
+                    android:background="@drawable/dian_select" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.meg7.widget.CircleImageView
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/logo" />
+            <TextView
+                android:text="联系我们"
+                android:layout_marginLeft="12dp"
+                android:textColor="@color/txt_black"
+                android:textSize="@dimen/sp_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <View
+            android:background="@color/bg_gray"
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp" />
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:padding="12dp"
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_msg"
+            android:text="公司简介"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</com.lostad.app.base.view.widget.MyScrollView>
+

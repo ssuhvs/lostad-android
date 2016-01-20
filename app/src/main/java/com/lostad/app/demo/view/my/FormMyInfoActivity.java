@@ -92,7 +92,7 @@ public class FormMyInfoActivity extends BaseActivity {
             Intent i = new Intent(FormMyInfoActivity.this, FormTextChinaeseActivity.class);
             i.putExtra("value", tv_nickname.getText());
             i.putExtra(FormTextActivity.KEY_MAX_LEN, 12);
-            startActivityForResult(i, R.id.ll_nickname);
+            startActivityForResult(i, 1);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -124,17 +124,25 @@ public class FormMyInfoActivity extends BaseActivity {
         }
     }
 
-    private void update(UserInfo u) {
-        try {
-            getMyApp().getDb().saveOrUpdate(u);
-        } catch (DbException e) {
-            e.printStackTrace();
-        }
+
+    @Event(R.id.ll_age)
+    private void onClick3(View v) {
+        Intent i = new Intent(FormMyInfoActivity.this, FormNumActivity.class);
+        i.putExtra(FormNumActivity.KEY_MAX_LEN, 2);
+        i.putExtra(FormNumActivity.KEY_IS_INT, true);
+        i.putExtra(FormNumActivity.KEY_MAX_VALUE, 65);
+        i.putExtra(FormNumActivity.KEY_MIN_VALUE, 14);
+        i.putExtra("value", tv_age.getText());
+        i.putExtra("desc", "填写年龄,让系统帮助您匹配更合适的健身伙伴");
+        i.putExtra(FormNumActivity.KEY_NULL_ABLE, false);
+        startActivityForResult(i,3);
     }
 
+
+
     @Event(R.id.ll_weight)
-    private void onClickWeight(View v) {
-        Intent i = new Intent(FormMyInfoActivity.this, FormNumActivity.class);
+    private void onClick5(View v) {
+        Intent i = new Intent(ctx, FormNumActivity.class);
         i.putExtra(FormNumActivity.KEY_IS_INT, true);
         i.putExtra("value", tv_weight.getText());
         i.putExtra("desc", "填写体重，让系统对您的运动做出更合理的评估");
@@ -144,11 +152,11 @@ public class FormMyInfoActivity extends BaseActivity {
         i.putExtra(FormNumActivity.KEY_MIN_DESC, "体重不能小于30kg");
 
         i.putExtra(FormNumActivity.KEY_NULL_ABLE, false);
-        startActivityForResult(i, R.id.ll_weight);
+        startActivityForResult(i,5);
     }
 
     @Event(R.id.ll_height)
-    private void onClickHeight(View v) {
+    private void onClick4(View v) {
         Intent i = new Intent(FormMyInfoActivity.this, FormNumActivity.class);
         i.putExtra("value", tv_height.getText());
         i.putExtra("desc", "填写身高，让系统对您的运动做出更合理的评估");
@@ -157,22 +165,16 @@ public class FormMyInfoActivity extends BaseActivity {
         i.putExtra(FormNumActivity.KEY_MIN_VALUE, 80.0);
         i.putExtra(FormNumActivity.KEY_MIN_DESC, "身高不能低于80cm");
         i.putExtra(FormNumActivity.KEY_NULL_ABLE, false);
-        startActivityForResult(i, R.id.ll_height);
+        startActivityForResult(i, 4);
     }
 
-    @Event(R.id.ll_age)
-    private void onClickBirt(View v) {
-        Intent i = new Intent(FormMyInfoActivity.this, FormNumActivity.class);
-        i.putExtra(FormNumActivity.KEY_MAX_LEN, 2);
-        i.putExtra(FormNumActivity.KEY_IS_INT, true);
-        i.putExtra(FormNumActivity.KEY_MAX_VALUE, 65);
-        i.putExtra(FormNumActivity.KEY_MIN_VALUE, 14);
-        i.putExtra("value", tv_age.getText());
-        i.putExtra("desc", "填写年龄,让系统帮助您匹配更合适的健身伙伴");
-        i.putExtra(FormNumActivity.KEY_NULL_ABLE, false);
-        startActivityForResult(i, R.id.ll_age);
+    private void update(UserInfo u) {
+        try {
+            getMyApp().getDb().saveOrUpdate(u);
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

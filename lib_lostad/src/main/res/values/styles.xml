@@ -24,4 +24,9 @@
     </style>
 
 
+    <!-- ToolBar -->
+    <style name="myToolBarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="actionMenuTextColor">@color/white</item>
+    </style>
+
 </resources>

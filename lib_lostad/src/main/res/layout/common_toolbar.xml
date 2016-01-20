@@ -3,6 +3,7 @@
     android:id="@+id/tb_toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
+    style="@style/myToolBarStyle"
     android:background="@color/bg_title" >
 
     </android.support.v7.widget.Toolbar>
