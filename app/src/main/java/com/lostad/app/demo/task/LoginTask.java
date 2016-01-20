@@ -6,14 +6,12 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.lostad.applib.util.DialogUtil;
-import com.lostad.app.base.util.LogMe;
 import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.entity.LoginConfig;
-import com.lostad.app.demo.entity.UserInfo;
-import com.lostad.app.demo.entity.UserInfo4j;
+import com.lostad.app.demo.entity.LoginConfig4j;
 import com.lostad.app.demo.manager.UserManager;
 import com.lostad.applib.core.MyCallback;
+import com.lostad.applib.util.DialogUtil;
 
 /**
  * 
@@ -22,7 +20,7 @@ import com.lostad.applib.core.MyCallback;
  * @author sszvip
  */
 @SuppressLint("NewApi")
-public class LoginTask extends AsyncTask<String, Integer, UserInfo4j> {
+public class LoginTask extends AsyncTask<String, Integer, LoginConfig4j> {
 	private Activity ctx;
 	private LoginConfig mLoginConfig;
     private MyApplication mApp;
@@ -42,9 +40,9 @@ public class LoginTask extends AsyncTask<String, Integer, UserInfo4j> {
 	}
 
 	@Override
-	protected UserInfo4j doInBackground(String... params) {
+	protected LoginConfig4j doInBackground(String... params) {
 
-		UserInfo4j mU4j = UserManager.getInstance().login(mLoginConfig.phone,mLoginConfig.pwd);
+		LoginConfig4j mU4j = UserManager.getInstance().login(mLoginConfig.phone,mLoginConfig.pwd);
 		return mU4j;
 	}
 
@@ -53,17 +51,15 @@ public class LoginTask extends AsyncTask<String, Integer, UserInfo4j> {
 	}
 
 	@Override
-	protected void onPostExecute(UserInfo4j mU4j) {
+	protected void onPostExecute(LoginConfig4j mU4j) {
 		DialogUtil.dismissProgress();
 		if(myCallback!=null){
 			myCallback.onCallback(mU4j.isSuccess());
 		}
 		if(mU4j.isSuccess()){//登录业务系统成功
-			boolean success = saveLoginConfig(mU4j.data);
-            if(!success){
-				LogMe.e("登陆信息保存失败！！！！");
-			}
-
+			LoginConfig u = mU4j.data;
+			u.setPwd(mLoginConfig.getPwd());
+			mApp.saveLoginConfig(mLoginConfig);
 		}else{
 			Toast.makeText(ctx, mU4j.getMsg(), Toast.LENGTH_SHORT).show();
 //			Intent i = new Intent(ctx,LoginActivity.class);
@@ -72,16 +68,10 @@ public class LoginTask extends AsyncTask<String, Integer, UserInfo4j> {
 		}
 	}
 
-	private boolean saveLoginConfig(UserInfo u) {
+	private boolean saveLoginConfig(LoginConfig u) {
 		boolean success = false;
 		try{
-			mLoginConfig.setId(u.id);
-			mLoginConfig.setName(u.name);
-			mLoginConfig.setNickname(u.nickname);
 
-			mApp.getDb().saveOrUpdate(u);
-
-			mApp.saveLoginConfig(mLoginConfig);
 
 			success = true;
 		}catch (Exception e){

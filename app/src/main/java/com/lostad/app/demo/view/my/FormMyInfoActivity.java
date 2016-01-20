@@ -74,6 +74,8 @@ public class FormMyInfoActivity extends BaseActivity {
         if (mSysConfig != null) {
             initUI(mSysConfig);
         }
+       //从网络加载用户信息
+       // loadUserInf();
     }
 
     @Event(R.id.iv_head)
@@ -185,7 +187,7 @@ public class FormMyInfoActivity extends BaseActivity {
         switch (requestCode) {
 
 
-            case R.id.ll_nickname:
+            case 1:
                 d = data.getStringExtra(BaseFormActivity.KEY_VALUE);
                 tv_nickname.setText(d);
                 mSysConfig.setNickname(d);
@@ -194,9 +196,18 @@ public class FormMyInfoActivity extends BaseActivity {
                     update(mSysConfig);
                 }
                 break;
-
-            case R.id.iv_head:
-
+            case 2:
+                break;
+            case 3:
+//                d = data.getStringExtra(BaseFormActivity.KEY_VALUE);
+//                tv_age.setText(d);
+//                mSysConfig.setAge(d);
+//
+//                if (!Validator.isBlank(d)) {
+//                    update(mSysConfig);
+//                }
+//                break;
+            default:
                 ImageChooserUtil.onActivityResult(ctx, requestCode, resultCode, data, new ImageChooserUtil.PicCallback() {
                     @Override
                     public void onPicSelected(Bitmap bitmap) {
@@ -212,9 +223,6 @@ public class FormMyInfoActivity extends BaseActivity {
                         }
                     }
                 });
-                break;
-            default:
-                showToast("未处理。。。");
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

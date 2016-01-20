@@ -36,9 +36,9 @@ public class UserManager
 
 
 
-	public UserInfo4j login(String phone,String password) {
-		UserInfo4j c = new UserInfo4j(true,"success");
-        c.data = new UserInfo();
+	public LoginConfig4j login(String phone,String password) {
+		LoginConfig4j c = new LoginConfig4j(true,"success");
+        c.data = new LoginConfig();
 		c.data.id = "testId";
 		c.data.nickname = "nickname";
 		c.data.name = "TestName";
@@ -60,7 +60,7 @@ public class UserManager
 //				c = new UserInfo4j(false,"服务器返回数据异常");
 //			}
 		} catch (Exception e) {
-			c = new UserInfo4j(false,"服务器返回数据异常！"+e.getMessage());
+			c = new LoginConfig4j(false,"服务器返回数据异常！"+e.getMessage());
 			e.printStackTrace();
 		}
 		return c;
