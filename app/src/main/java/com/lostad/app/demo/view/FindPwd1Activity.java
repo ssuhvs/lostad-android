@@ -45,7 +45,7 @@ public class FindPwd1Activity extends BaseActivity {
 
 		setContentView(R.layout.activity_update_pwd1);
 		x.view().inject(this);
-		super.initToolBar(tb_toolbar);
+		super.initToolBarWithBack(tb_toolbar);
 		setTitle("修改密码");
 
 		mPhone = getIntent().getStringExtra("phone");

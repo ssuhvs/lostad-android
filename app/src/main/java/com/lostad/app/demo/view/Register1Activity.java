@@ -3,6 +3,7 @@ package com.lostad.app.demo.view;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -44,6 +45,7 @@ public class Register1Activity extends BaseActivity {
 		setContentView(R.layout.activity_register1);
 		setTitle("用户注册");
 		x.view().inject(this);
+		super.initToolBarWithBack((Toolbar) findViewById(R.id.tb_toolbar));
 
 		mPhone = getIntent().getStringExtra("phone");
 	}

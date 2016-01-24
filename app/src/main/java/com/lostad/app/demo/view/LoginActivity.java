@@ -214,7 +214,7 @@ public class LoginActivity extends BaseActivity {
             return;
         }
 
-        mLoginConfig.setPwd(pwd);
+        mLoginConfig.setPassword(pwd);
 
         PrefManager.saveString(this, "phone", et_phone.getText().toString());
         LoginTask loginTask = new LoginTask(LoginActivity.this, mLoginConfig, new MyCallback<Boolean>() {

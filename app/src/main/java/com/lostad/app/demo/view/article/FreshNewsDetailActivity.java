@@ -31,7 +31,7 @@ public class FreshNewsDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fresh_news_detail);
         x.view().inject(this);
-        super.initToolBar(tb_toolbar);
+        super.initToolBarWithBack(tb_toolbar);
         initData();
     }
 

@@ -2,6 +2,7 @@ package com.lostad.app.demo.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +46,7 @@ public class FindPwd0Activity extends BaseActivity implements OnClickListener {
 		setTitle("找回密码");
 
 		x.view().inject(this);
+		super.initToolBarWithBack((Toolbar) findViewById(R.id.tb_toolbar));
 	}
 
 
