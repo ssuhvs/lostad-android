@@ -34,22 +34,13 @@ public class SysManager
 
 	/**
      * 获取验证码
-	 *
-	 * {     "ACTIONNAME": "getVerifyCode",     "DATA":{"SJHM":"13365319122"},
-			 "KEY": " ",
-			 "MODULE": "",
-			 "MSG": "",
-			 "REQUESTFLAG": "",
-			 "TARGET": "",
-			 "USERINFO": "{}" }
-     *"
      */
 	public BaseBeanRsult getVerifyCode(String phone) {
 		BaseBeanRsult c = null;
 		Gson g = new Gson();
 		try {
             Map m = new HashMap();
-			m.put("SJHM",phone);
+			m.put("telephone",phone);
 
 			String data = g.toJson(m);
 			LogMe.d("data", data);

@@ -4,7 +4,6 @@ package com.lostad.app.demo.task;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.entity.LoginConfig;
@@ -42,7 +41,7 @@ public class LoginTask extends AsyncTask<String, Integer, LoginConfig4j> {
 	@Override
 	protected LoginConfig4j doInBackground(String... params) {
 
-		LoginConfig4j mU4j = UserManager.getInstance().login(mLoginConfig.phone,mLoginConfig.pwd);
+		LoginConfig4j mU4j = UserManager.getInstance().login(mLoginConfig.phone,mLoginConfig.password);
 		return mU4j;
 	}
 
@@ -53,31 +52,27 @@ public class LoginTask extends AsyncTask<String, Integer, LoginConfig4j> {
 	@Override
 	protected void onPostExecute(LoginConfig4j mU4j) {
 		DialogUtil.dismissProgress();
-		if(myCallback!=null){
-			myCallback.onCallback(mU4j.isSuccess());
-		}
-		if(mU4j.isSuccess()){//登录业务系统成功
-			LoginConfig u = mU4j.data;
-			u.setPwd(mLoginConfig.getPwd());
-			mApp.saveLoginConfig(mLoginConfig);
+		boolean success = mU4j.isSuccess();
+		if(success){//保存成功
+			success = saveLoginConfig(mU4j.data);
 		}else{
-			Toast.makeText(ctx, mU4j.getMsg(), Toast.LENGTH_SHORT).show();
-//			Intent i = new Intent(ctx,LoginActivity.class);
-//			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//			ctx.startActivity(i);
+			DialogUtil.showToastCust(ctx, mU4j.msg);
 		}
+
+		myCallback.onCallback(success);
+
 	}
 
 	private boolean saveLoginConfig(LoginConfig u) {
 		boolean success = false;
 		try{
-
-
+			u.password = mLoginConfig.password;
+			mApp.saveLoginConfig(u);
 			success = true;
 		}catch (Exception e){
 			e.printStackTrace();
+			DialogUtil.showToastCust(ctx, e.getMessage());
 		}
-
 
 		return success;
 	}

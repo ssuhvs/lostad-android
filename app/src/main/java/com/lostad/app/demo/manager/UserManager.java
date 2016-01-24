@@ -22,14 +22,14 @@ public class UserManager
 	private static UserManager instance;
 
 	private UserManager(){
-		
+
 	}
-	
+
 	public static synchronized UserManager getInstance(){
 		if(instance==null){
 			instance = new UserManager();
 		}
-		
+
 		return instance;
 	}
 
@@ -37,28 +37,17 @@ public class UserManager
 
 
 	public LoginConfig4j login(String phone,String password) {
-		LoginConfig4j c = new LoginConfig4j(true,"success");
-        c.data = new LoginConfig();
-		c.data.id = "testId";
-		c.data.nickname = "nickname";
-		c.data.name = "TestName";
-		c.data.phone = "15865257900";
-
+		LoginConfig4j c = null;
 		try {
-//			Gson g = new Gson();
-//
-//          Map map = new HashMap();
-//			map.put("phone",phone);
-//			map.put("password",password);
-//
-//			String param = g.toJson(map);
-//			LogMe.d("param", param);
-//			String j = RequestUtil.postJson( IConst.URL_SERVICE , param);
-//			LogMe.d("data", j);
-//			c = g.fromJson(j, UserInfo4j.class);
-//			if(c==null ){
-//				c = new UserInfo4j(false,"服务器返回数据异常");
-//			}
+			Gson g = new Gson();
+			String url = IConst.URL_BASE+IConst.API_LOGIN;
+			url = String.format(url,phone,password);
+			String j = RequestUtil.getRequest(url,false);
+			LogMe.d("data", j);
+			c = g.fromJson(j, LoginConfig4j.class);
+			if(c==null ){
+				c = new LoginConfig4j(false,"服务器返回数据异常");
+			}
 		} catch (Exception e) {
 			c = new LoginConfig4j(false,"服务器返回数据异常！"+e.getMessage());
 			e.printStackTrace();
@@ -66,7 +55,7 @@ public class UserManager
 		return c;
 	}
 
-	public UserInfo4j saveUser(UserInfo u) {
+	public UserInfo4j updateUser(UserInfo u) {
 		UserInfo4j c = null;
 		try {
 			Gson g = new Gson();
@@ -74,11 +63,12 @@ public class UserManager
 			Map map = new HashMap();
 			List<UserInfo> list = new ArrayList<>();
 			list.add(u);
-            map.put("mprList",list);
+			map.put("mprList", list);
 
 			String param = g.toJson(map);
 			LogMe.d("param", param);
-			String j = RequestUtil.postJson( IConst.URL_SERVICE , param);
+			String url = IConst.URL_BASE + IConst.API_USER_UPDATE;
+			String j = RequestUtil.postJson(url, param);
 			LogMe.d("data",j);
 			c = g.fromJson(j, UserInfo4j.class);
 			if(c==null ){
@@ -92,32 +82,24 @@ public class UserManager
 	}
 
 	/**
-	 * { 
-		 "ACTIONNAME":"setPassWord_zc",
-		 "DATA":{"SJHM":"13365319122","DLMM":"123456"},
-		 "KEY": " ",
-		 "MODULE": "",
-		 "MSG": "",
-		 "REQUESTFLAG": "",
-		 "TARGET": "",
-		 "USERINFO": "{}" }
+	 * 注册
 	 * @param phone 手机号
-	 * @param pwd   密码
+	 * @param password   密码
 	 * @return
 	 */
-	public BaseBeanRsult register(String phone,String pwd) {
+	public BaseBeanRsult register(String phone,String password) {
 		BaseBeanRsult c = null;
 
 		Gson g = new Gson();
 		try {
 
 			Map map = new HashMap();
-			map.put("SJHM", phone);
-			map.put("DLMM",pwd);
+			map.put("phone", phone);
+			map.put("password", password);
 
 			String param = g.toJson(map);
 			LogMe.d("param", param);
-			String j = RequestUtil.postJson(IConst.URL_SERVICE, param);
+			String j = RequestUtil.postJson(IConst.API_REGISTER, param);
 			LogMe.d("data",j);
 			c = g.fromJson(j, BaseBeanRsult.class);
 			if(c==null ){
@@ -130,19 +112,34 @@ public class UserManager
 		return c;
 	}
 
-	public BaseBeanRsult updatePwd(String phone,String pwd) {
+	public BaseBeanRsult findPwd(String phone,String pwd) {
 		BaseBeanRsult c = null;
 
 		Gson g = new Gson();
 		try {
+			String url = IConst.URL_BASE+IConst.API_PWD_UPDATE;
+			url = String.format(url,phone,pwd);
+			String j = RequestUtil.getRequest(url, false);
+			LogMe.d("data",j);
+			c = g.fromJson(j, BaseBeanRsult.class);
+			if(c==null ){
+				c = new BaseBeanRsult(false,"服务器返回数据异常");
+			}
+		} catch (Exception e) {
+			c = new BaseBeanRsult(false,"服务器返回数据异常！"+e.getMessage());
+			e.printStackTrace();
+		}
+		return c;
+	}
 
-			Map map = new HashMap();
-			map.put("SJHM", phone);
-			map.put("DLMM",pwd);
+	public BaseBeanRsult updatePwd(String phone,String pwd,String newPwd) {
+		BaseBeanRsult c = null;
 
-			String param = g.toJson(map);
-			LogMe.d("param", param);
-			String j = RequestUtil.postJson(IConst.URL_SERVICE, param);
+		Gson g = new Gson();
+		try {
+			String url = IConst.URL_BASE+IConst.API_PWD_UPDATE;
+			url = String.format(url,phone,pwd,newPwd);
+			String j = RequestUtil.getRequest(url, false);
 			LogMe.d("data",j);
 			c = g.fromJson(j, BaseBeanRsult.class);
 			if(c==null ){
@@ -162,7 +159,8 @@ public class UserManager
 
 			String param = g.toJson(u);
 			LogMe.d("param", param);
-			String j = RequestUtil.postJson( IConst.URL_SERVICE , param);
+			String url = IConst.URL_BASE+IConst.API_USER_UPDATE;
+			String j = RequestUtil.postJson( url , param);
 			LogMe.d("data",j);
 			c = g.fromJson(j, UserInfo4j.class);
 			if(c==null ){

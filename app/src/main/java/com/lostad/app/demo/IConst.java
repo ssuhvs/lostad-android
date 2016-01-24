@@ -22,17 +22,23 @@ public class IConst {
 //   public static final String  ALIYUN_OSS_SK             = "";
 //   public static final String  GlobalDefaultHostId       = "oss-cn-qingdao.aliyuncs.com";
 //   public static final String  ALIYUN_OSS_URL_ENDPOINT   = "http://"+GlobalDefaultHostId+"/";
-   public static final String  ALIYUN_OSS_BUCKET_NAME          = "runners";
+   public static final String  ALIYUN_OSS_BUCKET_NAME          = "test";
    public static final String  ALIYUN_OSS_KEY_PREFIX_HEDAD     = "pber/head";
    public static final String  ALIYUN_OSS_KEY_PREFIX_SHARE     = "pber/share";
    public static final String  ALIYUN_OSS_KEY_PREFIX_SPORT     = "pber/hd";
-   public static final String  URL_IMG_SPORT                   = "http://runners.oss-cn-hangzhou.aliyuncs.com/pber/hd.jpg";
+   public static final String  URL_IMG_SPORT                   = "http://test.oss-cn-hangzhou.aliyuncs.com/pber/hd.jpg";
    //socket广播
    public static final String ACTION_SOCKET_DATA               = "action_socket_data";
 
 
    public static final  String PACKAGE_TYPE_GROUP = "1004_TG";
    public static final  String API_PROTOCOL="";
+
+   public static  final String API_LOGIN          = "/user/login/%s/%s";
+   public static  final String API_REGISTER       = "/user/register";
+   public static  final String API_USER_UPDATE    = "/user/modify";
+   public static  final String API_PWD_UPDATE     = "/user/modifyPsw/%s/%s/%s";//phone/old/new
+   public static  final String API_PWD_FIND       = "/user/modifyPsw/%s/%s";//phone/new
 }
 /**
 http://121.42.25.194:88/vtSell/getGgxxApi

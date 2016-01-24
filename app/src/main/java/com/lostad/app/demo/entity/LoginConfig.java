@@ -36,8 +36,8 @@ public class LoginConfig implements Serializable,ILoginConfig {
 	public String name;
 	@Column(name="nickname")
 	public String nickname;
-	@Column(name="pwd")
-	public String pwd;
+	@Column(name="password")
+	public String password;
 	@Column(name="headUrl")
 	public String headUrl;
 	@Column(name="phone")
@@ -58,7 +58,7 @@ public class LoginConfig implements Serializable,ILoginConfig {
 	
 	public LoginConfig(String phone, String pwd) {
 		this.phone = phone;
-		this.pwd = pwd;
+		this.password = pwd;
 	}
 
 	public String getNickname() {
@@ -85,13 +85,8 @@ public class LoginConfig implements Serializable,ILoginConfig {
 		return latitude;
 	}
 
-
-	public String getPwd() {
-		return pwd;
-	}
-
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void setLatitude(Double latitude) {
@@ -187,7 +182,7 @@ public class LoginConfig implements Serializable,ILoginConfig {
 
 	@Override
 	public String getPassword() {
-		return this.pwd;
+		return this.password;
 	}
 
 

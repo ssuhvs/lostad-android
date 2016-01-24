@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.lostad.app.base.util.Validator;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.manager.SysManager;
+import com.lostad.applib.Config;
 import com.lostad.applib.entity.BaseBeanRsult;
 import com.lostad.applib.util.DialogUtil;
 import com.lostad.applib.view.BaseAppActivity;
@@ -72,6 +73,9 @@ public class Register0Activity extends BaseAppActivity implements OnClickListene
 				et_vercode.requestFocus();
 				et_vercode.setError("请输入验证码");
 				return true;
+			}
+			if(Config.isTestMode){
+				toNextActivity(phone);
 			}
 			checkVerCode(phone,vcode);
 		}

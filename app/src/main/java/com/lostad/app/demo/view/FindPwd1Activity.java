@@ -52,19 +52,19 @@ public class FindPwd1Activity extends BaseActivity {
 	}
 
 
-        @Event(R.id.tv_protocol)
-		public void onClickProtocal(View arg0) {
-			String url = IConst.URL_BASE + IConst.API_PROTOCOL;
-			Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-			startActivity(it);
-		}
+	@Event(R.id.tv_protocol)
+	public void onClickProtocal(View arg0) {
+		String url = IConst.URL_BASE + IConst.API_PROTOCOL;
+		Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+		startActivity(it);
+	}
 
 	@Event(R.id.btn_register)
 	public void onClickReg(View arg0) {
 		updatePwd();
 	}
 	/**
-	 * 
+	 *
 	 */
 	private void updatePwd() {
 
@@ -94,18 +94,18 @@ public class FindPwd1Activity extends BaseActivity {
 		new Thread() {
 			BaseBeanRsult b;
 			public void run() {
-				b = UserManager.getInstance().updatePwd(mPhone,psw);
+				b = UserManager.getInstance().findPwd(mPhone,psw);
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
 						DialogUtil.dismissProgress();
 						if (b.isSuccess()) { //注册成功后直接登陆
-							lc.pwd = psw;
+							lc.password = psw;
 							lc.phone = mPhone;
 							LoginTask lt = new LoginTask(FindPwd1Activity.this, lc, new MyCallback<Boolean>() {
 								@Override
 								public void onCallback(Boolean success) {
-                                    if(success){
+									if(success){
 										toMainActivty();
 									}
 								}

@@ -46,7 +46,6 @@ public class Register1Activity extends BaseActivity {
 		x.view().inject(this);
 
 		mPhone = getIntent().getStringExtra("phone");
-
 	}
 
 
@@ -104,7 +103,7 @@ public class Register1Activity extends BaseActivity {
 					public void run() {
 						DialogUtil.dismissProgress();
 						if (b.isSuccess()) { //注册成功后直接登陆
-							lc.pwd = psw;
+							lc.password = psw;
 							lc.phone = mPhone;
 							LoginTask lt = new LoginTask(Register1Activity.this, lc, new MyCallback<Boolean>() {
 								@Override
