@@ -9,7 +9,7 @@ public class IConst {
    public static final int       DB_VER_NUM               = 1;
 
    public final static String URL_BASE                    = "http://192.168.2.104:8080";//"
-   public final static String URL_SERVICE                 = URL_BASE+"/MYPF/serviceBroker.do";//"http://218.245.5.79:80/vt/services";
+   public final static String URL_SERVICE                 = URL_BASE+"/test/serviceBroker.do";//
 
    public final static String KEY_GIS_PROVINCE                 = "province";
    public final static String KEY_GIS_CITY                     = "city";
@@ -34,11 +34,11 @@ public class IConst {
    public static final  String PACKAGE_TYPE_GROUP = "1004_TG";
    public static final  String API_PROTOCOL="";
 
-   public static  final String API_LOGIN          = "/user/login/%s/%s";
+   public static  final String API_LOGIN          = "/user/login";
    public static  final String API_REGISTER       = "/user/register";
    public static  final String API_USER_UPDATE    = "/user/modify";
-   public static  final String API_PWD_UPDATE     = "/user/modifyPsw/%s/%s/%s";//phone/old/new
-   public static  final String API_PWD_FIND       = "/user/modifyPsw/%s/%s";//phone/new
+   public static  final String API_PWD_UPDATE     = "/user/modifyPsw";//phone/old/new
+   public static  final String API_PWD_FIND       = "/user/resetPsw";//phone/new
 }
 /**
 http://121.42.25.194:88/vtSell/getGgxxApi
