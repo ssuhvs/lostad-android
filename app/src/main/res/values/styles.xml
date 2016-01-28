@@ -11,10 +11,13 @@
         <item name="colorPrimaryDark">@color/red</item>
         <!-- toolbar（actionbar）颜色 -->
         <item name="colorPrimary">@color/red</item>
+        <!-- menu-->
+        <item name="actionMenuTextColor">@color/white</item>
         <!-- 窗口的背景颜色 -->
         <item name="android:windowBackground">@color/background</item>
         <!-- 抽屉菜单效果 -->
         <item name="drawerArrowStyle">@style/AppTheme.JDDrawerArrowStyle</item>
+
     </style>
 
     <style name="AppTheme.JDDrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">

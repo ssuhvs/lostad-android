@@ -15,6 +15,7 @@ import android.provider.MediaStore;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
 /**
  * 窗口工具类,提供可重用的窗口
  * @author sszvip
@@ -35,7 +36,7 @@ public class ImageChooser {
     	height = h;
     }
     
-	public static void showImagePicker(final Activity context,final int requestCode){
+	public static void showImagePickerForResult(final Activity context,final int requestCode){
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle("图片来源");
 		builder.setNegativeButton("取消", null);
@@ -48,7 +49,7 @@ public class ImageChooser {
 					mSelectedIndex = 0;
 					Uri imageUri = null;
 					Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-					ImageUtil.deleteFile(Environment.getExternalStorageDirectory().getAbsolutePath(),FILE_NAME_PIC_TEMP);
+					ImageUtil.deleteFile(Environment.getExternalStorageDirectory().getAbsolutePath(), FILE_NAME_PIC_TEMP);
 					imageUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory().getAbsolutePath(),FILE_NAME_PIC_TEMP));
 					//指定照片保存路径（SD卡），image.jpg为一个临时文件，每次拍照后这个图片都会被替换
 					openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
@@ -71,8 +72,8 @@ public class ImageChooser {
 	}
 	
 	
-	public static void onActivityResult(Activity ctx,boolean isCrop,int requestCode, int resultCode, Intent data,ImageCallback callback) {
-		if (resultCode == Activity.RESULT_OK) {
+	public static void onActivityResult(Activity ctx,boolean isCrop, Intent data,ImageCallback callback) {
+
 			switch (mSelectedIndex) {//上次选择的索引
 			case 0://相机
 				if(isCrop){//裁剪
@@ -149,7 +150,6 @@ public class ImageChooser {
 				
 				break;
 			}
-		}
 	}
 	
 	
