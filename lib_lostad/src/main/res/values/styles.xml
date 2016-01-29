@@ -1,4 +1,5 @@
 <resources>
+
     <style name="AppTheme" parent="AppTheme.Base">
 
     </style>
@@ -9,6 +10,7 @@
         <item name="windowNoTitle">true</item>
         <!-- menu-->
         <item name="actionMenuTextColor">@color/white</item>
+        <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
         <!-- 状态栏颜色 -->
         <item name="colorPrimaryDark">@color/red</item>
         <!-- toolbar（actionbar）颜色 -->
@@ -18,6 +20,10 @@
         <!-- 抽屉菜单效果 -->
         <item name="drawerArrowStyle">@style/AppTheme.JDDrawerArrowStyle</item>
 
+    </style>
+
+    <style name="MenuTextStyle">
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="AppTheme.JDDrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
