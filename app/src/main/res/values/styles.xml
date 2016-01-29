@@ -18,6 +18,11 @@
         <!-- 抽屉菜单效果 -->
         <item name="drawerArrowStyle">@style/AppTheme.JDDrawerArrowStyle</item>
 
+        <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
+    </style>
+
+    <style name="MenuTextStyle">
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="AppTheme.JDDrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
