@@ -1,7 +1,6 @@
 package com.lostad.app.demo.manager;
 
 import com.google.gson.Gson;
-import com.lostad.app.demo.IConst;
 import com.lostad.app.base.util.LogMe;
 import com.lostad.app.base.util.RequestUtil;
 import com.lostad.app.demo.entity.Tour;
@@ -70,7 +69,7 @@ public class TourManager
 
 			String data = g.toJson(map);
 			LogMe.d("request", data);
-			String j = RequestUtil.postJson( IConst.URL_SERVICE , data);
+			String j = RequestUtil.postJson( "",null , data);
 			LogMe.d("response",j);
 			c = g.fromJson(j, TourList4j.class);
 			if(c==null ){

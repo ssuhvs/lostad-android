@@ -43,7 +43,7 @@ public class UserManager
 			map.put("password", password);
 			String param = g.toJson(map);
 			LogMe.d("param", param);
-			String j = RequestUtil.postJson(IConst.API_REGISTER, param);
+			String j = RequestUtil.postJson(url,null, param);
 			LogMe.d("data", j);
 			c = g.fromJson(j, LoginConfig4j.class);
 			if(c==null ){
@@ -69,8 +69,7 @@ public class UserManager
 			String param = g.toJson(map);
 			LogMe.d("param", param);
 			String url = IConst.URL_BASE + IConst.API_USER_UPDATE;
-			String j = RequestUtil.postJson(url, param);
-			LogMe.d("data",j);
+			String j = RequestUtil.postJson(url,null, param);
 			c = g.fromJson(j, UserInfo4j.class);
 			if(c==null ){
 				c = new UserInfo4j(false,"服务器返回数据异常");
@@ -100,7 +99,7 @@ public class UserManager
 
 			String param = g.toJson(map);
 			LogMe.d("param", param);
-			String j = RequestUtil.postJson(IConst.API_REGISTER, param);
+			String j = RequestUtil.postJson("",null, param);
 			LogMe.d("data",j);
 			c = g.fromJson(j, BaseBeanRsult.class);
 			if(c==null ){
@@ -123,7 +122,7 @@ public class UserManager
 			map.put("password",password);
 			String url = IConst.URL_BASE+IConst.API_PWD_FIND;
 			url = String.format(url,phone,password,password);
-			String j = RequestUtil.postJson(url, map);
+			String j = RequestUtil.postJson(url,null, map);
 			LogMe.d("data",j);
 			c = g.fromJson(j, BaseBeanRsult.class);
 			if(c==null ){
@@ -136,7 +135,7 @@ public class UserManager
 		return c;
 	}
 
-	public BaseBeanRsult updatePwd(String phone,String password,String newPwd) {
+	public BaseBeanRsult updatePwd(String phone,String password,String newPwd,String token) {
 		BaseBeanRsult c = null;
 		Gson g = new Gson();
 		try {
@@ -146,7 +145,7 @@ public class UserManager
 			map.put("newPwd",newPwd);
 			String url = IConst.URL_BASE+IConst.API_PWD_UPDATE;
 			url = String.format(url,phone,password,newPwd);
-			String j = RequestUtil.postJson(url,map);
+			String j = RequestUtil.postJson(url,null,map);
 			LogMe.d("data",j);
 			c = g.fromJson(j, BaseBeanRsult.class);
 			if(c==null ){
@@ -159,14 +158,14 @@ public class UserManager
 		return c;
 	}
 
-	public UserInfo4j updateMyInfo(UserInfo u) {
+	public UserInfo4j updateMyInfo(UserInfo u,String token) {
 		UserInfo4j c = null;
 		try {
 			Gson g = new Gson();
 			String param = g.toJson(u);
 			LogMe.d("param", param);
 			String url = IConst.URL_BASE+IConst.API_USER_UPDATE;
-			String j = RequestUtil.postJson( url , param);
+			String j = RequestUtil.postJson(url,token,param);
 			LogMe.d("data",j);
 			c = g.fromJson(j, UserInfo4j.class);
 			if(c==null ){

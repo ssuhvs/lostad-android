@@ -40,11 +40,12 @@ public class SysManager
 		Gson g = new Gson();
 		try {
             Map m = new HashMap();
-			m.put("telephone",phone);
+			m.put("telephone", phone);
 
 			String data = g.toJson(m);
 			LogMe.d("data", data);
-			String j = RequestUtil.postJson( IConst.URL_SERVICE , data);
+			String url = IConst.URL_BASE + "  " ;
+			String j = RequestUtil.postJson(url,null, data);
 			LogMe.d("data",data);
 			c = g.fromJson(j, BaseBeanRsult.class);
 			if(c==null ){
@@ -63,11 +64,12 @@ public class SysManager
 		try {
 
 			Map m = new HashMap();
-			m.put("phone",phone);
+			m.put("phone", phone);
 
 			String data = g.toJson(m);
 			LogMe.d("data", data);
-			String j = RequestUtil.postJson( IConst.URL_SERVICE , data);
+			String url = IConst.URL_BASE + "  " ;
+			String j = RequestUtil.postJson(url,null, data);
 			LogMe.d("data",data);
 			c = g.fromJson(j, BaseBeanRsult.class);
 			if(c==null ){
@@ -90,7 +92,8 @@ public class SysManager
 			m.put("vercode",phone);
 			String data = g.toJson(m);
 			LogMe.d("data", data);
-			String j = RequestUtil.postJson( IConst.URL_SERVICE , data);
+			String url = IConst.URL_BASE + "  " ;
+			String j = RequestUtil.postJson(url,null, data);
 			LogMe.d("data",data);
 			c = g.fromJson(j, BaseBeanRsult.class);
 			if(c==null ){
@@ -111,7 +114,8 @@ public class SysManager
 
 			String data = g.toJson(m);
 			LogMe.d("data", data);
-			String j = RequestUtil.postJson( IConst.URL_SERVICE , data);
+			String url = IConst.URL_BASE + "  " ;
+			String j = RequestUtil.postJson(url,null, data);
 			LogMe.d("data",data);
 			c = g.fromJson(j, BaseBeanRsult.class);
 			if(c==null ){

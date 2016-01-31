@@ -16,6 +16,26 @@
 
 package com.lostad.app.base.util;
 
+import com.google.gson.Gson;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,25 +46,6 @@ import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.message.BasicHeader;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-
-import com.google.gson.Gson;
-
 /**
  * 请求服务器工具类
  * @author sszvip@qq.com
@@ -52,11 +53,15 @@ import com.google.gson.Gson;
  */
 public class RequestUtil {
 	
-	public static String getRequest(final String url,final boolean isSingleton) throws Exception {
+	public static String getRequest(final String url,String token,final boolean isSingleton) throws Exception {
 		String json = null;
 		HttpClient client = HttpClientManager.getHttpClient(isSingleton);
 		HttpEntity resEntity = null ;
 		HttpGet get = new HttpGet(url);
+		if(Validator.isNotEmpty(token)){
+			get.addHeader("token",token);
+		}
+
 		try {
 			//long t1 = System.currentTimeMillis();
 			HttpResponse response = client.execute(get,new BasicHttpContext());
@@ -84,11 +89,15 @@ public class RequestUtil {
 		return json;
 	}// end method submitForm
 	
-	public static String postRequest(final String url, final StringEntity params,final boolean isSingleton) throws Exception {
+	public static String postRequest(final String url, final StringEntity params,String token,final boolean isSingleton) throws Exception {
 		String json = null;
 		HttpClient client = HttpClientManager.getHttpClient(isSingleton);
 		HttpEntity resEntity = null ;
 		HttpPost post = new HttpPost(url);
+		if(Validator.isNotEmpty(token)){
+			post.addHeader("token",token);
+		}
+
 		try {
 			//long t1 = System.currentTimeMillis();
 
@@ -123,8 +132,7 @@ public class RequestUtil {
 		return json;
 	}// end method submitForm
 
-	public static String postForm(String url, List<NameValuePair> params,
-			boolean isSingleton) throws Exception {
+	public static String postForm(String url, List<NameValuePair> params,boolean isSingleton) throws Exception {
 		String json = null;
 		HttpClient client = HttpClientManager.getHttpClient(isSingleton);
 		HttpEntity resEntity = null ;
@@ -163,16 +171,65 @@ public class RequestUtil {
 		
 	}
 
-	public static String postJson(String url,Object obj) throws Exception {
+	public static String putForm(String url, List<NameValuePair> params,String token,boolean isSingleton) throws Exception {
+		String json = null;
+		HttpClient client = HttpClientManager.getHttpClient(isSingleton);
+		HttpEntity resEntity = null ;
+		HttpPut put = new HttpPut(url);
+		put.addHeader("token",token);
+		try {
+			put.addHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
+			if (params != null) {
+				UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, HTTP.UTF_8);
+				if (params != null) {
+					entity.setContentEncoding(HTTP.UTF_8);
+					entity.setContentType("application/x-www-form-urlencoded");
+				}
+				put.setEntity(entity);
+			}
+
+			HttpResponse response = client.execute(put,new BasicHttpContext());
+			resEntity = response.getEntity();
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {// 200
+				// 取出回应字串
+				json = EntityUtils.toString(resEntity);
+			}
+		} catch (Exception e) {
+			if (put != null){
+				put.abort();//终止请求
+			}
+			throw e;
+		} finally {
+
+			if (resEntity != null) {
+				try {
+					resEntity.consumeContent();//释放资源
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			client.getConnectionManager().closeExpiredConnections();
+			///client.getConnectionManager().shutdown();
+		}
+		return json;
+
+	}
+
+
+	public static String postJson(String url,String token,Object obj) throws Exception {
 		Gson g = new Gson();
 		String json = g.toJson(obj);
-		return postJson(url, json);
+		return postJson(url,token,json);
 	}
-	public static String postJson(String url, String dataJson) throws Exception {
+	public static String postJson(String url,String token,String dataJson) throws Exception {
 		String json = null;
 		HttpEntity resEntity = null ;
 		HttpClient client = HttpClientManager.getHttpClient(true);
 		HttpPost post = new HttpPost(url);
+		if(Validator.isNotEmpty(token)){
+			post.addHeader("token",token);
+		}
 		try {
 			post.addHeader("Content-Type","application/json;charset=UTF-8");
 			StringEntity se = new StringEntity(dataJson,"UTF-8");
@@ -213,10 +270,10 @@ public class RequestUtil {
 	 * 直接通过HTTP协议提交数据到服务器,实现表单提交功能 
 	 * @param actionUrl 上传路径 
 	 * @param params 请求参数 key为参数名,value为参数值 
-	 * @param file 上传文件 
+	 * @param files 上传文件
 	 * @throws Exception 
 	 */  
-	public static String postFile(String actionUrl, Map<String, String> params, FormFile[] files) throws Exception {  
+	public static String postFile(String actionUrl, Map<String, String> params, FormFile[] files,String token) throws Exception {
 	    try {             
 	        String BOUNDARY = "---------7d4a6d158c9"; //数据分隔线  
 	        String MULTIPART_FORM_DATA = "multipart/form-data";  
@@ -229,9 +286,9 @@ public class RequestUtil {
 	        conn.setRequestMethod("POST");            
 	        conn.setRequestProperty("Connection", "Keep-Alive");  
 	        conn.setRequestProperty("Charset", "UTF-8");  
-	        conn.setRequestProperty("Content-Type", MULTIPART_FORM_DATA + "; boundary=" + BOUNDARY);  
-	  
-	        //上传的表单参数部分，格式请参考文章  
+	        conn.setRequestProperty("Content-Type", MULTIPART_FORM_DATA + "; boundary=" + BOUNDARY);
+			conn.setRequestProperty("token",token);
+			//上传的表单参数部分，格式请参考文章
 	        StringBuilder sb = new StringBuilder();  
 	        if(params!=null){
 	        	 for (Map.Entry<String, String> entry : params.entrySet()) {//构建表单字段内容  
@@ -271,7 +328,7 @@ public class RequestUtil {
 	            b.append((char)ch);  
 	        }  
 	        outStream.close();  
-	        conn.disconnect();  
+	        conn.disconnect();
 	        return b.toString();  
 	    } catch (Exception e) {  
 	    	
@@ -282,8 +339,8 @@ public class RequestUtil {
 	//SSL
 	/**
      * Post请求连接Https服务
-     * @param serverURL  请求地址
-     * @param jsonStr    请求报文
+     * @param url;  请求地址
+     * @param json    请求报文
      * @return
      * @throws Exception
      */
