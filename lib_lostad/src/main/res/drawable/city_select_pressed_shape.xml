@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="3dp" />
+    <!-- 间隔 -->
+    <padding
+        android:left="1dp"
+        android:top="1dp"
+        android:right="1dp"
+        android:bottom="1dp" />
+    <!-- 各方向的间隔 -->
+
+    <!-- 大小 -->
+    <size
+        android:width="20dp"
+        android:height="10dp" />
+    <!-- 宽度和高度 -->
+
+    <!-- 填充 -->
+    <solid android:color="@android:color/darker_gray" />
+
+    <!-- 描边 -->
+    <stroke
+        android:width="0.8dp"
+        android:color="@android:color/darker_gray" />
+</shape>

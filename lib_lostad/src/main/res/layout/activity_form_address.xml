@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+    <include layout="@layout/common_toolbar"/>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="42dp">
+
+
+        <Button
+            android:background="@android:color/white"
+            android:textColor="@android:color/black"
+            android:id="@+id/id_btn_1"
+            android:singleLine="true"
+            android:layout_width="0dp"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="出发地" />
+
+        <View
+            android:background="@android:color/darker_gray"
+            android:layout_width="0.5dp"
+            android:layout_height="fill_parent" />
+
+        <Button
+            android:background="@android:color/white"
+            android:textColor="@android:color/black"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:singleLine="true"
+            android:id="@+id/id_btn_2"
+            android:layout_height="wrap_content"
+            android:text="目的地" />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_marginTop="6dp"
+        android:text="详细地址"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+
+

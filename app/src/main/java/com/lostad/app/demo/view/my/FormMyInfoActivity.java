@@ -14,6 +14,7 @@ import com.lostad.app.base.util.ImageTools;
 import com.lostad.app.base.util.Validator;
 import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.base.view.component.BaseFormActivity;
+import com.lostad.app.base.view.component.FormAddressActivity;
 import com.lostad.app.base.view.component.FormNumActivity;
 import com.lostad.app.base.view.component.FormTextActivity;
 import com.lostad.app.base.view.component.FormTextChinaeseActivity;
@@ -157,17 +158,12 @@ public class FormMyInfoActivity extends BaseActivity {
         startActivityForResult(i,5);
     }
 
-    @Event(R.id.ll_height)
-    private void onClick4(View v) {
-        Intent i = new Intent(FormMyInfoActivity.this, FormNumActivity.class);
+    @Event(R.id.ll_address)
+    private void onClickAddress(View v) {
+        Intent i = new Intent(FormMyInfoActivity.this, FormAddressActivity.class);
         i.putExtra("value", tv_height.getText());
-        i.putExtra("desc", "填写身高，让系统对您的运动做出更合理的评估");
-        i.putExtra(FormNumActivity.KEY_MAX_VALUE, 240.0);
-        i.putExtra(FormNumActivity.KEY_MAX_DESC, "身高不能高于240cm");
-        i.putExtra(FormNumActivity.KEY_MIN_VALUE, 80.0);
-        i.putExtra(FormNumActivity.KEY_MIN_DESC, "身高不能低于80cm");
-        i.putExtra(FormNumActivity.KEY_NULL_ABLE, false);
-        startActivityForResult(i, 4);
+        i.putExtra("desc", "您所在的城市");
+        startActivityForResult(i, 6);
     }
 
     private void update(UserInfo u) {

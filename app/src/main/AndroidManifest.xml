@@ -53,6 +53,12 @@
         </activity>
 
         <activity
+            android:name="com.lostad.app.base.view.component.FormAddressActivity"
+            android:parentActivityName="com.lostad.app.base.view.BaseActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
             android:name=".view.MainActivity"
             android:parentActivityName="com.lostad.app.base.view.BaseActivity"
             android:screenOrientation="portrait"
@@ -77,7 +83,7 @@
             android:name=".view.my.FormMyInfoActivity"
             android:parentActivityName="com.lostad.app.base.view.BaseActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
 
         <activity
             android:name=".view.Register1Activity"
