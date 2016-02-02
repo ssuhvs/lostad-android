@@ -39,6 +39,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * s
  * 请求服务器工具类
  * @author sszvip@qq.com
  * @since  2013-7-2
@@ -90,8 +91,8 @@ public class DownloadUtil {
 						.setIgnoreGif(false)
 						.setUseMemCache(true)
 						.setImageScaleType(ImageView.ScaleType.CENTER).build();
-				x.image().bind(iv_pic, url, mImageOptions);
 			}
+			x.image().bind(iv_pic, url, mImageOptions);
 		}catch (Exception e){
 			e.printStackTrace();
 		}
