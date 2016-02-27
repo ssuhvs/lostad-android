@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sv_scroll"
     android:fitsSystemWindows="true"
     android:clipToPadding="false"
@@ -32,33 +33,33 @@
                 android:src="@mipmap/logo" />
 
 
-                <EditText
-                    android:id="@+id/et_phone"
-                    android:layout_marginTop="32dp"
-                    android:drawableLeft="@mipmap/login_user"
-                    android:drawablePadding="6dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="32dip"
-                    android:layout_weight="1"
-                    android:background="@color/transparent"
-                    android:hint="输入手机号"
-                    android:numeric="integer"
-                    android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/gray_light_bg"
-                    android:textCursorDrawable="@null"
-                    android:textSize="@dimen/sp_content2" >
-                </EditText>
 
-
+            <com.lostad.applib.view.widget.ClearEditText
+                android:id="@+id/et_phone"
+                android:layout_marginTop="32dp"
+                android:drawableLeft="@mipmap/login_user"
+                android:drawablePadding="6dp"
+                android:layout_width="fill_parent"
+                android:layout_height="32dip"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:hint="输入手机号"
+                android:numeric="integer"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/sp_content"
+                app:iconClear="@drawable/ic_clear_default_normal"
+                />
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginTop="1dp"
-                android:background="@color/white" />
+                android:background="@color/bg_gray" />
 
-            <EditText
+            <com.lostad.applib.view.widget.ClearEditText
                 android:id="@+id/et_password"
                 android:drawableLeft="@mipmap/login_pwd"
                 android:drawablePadding="6dp"
@@ -68,12 +69,12 @@
                 android:background="@color/transparent"
                 android:hint="输入密码"
                 android:password="true"
-
                 android:singleLine="true"
                 android:textColor="@color/white"
-                android:textColorHint="@color/gray_light_bg"
+                android:textColorHint="@color/white"
                 android:textCursorDrawable="@null"
-                android:textSize="@dimen/sp_content2" />
+                app:iconClear="@drawable/ic_clear_default_normal"
+                android:textSize="@dimen/sp_content" />
 
             <View
                 android:layout_width="fill_parent"
