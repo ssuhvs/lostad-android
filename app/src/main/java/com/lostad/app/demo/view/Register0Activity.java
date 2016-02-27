@@ -6,18 +6,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lostad.app.base.util.Validator;
+import com.lostad.app.base.view.BaseActivity;
 import com.lostad.app.demo.R;
 import com.lostad.app.demo.manager.SysManager;
 import com.lostad.applib.Config;
 import com.lostad.applib.entity.BaseBeanRsult;
 import com.lostad.applib.util.DialogUtil;
-import com.lostad.applib.view.BaseAppActivity;
 
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -29,7 +28,7 @@ import org.xutils.x;
  *
  * */
 
-public class Register0Activity extends BaseAppActivity implements OnClickListener {
+public class Register0Activity extends BaseActivity {
 
 	@ViewInject(R.id.et_phone)
 	private EditText et_phone;
@@ -117,7 +116,7 @@ public class Register0Activity extends BaseAppActivity implements OnClickListene
 	}
 
 	@Event(R.id.btn_get_vercode)
-	public void onClick(View v) {
+	private void onClickGetVercode(View v) {
 		// 验证码
 		final String mPhone = et_phone.getText().toString();
 		if (Validator.isBlank(mPhone)) {

@@ -6,7 +6,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +27,7 @@ import org.xutils.x;
  *
  * */
 
-public class FindPwd0Activity extends BaseActivity implements OnClickListener {
+public class FindPwd0Activity extends BaseActivity {
 
 	@ViewInject(R.id.et_phone)
 	private EditText et_phone;
@@ -114,7 +113,7 @@ public class FindPwd0Activity extends BaseActivity implements OnClickListener {
 	}
 
 	@Event(R.id.btn_get_vercode)
-	public void onClick(View v) {
+	private void onClickGetVercode(View v) {
 		// 验证码
 		final String mPhone = et_phone.getText().toString();
 		if (Validator.isBlank(mPhone)) {

@@ -53,14 +53,14 @@ public class FindPwd1Activity extends BaseActivity {
 
 
 	@Event(R.id.tv_protocol)
-	public void onClickProtocal(View arg0) {
+	private void onClickProtocal(View arg0) {
 		String url = IConst.URL_BASE + IConst.API_PROTOCOL;
 		Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 		startActivity(it);
 	}
 
 	@Event(R.id.btn_register)
-	public void onClickReg(View arg0) {
+	private void onClickReg(View arg0) {
 		updatePwd();
 	}
 	/**

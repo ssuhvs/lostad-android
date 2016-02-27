@@ -24,105 +24,108 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 /**
- *
  * 用户注册
- *  @Author  sszvip@qq.com
- * */
+ *
+ * @Author sszvip@qq.com
+ */
 
 public class Register1Activity extends BaseActivity {
-	@ViewInject(R.id.et_register_pass)
-	private EditText  et_register_pass;
+    @ViewInject(R.id.et_register_pass)
+    private EditText et_register_pass;
 
-	@ViewInject(R.id.et_register_repass)
-	private EditText  et_register_repass;
+    @ViewInject(R.id.et_register_repass)
+    private EditText et_register_repass;
 
-	@ViewInject(R.id.cb_tyxy)
-	private CheckBox cb_tyxy;
+    @ViewInject(R.id.cb_tyxy)
+    private CheckBox cb_tyxy;
 
-	public String mPhone;
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_register1);
-		setTitle("用户注册");
-		x.view().inject(this);
-		super.initToolBarWithBack((Toolbar) findViewById(R.id.tb_toolbar));
+    public String mPhone;
 
-		mPhone = getIntent().getStringExtra("phone");
-	}
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register1);
+        setTitle("用户注册");
+        x.view().inject(this);
+        super.initToolBarWithBack((Toolbar) findViewById(R.id.tb_toolbar));
+
+        mPhone = getIntent().getStringExtra("phone");
+    }
 
 
-        @Event(R.id.tv_protocol)
-		public void onClickProtocal(View arg0) {
-			String url = IConst.URL_BASE + IConst.API_PROTOCOL;
-			Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-			startActivity(it);
-		}
+    @Event(R.id.tv_protocol)
+    private void onClickProtocal(View arg0) {
+        String url = IConst.URL_BASE + IConst.API_PROTOCOL;
+        Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(it);
+    }
 
-	@Event(R.id.btn_register)
-	public void onClickReg(View arg0) {
-		register();
-	}
-	/**
-	 * 
-	 */
-	private void register() {
+    @Event(R.id.btn_register)
+    private void onClickReg(View arg0) {
+        register();
+    }
 
-		final String psw = et_register_pass.getText().toString();
-		String pew_next = et_register_repass.getText().toString();
-		if ("".equals(psw)) {
-			Toast.makeText(this, "请输入您的登录密码!", Toast.LENGTH_LONG).show();
-			return;
-		}
-		if (psw.length() < 6) {
-			Toast.makeText(this, "密码长度应该大于6位!", Toast.LENGTH_LONG).show();
-			return;
-		}
+    /**
+     *
+     */
+    private void register() {
 
-		if("".equals(pew_next)) {
-			Toast.makeText(this, "请输入您的确认密码!", Toast.LENGTH_LONG).show();
-			return;
-		}
+        final String psw = et_register_pass.getText().toString();
+        String pew_next = et_register_repass.getText().toString();
+        if ("".equals(psw)) {
+            Toast.makeText(this, "请输入您的登录密码!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (psw.length() < 6) {
+            Toast.makeText(this, "密码长度应该大于6位!", Toast.LENGTH_LONG).show();
+            return;
+        }
 
-		if (!psw.equals(pew_next)) {
-			Toast.makeText(this, "您两次输入的密码不一致，请确认!", Toast.LENGTH_LONG).show();
-			return;
-		}
+        if ("".equals(pew_next)) {
+            Toast.makeText(this, "请输入您的确认密码!", Toast.LENGTH_LONG).show();
+            return;
+        }
 
-		if (!cb_tyxy.isChecked()) {
-			Toast.makeText(this, "请仔细阅读用户协议，并确认!", Toast.LENGTH_LONG).show();
-			return;
-		}
+        if (!psw.equals(pew_next)) {
+            Toast.makeText(this, "您两次输入的密码不一致，请确认!", Toast.LENGTH_LONG).show();
+            return;
+        }
 
-		final LoginConfig lc = new LoginConfig();
+        if (!cb_tyxy.isChecked()) {
+            Toast.makeText(this, "请仔细阅读用户协议，并确认!", Toast.LENGTH_LONG).show();
+            return;
+        }
 
-		DialogUtil.showProgress(this);
-		new Thread() {
-			BaseBeanRsult b;
-			public void run() {
-				b = UserManager.getInstance().register(mPhone,psw);
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						DialogUtil.dismissProgress();
-						if (b.isSuccess()) { //注册成功后直接登陆
-							lc.password = psw;
-							lc.phone = mPhone;
-							LoginTask lt = new LoginTask(Register1Activity.this, lc, new MyCallback<Boolean>() {
-								@Override
-								public void onCallback(Boolean success) {
-                                    if(success){
-										toMainActivty();
-									}
-								}
-							});
-							lt.execute();
-						}
-						Toast.makeText(Register1Activity.this,b.getMsg(),Toast.LENGTH_LONG).show();
-					}
-				});
+        final LoginConfig lc = new LoginConfig();
 
-			}
-		}.start();
-	}
+        DialogUtil.showProgress(this);
+        new Thread() {
+            BaseBeanRsult b;
+
+            public void run() {
+                b = UserManager.getInstance().register(mPhone, psw);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        DialogUtil.dismissProgress();
+                        if (b.isSuccess()) { //注册成功后直接登陆
+                            lc.password = psw;
+                            lc.phone = mPhone;
+                            LoginTask lt = new LoginTask(Register1Activity.this, lc, new MyCallback<Boolean>() {
+                                @Override
+                                public void onCallback(Boolean success) {
+                                    if (success) {
+                                        toMainActivty();
+                                    }
+                                }
+                            });
+                            lt.execute();
+                        }
+                        Toast.makeText(Register1Activity.this, b.getMsg(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            }
+        }.start();
+    }
 
 }
