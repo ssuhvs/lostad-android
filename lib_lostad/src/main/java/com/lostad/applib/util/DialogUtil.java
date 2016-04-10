@@ -151,8 +151,7 @@ public class DialogUtil {
 	
 	
 	public static void showToastNoNet(Context ctx) {
-		View toastRoot = ((Activity) ctx).getLayoutInflater().inflate(
-				R.layout.toast_my, null);
+		View toastRoot =  LayoutInflater.from(ctx).inflate(R.layout.toast_my, null);
 		TextView message = (TextView) toastRoot.findViewById(R.id.tv_toast);
 		message.setText("网络不可用！");
 
