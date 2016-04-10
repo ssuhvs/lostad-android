@@ -57,7 +57,7 @@ public class FormMyInfoActivity extends BaseActivity {
     @ViewInject(R.id.tv_addr)
     private TextView tv_addr;
 
-    private UserInfo mSysConfig;
+    private UserInfo mSysConfig = new UserInfo();
     private File mFileHead;
 
     @Override
@@ -67,16 +67,9 @@ public class FormMyInfoActivity extends BaseActivity {
         x.view().inject(this);
         super.initToolBarWithBack(tb_toolbar);
         setTitle("个人资料");
-        try {
-            mSysConfig = getMyApp().getDb().findById(UserInfo.class, getLoginConfig().getUserId());
-        } catch (DbException e) {
-            e.printStackTrace();
-        }
-        if (mSysConfig != null) {
-            initUI(mSysConfig);
-        }
+
        //从网络加载用户信息
-       // loadUserInf();
+        loadUserInfo();
     }
 
     @Event(R.id.iv_head)
@@ -319,5 +312,8 @@ public class FormMyInfoActivity extends BaseActivity {
 
     }
 
+    private void loadUserInfo(){
+
+    }
 
 }
