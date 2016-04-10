@@ -125,7 +125,7 @@ public class DialogUtil {
         	mToast = new Toast(ctx);
         	mToast.setGravity(Gravity.CENTER, 0, 0);
         	mToast.setDuration(Toast.LENGTH_LONG);
-			View toastRoot = ((Activity) ctx).getLayoutInflater().inflate(R.layout.toast_my, null);
+			View toastRoot = LayoutInflater.from(ctx).inflate(R.layout.toast_my, null);
         	mToast.setView(toastRoot);
         }
 		TextView message = (TextView) mToast.getView().findViewById(R.id.tv_toast);
@@ -137,7 +137,7 @@ public class DialogUtil {
 			mToast = new Toast(ctx);
 			mToast.setGravity(Gravity.CENTER, 0, 0);
 			mToast.setDuration(Toast.LENGTH_LONG);
-			View toastRoot = ((Activity) ctx).getLayoutInflater().inflate(R.layout.toast_my, null);
+			View toastRoot = LayoutInflater.from(ctx).inflate(R.layout.toast_my, null);
 			mToast.setView(toastRoot);
 		}
 		TextView message = (TextView) mToast.getView().findViewById(R.id.tv_toast);
