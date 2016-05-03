@@ -57,7 +57,7 @@ public class FormMyInfoActivity extends BaseActivity {
     @ViewInject(R.id.tv_addr)
     private TextView tv_addr;
 
-    private UserInfo mSysConfig = new UserInfo();
+    private UserInfo mUserInfo = new UserInfo();
     private File mFileHead;
 
     @Override
@@ -103,15 +103,15 @@ public class FormMyInfoActivity extends BaseActivity {
                 public void onCallback(Integer index) {
                     if (0 == index) {
                         tv_sex.setText("男");
-                        mSysConfig.setSex("1");
+                        mUserInfo.setSex("0");
                     } else if (1 == index) {
                         tv_sex.setText("女");
-                        mSysConfig.setSex("2");
+                        mUserInfo.setSex("1");
                     } else {
                         tv_sex.setText("");
-                        mSysConfig.setSex("");
+                        mUserInfo.setSex("");
                     }
-                    update(mSysConfig);
+                    update(mUserInfo);
                 }
 
             });
@@ -179,10 +179,10 @@ public class FormMyInfoActivity extends BaseActivity {
             case 1:
                 d = data.getStringExtra(BaseFormActivity.KEY_VALUE);
                 tv_nickname.setText(d);
-                mSysConfig.setNickname(d);
+                mUserInfo.setNickname(d);
 
                 if (!Validator.isBlank(d)) {
-                    update(mSysConfig);
+                    update(mUserInfo);
                 }
                 break;
             case 2:
@@ -225,7 +225,7 @@ public class FormMyInfoActivity extends BaseActivity {
             DownloadUtil.loadImage(this, iv_head, config.headUrl);
         }
         tv_nickname.setText(config.nickname);
-        setSexValue(mSysConfig.sex);
+        setSexValue(mUserInfo.sex);
     }
 
 
@@ -313,7 +313,7 @@ public class FormMyInfoActivity extends BaseActivity {
     }
 
     private void loadUserInfo(){
-
+       
     }
 
 }
