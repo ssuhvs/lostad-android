@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.entity.LoginConfig;
 import com.lostad.app.demo.entity.LoginConfig4j;
+import com.lostad.app.demo.entity.UserInfo;
 import com.lostad.app.demo.manager.UserManager;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.util.DialogUtil;
@@ -68,6 +69,7 @@ public class LoginTask extends AsyncTask<String, Integer, LoginConfig4j> {
 		try{
 			u.password = mLoginConfig.password;
 			mApp.saveLoginConfig(u);
+			//用户信息
 			success = true;
 		}catch (Exception e){
 			e.printStackTrace();
