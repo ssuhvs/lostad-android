@@ -55,7 +55,7 @@ public class SettingsFragment extends BaseFragment {
 		super.onResume();
 		mLogin = getLoginConfig();
 		if(mLogin!=null){
-			tv_name.setText(getLoginConfig().getName());
+			tv_name.setText(getLoginConfig().getNickname());
 			tv_phone.setText(getLoginConfig().getPhone());
 			btn_quit.setText("退出");
 		}else{
