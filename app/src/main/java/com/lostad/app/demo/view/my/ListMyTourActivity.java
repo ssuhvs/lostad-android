@@ -32,8 +32,8 @@ public class ListMyTourActivity extends BaseActivity implements WaterDropListVie
 
 	private MyApplication mApp;
 
-	@ViewInject(R.id.tb_toolbar)
-	private Toolbar tb_toolbar;
+	@ViewInject(R.id.toolbar)
+	private Toolbar toolbar;
 
 	@ViewInject(R.id.lv_data)
 	private WaterDropListView lv_data;
@@ -54,7 +54,7 @@ public class ListMyTourActivity extends BaseActivity implements WaterDropListVie
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_water);
 		x.view().inject(this);
-		super.initToolBarWithBack(tb_toolbar);
+		super.initToolBarWithBack(toolbar);
 		setTitle("我的项目");
 		mApp = (MyApplication)ctx.getApplication();
 

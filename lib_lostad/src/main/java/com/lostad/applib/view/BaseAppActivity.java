@@ -30,30 +30,32 @@ public class BaseAppActivity extends ActivitySupport implements IActivitySupport
 
 	}
 
-	protected void initToolBar(Toolbar tb_toolbar) {
-		if(tb_toolbar!=null) {
-			setSupportActionBar(tb_toolbar);
-			tb_toolbar.setTitleTextColor(Color.WHITE);
+	protected void initToolBar(Toolbar toolbar) {
+		if(toolbar!=null) {
+			setSupportActionBar(toolbar);
+			toolbar.setTitleTextColor(Color.WHITE);
 		}else{
 			DialogUtil.showToastCust(this, R.string.msg_toolbar_no_found);
 		}
 	}
-	protected void initToolBarWithBack(Toolbar tb_toolbar) {
-		if(tb_toolbar!=null){
-			setSupportActionBar(tb_toolbar);
-			tb_toolbar.setNavigationIcon(R.drawable.ic_action_back);
-			tb_toolbar.setTitleTextColor(Color.WHITE);
+	protected void initToolBarWithBack(Toolbar toolbar) {
+		if(toolbar!=null){
+			setSupportActionBar(toolbar);
+			//toolbar.setNavigationIcon(R.drawable.ic_action_back);
+			toolbar.setTitleTextColor(Color.WHITE);
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		}else{
 			DialogUtil.showToastCust(this,R.string.msg_toolbar_no_found);
 		}
 
 	}
-	protected void initToolBarWithBack(Toolbar tb_toolbar,String title) {
-		if(tb_toolbar!=null){
-			setSupportActionBar(tb_toolbar);
-			tb_toolbar.setNavigationIcon(R.drawable.ic_action_back);
-			tb_toolbar.setTitleTextColor(Color.WHITE);
+	protected void initToolBarWithBack(Toolbar toolbar,String title) {
+		if(toolbar!=null){
+			setSupportActionBar(toolbar);
+			//toolbar.setNavigationIcon(R.drawable.ic_action_back);
+			toolbar.setTitleTextColor(Color.WHITE);
 			super.setTitle(title);
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		}else{
 			DialogUtil.showToastCust(this,R.string.msg_toolbar_no_found);
 		}

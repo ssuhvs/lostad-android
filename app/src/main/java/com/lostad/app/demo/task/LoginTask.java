@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import com.lostad.app.demo.MyApplication;
 import com.lostad.app.demo.entity.LoginConfig;
 import com.lostad.app.demo.entity.LoginConfig4j;
-import com.lostad.app.demo.entity.UserInfo;
 import com.lostad.app.demo.manager.UserManager;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.util.DialogUtil;

@@ -30,8 +30,8 @@ import org.xutils.x;
 
 public class FindPwd1Activity extends BaseActivity {
 
-	@ViewInject(R.id.tb_toolbar)
-	private Toolbar  tb_toolbar;
+	@ViewInject(R.id.toolbar)
+	private Toolbar  toolbar;
 
 	@ViewInject(R.id.et_register_pass)
 	private EditText  et_register_pass;
@@ -45,7 +45,7 @@ public class FindPwd1Activity extends BaseActivity {
 
 		setContentView(R.layout.activity_update_pwd1);
 		x.view().inject(this);
-		super.initToolBarWithBack(tb_toolbar);
+		super.initToolBarWithBack(toolbar);
 		setTitle("修改密码");
 
 		mPhone = getIntent().getStringExtra("phone");

@@ -46,7 +46,7 @@ public class Register1Activity extends BaseActivity {
         setContentView(R.layout.activity_register1);
         setTitle("用户注册");
         x.view().inject(this);
-        super.initToolBarWithBack((Toolbar) findViewById(R.id.tb_toolbar));
+        super.initToolBarWithBack((Toolbar) findViewById(R.id.toolbar));
 
         mPhone = getIntent().getStringExtra("phone");
     }

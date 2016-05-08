@@ -34,7 +34,7 @@ public class CommonBrowserActivity extends BaseActivity {
 		setContentView(R.layout.report_link);
 
 		x.view().inject(this);
-		super.initToolBarWithBack((Toolbar)findViewById(R.id.tb_toolbar));
+		super.initToolBarWithBack((Toolbar)findViewById(R.id.toolbar));
 
 		Intent i = getIntent();
 		String title = i.getStringExtra("title");

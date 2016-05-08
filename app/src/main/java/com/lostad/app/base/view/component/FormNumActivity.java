@@ -29,8 +29,8 @@ public class FormNumActivity extends BaseFormActivity {
 	public static final String KEY_MAX_DESC = "max_desc";
 	public static final String KEY_IS_INT = "key_is_int";
 	public static final String KEY_NUM_AFTER_POINT = "key_num_after_point";
-	@ViewInject(R.id.tb_toolbar)
-	private Toolbar tb_toolbar;
+	@ViewInject(R.id.toolbar)
+	private Toolbar toolbar;
 
 	@ViewInject( R.id.tv_desc)
 	private TextView tv_desc;
@@ -52,7 +52,7 @@ public class FormNumActivity extends BaseFormActivity {
 		setContentView(R.layout.activity_form_edit_text);
 
 		x.view().inject(this);
-		super.initToolBarWithBack((Toolbar) findViewById(R.id.tb_toolbar));
+		super.initToolBarWithBack((Toolbar) findViewById(R.id.toolbar));
 
 		Intent i = getIntent();
 		value = i.getStringExtra(KEY_VALUE);
