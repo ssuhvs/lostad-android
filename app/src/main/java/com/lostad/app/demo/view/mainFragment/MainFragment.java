@@ -19,8 +19,8 @@ import org.xutils.x;
 
 public class MainFragment extends BaseFragment {
 
-    @ViewInject(R.id.tb_toolbar)
-    private Toolbar tb_toolbar;
+    @ViewInject(R.id.toolbar)
+    private Toolbar toolbar;
 
     @ViewInject(R.id.rg_tab)
     private RadioGroup radioGroup;

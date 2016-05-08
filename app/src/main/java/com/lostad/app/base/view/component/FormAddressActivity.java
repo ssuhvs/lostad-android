@@ -23,7 +23,7 @@ public class FormAddressActivity extends BaseActivity {
         setContentView(R.layout.activity_form_address);
 
         x.view().inject(this);
-        super.initToolBarWithBack((Toolbar)findViewById(R.id.tb_toolbar));
+        super.initToolBarWithBack((Toolbar)findViewById(R.id.toolbar));
 
         initView();
 

@@ -33,8 +33,8 @@ import org.xutils.x;
 import java.io.File;
 
 public class FormMyInfoActivity extends BaseActivity {
-    @ViewInject(R.id.tb_toolbar)
-    private Toolbar tb_toolbar;
+    @ViewInject(R.id.toolbar)
+    private Toolbar toolbar;
 
     @ViewInject(R.id.iv_head)
     private ImageView iv_head;
@@ -65,7 +65,7 @@ public class FormMyInfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_myinfo);
         x.view().inject(this);
-        super.initToolBarWithBack(tb_toolbar);
+        super.initToolBarWithBack(toolbar);
         setTitle("个人资料");
 
        //从网络加载用户信息
@@ -161,6 +161,7 @@ public class FormMyInfoActivity extends BaseActivity {
 
     private void update(UserInfo u) {
         try {
+            tv_nickname.setText(u.getNickname());
             getMyApp().getDb().saveOrUpdate(u);
         } catch (DbException e) {
             e.printStackTrace();
@@ -174,28 +175,23 @@ public class FormMyInfoActivity extends BaseActivity {
         }
         String d;
         switch (requestCode) {
-
-
+            case 0:
+                break;
             case 1:
                 d = data.getStringExtra(BaseFormActivity.KEY_VALUE);
-                tv_nickname.setText(d);
                 mUserInfo.setNickname(d);
-
                 if (!Validator.isBlank(d)) {
                     update(mUserInfo);
                 }
                 break;
-            case 2:
-                break;
             case 3:
 //                d = data.getStringExtra(BaseFormActivity.KEY_VALUE);
-//                tv_age.setText(d);
-//                mSysConfig.setAge(d);
+//                mUserInfo. = (d);
 //
 //                if (!Validator.isBlank(d)) {
 //                    update(mSysConfig);
 //                }
-//                break;
+                break;
             default:
                 ImageChooserUtil.onActivityResult(ctx, requestCode, resultCode, data, new ImageChooserUtil.PicCallback() {
                     @Override

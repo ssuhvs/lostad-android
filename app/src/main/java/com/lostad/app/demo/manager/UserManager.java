@@ -36,19 +36,27 @@ public class UserManager
 	public LoginConfig4j login(String phone,String password) {
 		LoginConfig4j c = null;
 		try {
-			Gson g = new Gson();
-			String url = IConst.URL_BASE+IConst.API_LOGIN;
-			Map map = new HashMap();
-			map.put("phone", phone);
-			map.put("password", password);
-			String param = g.toJson(map);
-			LogMe.d("param", param);
-			String j = RequestUtil.postJson(url,null, param);
-			LogMe.d("data", j);
-			c = g.fromJson(j, LoginConfig4j.class);
-			if(c==null ){
-				c = new LoginConfig4j(false,"服务器返回数据异常");
-			}
+//			Gson g = new Gson();
+//			String url = IConst.URL_BASE+IConst.API_LOGIN;
+//			Map map = new HashMap();
+//			map.put("phone", phone);
+//			map.put("password", password);
+//			String param = g.toJson(map);
+//			LogMe.d("param", param);
+//			String j = RequestUtil.postJson(url,null, param);
+//			LogMe.d("data", j);
+//			c = g.fromJson(j, LoginConfig4j.class);
+//			if(c==null ){
+//				c = new LoginConfig4j(false,"服务器返回数据异常");
+//			}
+			c = new LoginConfig4j(true,"登录成功");
+			c.data = new LoginConfig();
+			c.data.setToken("123");
+			c.data.setId("1");
+			c.data.setPhone(phone);
+			c.data.setPassword(password);
+            c.data.setNickname("Test NickName");
+			c.data.setName("real name");
 		} catch (Exception e) {
 			c = new LoginConfig4j(false,"服务器返回数据异常！"+e.getMessage());
 			e.printStackTrace();

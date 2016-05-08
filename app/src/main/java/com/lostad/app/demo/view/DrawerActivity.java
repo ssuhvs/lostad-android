@@ -23,8 +23,8 @@ import org.xutils.x;
 
 public class DrawerActivity extends BaseActivity {
 
-    @ViewInject(R.id.tb_toolbar)
-    Toolbar tb_toolbar;
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
     @ViewInject(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
 
@@ -35,7 +35,7 @@ public class DrawerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_drawer);
         x.view().inject(this);
-        super.initToolBar(tb_toolbar);
+        super.initToolBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         
         initView();
@@ -44,7 +44,7 @@ public class DrawerActivity extends BaseActivity {
 
     protected void initView() {
 
-        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, tb_toolbar, R.string.app_name,
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name,
                 R.string.app_name) {
             @Override
             public void onDrawerClosed(View drawerView) {

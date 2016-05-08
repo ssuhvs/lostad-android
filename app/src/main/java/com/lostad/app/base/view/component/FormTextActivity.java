@@ -40,7 +40,7 @@ public class FormTextActivity extends BaseFormActivity {
         setContentView(R.layout.activity_form_edit_text);
 
 		x.view().inject(this);
-		super.initToolBarWithBack((Toolbar)findViewById(R.id.tb_toolbar));
+		super.initToolBarWithBack((Toolbar)findViewById(R.id.toolbar));
 
         Intent i = getIntent();
         value = i.getStringExtra(KEY_VALUE);

@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.lostad.app.demo.MyApplication;
-import com.lostad.app.demo.R;
 import com.lostad.app.demo.view.LoginActivity;
 import com.lostad.app.demo.view.MainActivity;
 import com.lostad.applib.view.BaseAppActivity;
@@ -21,7 +20,6 @@ public class BaseActivity extends BaseAppActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ctx = this;
-		setStatusBarStyle(R.color.bg_title);
 	}
 
 	protected MyApplication getMyApp(){

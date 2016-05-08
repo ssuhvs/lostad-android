@@ -23,15 +23,15 @@ public class FreshNewsDetailActivity extends BaseActivity {
 
     @ViewInject(R.id.vp)
     ViewPager viewPager;
-    @ViewInject(R.id.tb_toolbar)
-    Toolbar tb_toolbar;
+    @ViewInject(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fresh_news_detail);
         x.view().inject(this);
-        super.initToolBarWithBack(tb_toolbar);
+        super.initToolBarWithBack(toolbar);
         initData();
     }
 

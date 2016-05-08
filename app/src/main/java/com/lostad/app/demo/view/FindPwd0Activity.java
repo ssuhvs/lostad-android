@@ -45,7 +45,7 @@ public class FindPwd0Activity extends BaseActivity {
 		setTitle("找回密码");
 
 		x.view().inject(this);
-		super.initToolBarWithBack((Toolbar) findViewById(R.id.tb_toolbar));
+		super.initToolBarWithBack((Toolbar) findViewById(R.id.toolbar));
 	}
 
 

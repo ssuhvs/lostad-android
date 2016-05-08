@@ -28,8 +28,8 @@ public class FormDateActivity extends BaseFormActivity {
 	public static final String KEY_IS_DATE  = "isDate";
 	public static final String KEY_IS_TIME  = "isTime";
 
-	@ViewInject(R.id.tb_toolbar)
-	private Toolbar tb_toolbar;
+	@ViewInject(R.id.toolbar)
+	private Toolbar toolbar;
 
 	@ViewInject(R.id.tv_desc)
 	private TextView tv_desc;
@@ -52,7 +52,7 @@ public class FormDateActivity extends BaseFormActivity {
         setContentView(R.layout.common_date_lib);
 
 		x.view().inject(this);
-		super.initToolBarWithBack((Toolbar)findViewById(R.id.tb_toolbar));
+		super.initToolBarWithBack((Toolbar)findViewById(R.id.toolbar));
 
         Intent i = getIntent();
         value = i.getStringExtra("value");

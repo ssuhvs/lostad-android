@@ -38,7 +38,7 @@ public class ImagePagerActivity extends BaseFormActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.common_view_pager);
-		android.support.v7.widget.Toolbar tb = (android.support.v7.widget.Toolbar)findViewById(R.id.tb_toolbar);
+		android.support.v7.widget.Toolbar tb = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbar);
 		super.initToolBarWithBack(tb);
 		Bundle bundle = getIntent().getExtras();
 		assert bundle != null;

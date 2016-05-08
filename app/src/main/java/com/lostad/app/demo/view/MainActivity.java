@@ -27,8 +27,8 @@ import org.xutils.x;
 
 public class MainActivity extends BaseActivity {
 
-    @ViewInject(R.id.tb_toolbar)
-    private Toolbar tb_toolbar;
+    @ViewInject(R.id.toolbar)
+    private Toolbar toolbar;
 
     private FragmentManager fragmentManager;
     private RadioGroup radioGroup;
@@ -37,10 +37,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_radiogroup);
-
         x.view().inject(this);
-        super.initToolBar(tb_toolbar);
-        //tb_toolbar.setLogo(R.mipmap.logo);
         setTitle(R.string.app_name);
 
         fragmentManager = getSupportFragmentManager();
