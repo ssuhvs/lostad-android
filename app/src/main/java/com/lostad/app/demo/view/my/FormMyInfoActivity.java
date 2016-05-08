@@ -20,6 +20,7 @@ import com.lostad.app.base.view.component.FormTextActivity;
 import com.lostad.app.base.view.component.FormTextChinaeseActivity;
 import com.lostad.app.demo.IConst;
 import com.lostad.app.demo.R;
+import com.lostad.app.demo.entity.LoginConfig;
 import com.lostad.app.demo.entity.UserInfo;
 import com.lostad.applib.core.MyCallback;
 import com.lostad.applib.util.DialogUtil;
@@ -57,7 +58,7 @@ public class FormMyInfoActivity extends BaseActivity {
     @ViewInject(R.id.tv_addr)
     private TextView tv_addr;
 
-    private UserInfo mUserInfo = new UserInfo();
+    private LoginConfig mUserInfo = new LoginConfig();
     private File mFileHead;
 
     @Override
@@ -67,9 +68,17 @@ public class FormMyInfoActivity extends BaseActivity {
         x.view().inject(this);
         super.initToolBarWithBack(toolbar);
         setTitle("个人资料");
+    }
 
-       //从网络加载用户信息
-        loadUserInfo();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LoginConfig login = (LoginConfig)getLoginConfig();
+        if(login!=null){
+            mUserInfo = login;
+            updateUI(login);
+        }
+
     }
 
     @Event(R.id.iv_head)
@@ -159,11 +168,26 @@ public class FormMyInfoActivity extends BaseActivity {
         startActivityForResult(i, 6);
     }
 
-    private void update(UserInfo u) {
+    private void update(LoginConfig u) {
+        try {
+            getMyApp().getDb().saveOrUpdate(u);
+            new Thread(){
+                @Override
+                public void run() {
+
+                }
+            }.start();
+            // commit to server 。。。
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateUI(LoginConfig u) {
         try {
             tv_nickname.setText(u.getNickname());
-            getMyApp().getDb().saveOrUpdate(u);
-        } catch (DbException e) {
+            tv_sex.setText(u.getSex());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -308,8 +332,5 @@ public class FormMyInfoActivity extends BaseActivity {
 
     }
 
-    private void loadUserInfo(){
-       
-    }
 
 }
